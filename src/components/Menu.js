@@ -4,7 +4,7 @@ import logo from '../images/logo.png';
 const Menu = () => {
   return (
     <div>
-      <nav className="navbar navbar-expand-sm mx-5 p-3">
+      <nav className="navbar navbar-expand-sm mx-lg-5 p-3">
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
             <img
