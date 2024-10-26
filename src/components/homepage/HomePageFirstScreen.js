@@ -14,7 +14,7 @@ function HomePageFirstScreen() {
     <div
       className="d-flex align-items-center justify-content-center row position-relative"
       style={{
-        minHeight: '100vh',
+        minHeight: '50vh',
         background: 'linear-gradient(to bottom, #8ec5fc, #e0c3fc, #ffffff)',
         borderTopLeftRadius: '60px',
         borderTopRightRadius: '60px',

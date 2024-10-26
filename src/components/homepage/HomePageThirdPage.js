@@ -74,7 +74,7 @@ const HomePageThirdScreen = () => {
 
         {/* Card 3 */}
         <div
-          className="col-lg-4 col-md-6 mb-4"
+          className="col-lg-4 col-sm-12 mb-4"
           data-aos="fade-up"
           data-aos-delay="300" // Increased delay for staggered effect
         >

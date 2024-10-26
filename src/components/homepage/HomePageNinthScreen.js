@@ -57,7 +57,7 @@ const HomePageNinthScreen = () => {
         </div>
 
         {/* Card 3: Contact Us with Zoom Effect */}
-        <div className="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+        <div className="col-lg-4 col-sm-12" data-aos="zoom-in" data-aos-delay="300">
           <div className="card h-100 p-4 text-center shadow-sm">
             <div className="mb-3">
               <i className="bi bi-life-preserver" style={{ fontSize: "2rem", color: "#f28b82" }}></i>
