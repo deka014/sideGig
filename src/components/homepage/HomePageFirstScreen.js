@@ -23,7 +23,7 @@ function HomePageFirstScreen() {
     >
       {/* Left Section with AOS Animation */}
       <div
-        className="col-md-6 text-center text-lg-start ps-lg-5 mb-5"
+        className="col-lg-6 text-center text-lg-start ps-lg-5 mb-5"
         data-aos="flip-right" // Apply AOS animation
         style={{maxWidth: '500px'}}
       
@@ -66,7 +66,7 @@ function HomePageFirstScreen() {
 
       {/* Right Section with Image Animation */}
       <div
-        className="col-md-6 d-flex justify-content-center"
+        className="col-lg-6 d-flex justify-content-center"
         data-aos="fade-left" // Apply AOS animation
       >
         <img
