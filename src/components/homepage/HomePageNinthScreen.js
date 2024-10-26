@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const HomePageNinthScreen = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Animation duration in milliseconds
+      once: true, // Animation occurs only once
+    });
+  }, []);
+
   return (
     <div className="container py-5">
-      {/* Header Section */}
-      <div className="text-center mb-5">
+      {/* Header Section with Animation */}
+      <div className="text-center mb-5" data-aos="zoom-in">
         <p className="text-uppercase fw-bold" style={{ color: "#6c63ff" }}>
           Need More Help?
         </p>
@@ -15,8 +24,8 @@ const HomePageNinthScreen = () => {
 
       {/* Cards Section */}
       <div className="row g-4">
-        {/* Card 1: Customer Support */}
-        <div className="col-lg-4 col-md-6">
+        {/* Card 1: Customer Support with Flip Effect */}
+        <div className="col-lg-4 col-md-6" data-aos="flip-left" data-aos-delay="100">
           <div className="card h-100 p-4 text-center shadow-sm">
             <div className="mb-3">
               <i className="bi bi-chat-left-text" style={{ fontSize: "2rem", color: "#f28b82" }}></i>
@@ -31,8 +40,8 @@ const HomePageNinthScreen = () => {
           </div>
         </div>
 
-        {/* Card 2: Ticket Support */}
-        <div className="col-lg-4 col-md-6">
+        {/* Card 2: Ticket Support with Fade Effect */}
+        <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
           <div className="card h-100 p-4 text-center shadow-sm">
             <div className="mb-3">
               <i className="bi bi-envelope" style={{ fontSize: "2rem", color: "#f28b82" }}></i>
@@ -47,8 +56,8 @@ const HomePageNinthScreen = () => {
           </div>
         </div>
 
-        {/* Card 3: Contact Us */}
-        <div className="col-lg-4 col-md-6">
+        {/* Card 3: Contact Us with Zoom Effect */}
+        <div className="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
           <div className="card h-100 p-4 text-center shadow-sm">
             <div className="mb-3">
               <i className="bi bi-life-preserver" style={{ fontSize: "2rem", color: "#f28b82" }}></i>

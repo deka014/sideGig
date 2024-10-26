@@ -1,19 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const HomePageSecondScreen = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Animation duration
+      once: true, // Animates only once when in view
+    });
+  }, []);
+
   return (
-    
     <div
       className="d-flex align-items-center justify-content-center row position-relative"
       style={{
-        // minHeight: '100vh',
         marginBottom: '100px',
       }}
     >
-      {/* Left section: Single phone image */}
-      <div className="col-lg-6 d-flex justify-content-center">
+      {/* Left section: Single phone image with animation */}
+      <div
+        className="col-lg-6 d-flex justify-content-center"
+        data-aos="fade-right" // Animation type
+      >
         <img
-          src="https://shine.creativemox.com/sociabiz/wp-content/uploads/sites/16/2024/08/img_3_.png" // Replace with the actual image URL
+          src="https://shine.creativemox.com/sociabiz/wp-content/uploads/sites/16/2024/08/img_3_.png"
           alt="Phone"
           style={{
             width: '80%',
@@ -22,29 +32,54 @@ const HomePageSecondScreen = () => {
           }}
         />
       </div>
-      
 
       {/* Right section: Text content with progress bars */}
-      <div className="col-lg-6 text-center text-lg-start pe-md-5">
-        <p className="text-uppercase fw-bold" style={{ color: '#6c63ff', fontSize: '1rem' }}>
+      <div
+        className="col-lg-6 text-center text-lg-start pe-md-5"
+        data-aos="fade-left" // Animation type for text content
+      >
+        <p
+          className="text-uppercase fw-bold"
+          style={{ color: '#6c63ff', fontSize: '1rem' }}
+          data-aos="fade-up" // Animation for subtitle
+        >
           Who We Are
         </p>
-        <h2 className="fw-bold" style={{ fontSize: '2.5rem', lineHeight: '1.2' }}>
+        <h2
+          className="fw-bold"
+          style={{ fontSize: '2.5rem', lineHeight: '1.2' }}
+          data-aos="fade-up"
+          data-aos-delay="100" // Delay for staggered effect
+        >
           Today’s a better time to <br />
           connect with people on <br />
           social media.
         </h2>
-        <p className="lead text-muted" style={{ marginTop: '20px' }}>
+        <p
+          className="lead text-muted"
+          style={{ marginTop: '20px' }}
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
           Dignissim conubia phasellus potenti orci porttitor sollicitudin morbi aptent rhoncus mollis magnis
         </p>
 
-        {/* Progress bars */}
+        {/* Progress bars with animation */}
         <div className="mt-4">
-          <div className="d-flex justify-content-between">
+          <div
+            className="d-flex justify-content-between"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
             <span>Project Done</span>
             <span>97%</span>
           </div>
-          <div className="progress" style={{ height: '8px', borderRadius: '5px' }}>
+          <div
+            className="progress"
+            style={{ height: '8px', borderRadius: '5px' }}
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
             <div
               className="progress-bar"
               style={{
@@ -54,11 +89,20 @@ const HomePageSecondScreen = () => {
             ></div>
           </div>
 
-          <div className="d-flex justify-content-between mt-3">
+          <div
+            className="d-flex justify-content-between mt-3"
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
             <span>Boost Traffic</span>
             <span>40%</span>
           </div>
-          <div className="progress" style={{ height: '8px', borderRadius: '5px' }}>
+          <div
+            className="progress"
+            style={{ height: '8px', borderRadius: '5px' }}
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
             <div
               className="progress-bar"
               style={{
@@ -68,11 +112,20 @@ const HomePageSecondScreen = () => {
             ></div>
           </div>
 
-          <div className="d-flex justify-content-between mt-3">
+          <div
+            className="d-flex justify-content-between mt-3"
+            data-aos="fade-up"
+            data-aos-delay="700"
+          >
             <span>Increase Revenue</span>
             <span>60%</span>
           </div>
-          <div className="progress" style={{ height: '8px', borderRadius: '5px' }}>
+          <div
+            className="progress"
+            style={{ height: '8px', borderRadius: '5px' }}
+            data-aos="fade-up"
+            data-aos-delay="800"
+          >
             <div
               className="progress-bar"
               style={{
