@@ -12,7 +12,7 @@ const HomePageSecondScreen = () => {
 
   return (
     <div
-      className="d-flex align-items-center justify-content-center row position-relative"
+      className="d-flex align-items-center justify-content-center row position-relative mt-3"
       style={{
         marginBottom: '100px',
       }}

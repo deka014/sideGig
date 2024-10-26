@@ -4,11 +4,11 @@ import logo from '../images/logo.png';
 const Menu = () => {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg mx-lg-5 p-3">
+      <nav className="navbar navbar-expand-lg mx-lg-5 ">
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
             <img
-              height={80}
+              height={60}
               // src="https://shine.creativemox.com/sociabiz/wp-content/uploads/sites/16/2024/08/logo_sociabiz.png" // Add the path to the "sociabiz" logo image here
               src={logo}
               alt="sociabiz"

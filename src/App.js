@@ -28,7 +28,7 @@ function App() {
       <Menu />
       <ToastContainer />
       {/* <BackButton /> */}
-      <div class='mx-md-5'>
+      <div class='mx-lg-5'>
         {/* <div class='container-fluid row'> */}
         <div class='container-fluid'>
           <div class='col-12'>
