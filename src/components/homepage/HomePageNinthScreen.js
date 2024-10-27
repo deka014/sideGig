@@ -11,7 +11,7 @@ const HomePageNinthScreen = () => {
   }, []);
 
   return (
-    <div className="container py-5">
+    <div className="container py-2">
       {/* Header Section with Animation */}
       <div className="text-center mb-5" data-aos="zoom-in">
         <p className="text-uppercase fw-bold" style={{ color: "#6c63ff" }}>

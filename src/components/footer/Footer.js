@@ -8,7 +8,7 @@ const Footer = () => {
       className="container-fluid py-5"
       style={{
         background: 'linear-gradient(to bottom, #8ec5fc, #e0c3fc, #ffffff)',
-        borderRadius: "60px",
+        borderRadius: "40px",
         color: "#333",
       }}
     >

@@ -11,7 +11,7 @@ const HomePageSixthScreen = () => {
   }, []);
 
   return (
-    <div className="container py-5">
+    <div className="container py-3">
       {/* Heading with Animation */}
       <h2
         className="text-center fw-bold mb-5"

@@ -8,6 +8,7 @@ import HomePageSixthScreen from "./HomePageSixthScreen";
 import HomePageSeventhScreen from "./HomePageSeventhScreen";
 import HomePageEigthScreen from "./HomePageEigthScreen";
 import HomePageNinthScreen from "./HomePageNinthScreen";
+import PricingPage from "../PricingPage";
 
 
 const Homepage = () => {
@@ -21,6 +22,7 @@ const Homepage = () => {
       <HomePageSixthScreen/>
       <HomePageSeventhScreen/>
       <HomePageEigthScreen/>
+      <PricingPage/>
       <HomePageNinthScreen/>
     </div>
   );

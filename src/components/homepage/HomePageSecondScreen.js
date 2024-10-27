@@ -41,8 +41,8 @@ const HomePageSecondScreen = () => {
         <h2 className="fw-bold text-center text-lg-start" style={{ fontSize: '2rem', marginBottom: '20px' }}>
           All Your Graphic Design Needs, Covered.
         </h2>
-        <p className="lead text-muted mb-5">
-          Get a dedicated design team and project manager for a flat monthly subscription fee.
+        <p className="lead text-muted text-center text-lg-start mb-5">
+          Get a dedicated design team and a project manager for a flat monthly subscription fee.
         </p>
 
         {/* Step 1: Subscribe */}
