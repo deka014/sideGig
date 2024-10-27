@@ -12,14 +12,14 @@ const HomePageSecondScreen = () => {
 
   return (
     <div
-      className="d-flex align-items-center justify-content-center row position-relative mt-3"
+      className="d-flex align-items-center justify-content-center row position-relative mb-5"
       style={{
-        marginBottom: '100px',
+        // marginBottom: '100px',
       }}
     >
       {/* Left section: Single phone image with animation */}
       <div
-        className="col-lg-6 d-flex justify-content-center"
+        className="col-sm-6 d-flex justify-content-center"
         data-aos="fade-right" // Animation type
       >
         <img
@@ -33,106 +33,87 @@ const HomePageSecondScreen = () => {
         />
       </div>
 
-      {/* Right section: Text content with progress bars */}
+      {/* Right section: Steps content with icons */}
       <div
-        className="col-lg-6 text-center text-lg-start pe-md-5"
+        className="col-sm-6 text-start pe-md-5"
         data-aos="fade-left" // Animation type for text content
       >
-        <p
-          className="text-uppercase fw-bold"
-          style={{ color: '#6c63ff', fontSize: '1rem' }}
-          data-aos="fade-up" // Animation for subtitle
-        >
-          Who We Are
-        </p>
-        <h2
-          className="fw-bold"
-          style={{ fontSize: '2.5rem', lineHeight: '1.2' }}
-          data-aos="fade-up"
-          data-aos-delay="100" // Delay for staggered effect
-        >
-          Today’s a better time to <br />
-          connect with people on <br />
-          social media.
+        <h2 className="fw-bold text-center text-lg-start" style={{ fontSize: '2rem', marginBottom: '20px' }}>
+          All Your Graphic Design Needs, Covered.
         </h2>
-        <p
-          className="lead text-muted"
-          style={{ marginTop: '20px' }}
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
-          Dignissim conubia phasellus potenti orci porttitor sollicitudin morbi aptent rhoncus mollis magnis
+        <p className="lead text-muted mb-5">
+          Get a dedicated design team and project manager for a flat monthly subscription fee.
         </p>
 
-        {/* Progress bars with animation */}
-        <div className="mt-4">
+        {/* Step 1: Subscribe */}
+        <div className="d-flex align-items-start mb-4" >
           <div
-            className="d-flex justify-content-between"
-            data-aos="fade-up"
-            data-aos-delay="300"
+            style={{
+              backgroundColor: '#e9f7ef',
+              borderRadius: '50%',
+              width: '50px',
+              height: '50px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginRight: '15px',
+            }}
           >
-            <span>Project Done</span>
-            <span>97%</span>
+            <i className="bi bi-check2-circle" style={{ fontSize: '1.5rem', color: '#28a745' }}></i>
           </div>
-          <div
-            className="progress"
-            style={{ height: '8px', borderRadius: '5px' }}
-            data-aos="fade-up"
-            data-aos-delay="400"
-          >
-            <div
-              className="progress-bar"
-              style={{
-                width: '97%',
-                background: 'linear-gradient(to right, #ff758c, #ff7eb3)',
-              }}
-            ></div>
+          <div>
+            <h5 className="fw-bold">1. Subscribe</h5>
+            <p className="text-muted mb-0">
+              Pick a plan and subscribe. Meet your design team and work together on a first-name basis.
+            </p>
           </div>
+        </div>
 
+        {/* Step 2: Request */}
+        <div className="d-flex align-items-start mb-4" >
           <div
-            className="d-flex justify-content-between mt-3"
-            data-aos="fade-up"
-            data-aos-delay="500"
+            style={{
+              backgroundColor: '#ffefdb',
+              borderRadius: '50%',
+              width: '50px',
+              height: '50px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginRight: '15px',
+            }}
           >
-            <span>Boost Traffic</span>
-            <span>40%</span>
+            <i className="bi bi-file-earmark-text" style={{ fontSize: '1.5rem', color: '#fd7e14' }}></i>
           </div>
-          <div
-            className="progress"
-            style={{ height: '8px', borderRadius: '5px' }}
-            data-aos="fade-up"
-            data-aos-delay="600"
-          >
-            <div
-              className="progress-bar"
-              style={{
-                width: '40%',
-                background: 'linear-gradient(to right, #8ec5fc, #e0c3fc)',
-              }}
-            ></div>
+          <div>
+            <h5 className="fw-bold">2. Request</h5>
+            <p className="text-muted mb-0">
+              Make your design requests within our design portal. Add as many design as you’d like.
+            </p>
           </div>
+        </div>
 
+        {/* Step 3: Download */}
+        <div className="d-flex align-items-start">
           <div
-            className="d-flex justify-content-between mt-3"
-            data-aos="fade-up"
-            data-aos-delay="700"
+            style={{
+              backgroundColor: '#e1ecf4',
+              borderRadius: '50%',
+              width: '50px',
+              height: '50px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginRight: '15px',
+            }}
           >
-            <span>Increase Revenue</span>
-            <span>60%</span>
+            <i className="bi bi-cloud-download" style={{ fontSize: '1.5rem', color: '#007bff' }}></i>
           </div>
-          <div
-            className="progress"
-            style={{ height: '8px', borderRadius: '5px' }}
-            data-aos="fade-up"
-            data-aos-delay="800"
-          >
-            <div
-              className="progress-bar"
-              style={{
-                width: '60%',
-                background: 'linear-gradient(to right, #ffc371, #ff7b95)',
-              }}
-            ></div>
+          <div>
+            <h5 className="fw-bold">3. Download</h5>
+            <p className="text-muted mb-0">
+              Download and discuss your projects directly in our design portal. Collaborate on Slack.
+            </p>
           </div>
         </div>
       </div>

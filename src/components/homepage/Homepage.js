@@ -17,12 +17,10 @@ const Homepage = () => {
       <HomepagePageSecondScreen/>
       <HomePageThirdScreen/>
       <HomePageFourthScreen/>
-      <HomePageThirdScreen/>
       <HomePageFifthScreen/>
       <HomePageSixthScreen/>
       <HomePageSeventhScreen/>
       <HomePageEigthScreen/>
-      <HomePageFifthScreen/>
       <HomePageNinthScreen/>
     </div>
   );
