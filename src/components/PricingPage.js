@@ -60,7 +60,7 @@ const PricingPage = () => {
               <li>✅ Aenean himenaeos sit</li>
               <li>✅ Dui pede himenaeos</li>
             </ul>
-            <a href="#" className="btn btn-primary w-100">
+            <a href="/payment" className="btn btn-primary w-100">
               Get Started
             </a>
           </div>
@@ -88,7 +88,7 @@ const PricingPage = () => {
               <li>✅ Aenean himenaeos sit</li>
               <li>✅ Dui pede himenaeos</li>
             </ul>
-            <a href="#" className="btn btn-primary w-100">
+            <a href="/payment" className="btn btn-primary w-100">
               Get Started
             </a>
           </div>
@@ -110,7 +110,7 @@ const PricingPage = () => {
               <li>✅ Aenean himenaeos sit</li>
               <li>✅ Dui pede himenaeos</li>
             </ul>
-            <a href="#" className="btn btn-primary w-100">
+            <a href="/payment" className="btn btn-primary w-100">
               Get Started
             </a>
           </div>

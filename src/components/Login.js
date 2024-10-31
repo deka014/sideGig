@@ -1,76 +1,136 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
-import authService from '../services/authService'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// src/components/Login.js
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [user,setUser] = useState(authService.getCurrentUser())
+function Login() {
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [otpSent, setOtpSent] = useState(false);
+  const [otp, setOtp] = useState('');
+  const navigate = useNavigate();
 
-  // useEffect(() => {
- 
-  //   if (user && user.id && user.token){
-      
-  //     window.location.href=`/employee-reports/${user.id}`
-  //   }
-  //   console.log("working")
-  // }, [])
-  
+  const sendOtp = () => {
+    // TODO: Integrate OTP sending via backend API
+    setOtpSent(true);
+  };
 
-  const handleOnLogin = async (e) => {
-    e.preventDefault()
-    try {
-      const user = await authService.login(email, password)
-      // Handle successful login
-      console.log('Login successful:', user)
-      // window.location.href = `/employee-dashboard/${user.id}`
-      window.location.href = `/employee-dashboard/2`
-    } catch (error) {
-      // Handle login error
-      console.error('Login failed:', error)
-      toast.error('Wrong Email or Password : ' + error.message, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        draggable: true,
-        progress: undefined,
-      });
-      
-    }
-  }
+  const verifyOtp = () => {
+    // TODO: Integrate OTP verification via backend API
+    navigate('/pricing');
+  };
 
   return (
-    <div className='wrapper bg-dark w-50 mb-5'>
-      <h1>Login</h1>
-      <form action=''>
-        <div className='input-box'>
-          <input
-            type='email'
-            placeholder='Email'
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className='input-box'>
-          <input
-            type='password'
-            placeholder='Password'
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+    <div
+      className="container-fluid d-flex align-items-center justify-content-center py-5 px-md-5"
+      style={{
+        background: 'linear-gradient(to bottom, #f5e1ff, #ffffff)',
+      }}
+    >
+      <div className="row w-100 align-items-center">
+        {/* Left Section: Login Form */}
+        <div className="col-12 col-md-6 d-flex justify-content-center">
+          <div
+            className="p-4 rounded shadow bg-white"
+            style={{
+              maxWidth: '350px',
+              width: '100%',
+            }}
+          >
+            <h2 style={{ fontSize: '1.5rem', fontWeight: '600', marginBottom: '20px', color: '#333' }}>
+              Get going with Ride On
+            </h2>
+
+            {!otpSent ? (
+              <>
+                <div
+                  className="d-flex align-items-center mb-4"
+                  style={{
+                    borderBottom: '1px solid #ddd',
+                  }}
+                >
+                  <span style={{ fontSize: '1rem', marginRight: '10px', color: '#555' }}>+91</span>
+                  <input
+                    type="text"
+                    placeholder="Enter your mobile number"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    style={{
+                      width: '100%',
+                      border: 'none' ,
+                      outline: 'none',
+                      padding: '10px 0',
+                      fontSize: '1rem',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      boxSizing: 'border-box'
+                    }}
+                  />
+                </div>
+                <button
+                  onClick={sendOtp}
+                  className="btn btn-primary w-100 d-flex align-items-center justify-content-center"
+                  style={{
+                    backgroundColor: '#2d2a6e',
+                    fontWeight: '600',
+                    borderRadius: '5px',
+                    padding: '10px',
+                  }}
+                >
+                  Next <span style={{ fontSize: '1.2rem', marginLeft: '5px' }}>&#x2192;</span>
+                </button>
+              </>
+            ) : (
+              <>
+                <input
+                  type="text"
+                  placeholder="Enter OTP"
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value)}
+                  style={{
+                    width: '100%',
+                    border: '1px solid #ddd',
+                    borderRadius: '5px',
+                    padding: '10px',
+                    marginBottom: '20px',
+                    fontSize: '1rem',
+                  }}
+                />
+                <button
+                  onClick={verifyOtp}
+                  className="btn btn-primary w-100"
+                  style={{
+                    backgroundColor: '#2d2a6e',
+                    fontWeight: '600',
+                    borderRadius: '5px',
+                    padding: '10px',
+                  }}
+                >
+                  Verify OTP
+                </button>
+              </>
+            )}
+
+            <p style={{ fontSize: '0.8rem', color: '#777', marginTop: '15px' }}>
+              By continuing you may receive an SMS for verification. Message and data rates may apply.
+            </p>
+          </div>
         </div>
 
-        <button class='w-50' type='submit' onClick={handleOnLogin}>
-          Submit
-        </button>
-      </form>
+        {/* Right Section: Image */}
+        <div className="col-12 col-md-6 text-center d-none d-md-block">
+          <img
+            src="https://shine.creativemox.com/sociabiz/wp-content/uploads/sites/16/2024/08/img_1.png" // Replace with actual URL
+            alt="User with phone"
+            style={{
+              maxWidth: '16rem',
+              height: 'auto',
+              // borderRadius: '50%',
+              // transform: 'translateY(10%)',
+            }}
+          />
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;

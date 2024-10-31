@@ -21,6 +21,10 @@ import Login from './components/Login'
 import { ToastContainer } from 'react-toastify'
 import BackButton from './components/BackButton'
 import Footer from './components/footer/Footer'
+import PricingPage from './components/PricingPage'
+import Payment from './components/Payment'
+import Confirmation from './components/Confirmation'
+import ContentSubmission from './components/ContentSubmission'
 
 function App() {
   return (
@@ -34,6 +38,26 @@ function App() {
           <div class='col-12'>
             <Routes>
               <Route path='/' element={<Homepage />}></Route>
+            </Routes>
+          </div>
+          <div class='col-12'>
+            <Routes>
+              <Route path='/pricing' element={<PricingPage/>}></Route>
+            </Routes>
+          </div>
+          <div class='col-12'>
+            <Routes>
+              <Route path='/payment' element={<Payment/>}></Route>
+            </Routes>
+          </div>
+          <div class='col-12'>
+            <Routes>
+              <Route path='/confirmation' element={<Confirmation/>}></Route>
+            </Routes>
+          </div>
+          <div class='col-12'>
+            <Routes>
+              <Route path='/content-submission' element={<ContentSubmission/>}></Route>
             </Routes>
           </div>
           <div class='col-12'>
