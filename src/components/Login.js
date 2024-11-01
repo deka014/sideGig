@@ -1,12 +1,14 @@
 // src/components/Login.js
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
 function Login() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState('');
   const navigate = useNavigate();
+  const {userState, setUserState} = useContext(UserContext);
 
   const sendOtp = () => {
     // TODO: Integrate OTP sending via backend API
@@ -15,6 +17,15 @@ function Login() {
 
   const verifyOtp = () => {
     // TODO: Integrate OTP verification via backend API
+
+    setUserState({
+      ...userState,
+      isAuthenticated: true,
+      phoneNumber: phoneNumber,
+    });
+
+    console.log(userState);
+
     navigate('/pricing');
   };
 

@@ -60,7 +60,7 @@ const Menu = () => {
               </li>
               
               <li className="nav-item mx-3 fs-5">
-                <a className="nav-link text-dark" href="/portfolio">Portfolio</a>
+                <a className="nav-link text-dark" href="/design-archive">Designs</a>
               </li>
               <li className="nav-item mx-3 fs-5">
                 <a className="nav-link text-dark" href="/pricing">Pricing Plan</a>

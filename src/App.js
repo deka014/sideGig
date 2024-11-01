@@ -25,10 +25,14 @@ import PricingPage from './components/PricingPage'
 import Payment from './components/Payment'
 import Confirmation from './components/Confirmation'
 import ContentSubmission from './components/ContentSubmission'
+import { UserProvider } from './context/UserContext'
+import DesignArchive from './components/DesignArchive'
+import Articles from './components/Articles'
 
 function App() {
   return (
     <div className='App'>
+      <UserProvider>
       <Menu />
       <ToastContainer />
       {/* <BackButton /> */}
@@ -52,12 +56,22 @@ function App() {
           </div>
           <div class='col-12'>
             <Routes>
+            <Route path="/articles/:id" element={<Articles />} />
+            </Routes>
+          </div>
+          <div class='col-12'>
+            <Routes>
               <Route path='/confirmation' element={<Confirmation/>}></Route>
             </Routes>
           </div>
           <div class='col-12'>
             <Routes>
               <Route path='/content-submission' element={<ContentSubmission/>}></Route>
+            </Routes>
+          </div>
+          <div class='col-12'>
+            <Routes>
+              <Route path='/design-archive' element={<DesignArchive />}></Route>
             </Routes>
           </div>
           <div class='col-12'>
@@ -191,6 +205,7 @@ function App() {
         </div>
       </div>
       <Footer/>
+      </UserProvider>
     </div>
   )
 }

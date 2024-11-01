@@ -1,8 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { UserContext } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
+
 
 const PricingPage = () => {
+  const navigate = useNavigate();
+  const {userState, setUserState} = useContext(UserContext);
+  console.log(userState);
   useEffect(() => {
     AOS.init({
       duration: 800,
@@ -60,7 +66,7 @@ const PricingPage = () => {
               <li>✅ Aenean himenaeos sit</li>
               <li>✅ Dui pede himenaeos</li>
             </ul>
-            <a href="/payment" className="btn btn-primary w-100">
+            <a onClick={ () => navigate('/payment')} className="btn btn-primary w-100">
               Get Started
             </a>
           </div>
@@ -88,7 +94,7 @@ const PricingPage = () => {
               <li>✅ Aenean himenaeos sit</li>
               <li>✅ Dui pede himenaeos</li>
             </ul>
-            <a href="/payment" className="btn btn-primary w-100">
+            <a onClick={ () => navigate('/payment')} className="btn btn-primary w-100">
               Get Started
             </a>
           </div>
@@ -110,7 +116,7 @@ const PricingPage = () => {
               <li>✅ Aenean himenaeos sit</li>
               <li>✅ Dui pede himenaeos</li>
             </ul>
-            <a href="/payment" className="btn btn-primary w-100">
+            <a onClick={ () => navigate('/payment')} className="btn btn-primary w-100">
               Get Started
             </a>
           </div>
