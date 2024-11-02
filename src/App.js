@@ -28,6 +28,7 @@ import ContentSubmission from './components/ContentSubmission'
 import { UserProvider } from './context/UserContext'
 import DesignArchive from './components/DesignArchive'
 import Articles from './components/Articles'
+import FAQ from './components/homepage/FAQ'
 
 function App() {
   return (
@@ -52,6 +53,11 @@ function App() {
           <div class='col-12'>
             <Routes>
               <Route path='/payment' element={<Payment/>}></Route>
+            </Routes>
+          </div>
+          <div class='col-12'>
+            <Routes>
+              <Route path='/faq' element={<FAQ/>}></Route>
             </Routes>
           </div>
           <div class='col-12'>
