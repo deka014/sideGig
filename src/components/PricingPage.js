@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { UserContext } from "../context/UserContext";
-import { useNavigate } from "react-router-dom";
+import { replace, useNavigate } from "react-router-dom";
 
 
 const PricingPage = () => {
@@ -66,8 +66,8 @@ const PricingPage = () => {
               <li>✅ Aenean himenaeos sit</li>
               <li>✅ Dui pede himenaeos</li>
             </ul>
-            <a onClick={ () => navigate('/payment')} className="btn btn-primary w-100">
-              Get Started
+            <a onClick={ () => navigate('/payment' , {replace : true , state : {test : "wow"}} )} className="btn btn-primary w-100">
+              Get Started 1
             </a>
           </div>
         </div>

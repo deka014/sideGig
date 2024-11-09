@@ -1,11 +1,13 @@
 // src/components/Payment.js
 import React, { useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , useLocation} from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
 function Payment() {
   const navigate = useNavigate();
   const {userState} = useContext(UserContext);
+  const location = useLocation();
+  console.log(location);
   
 
   useEffect(() => {
@@ -25,7 +27,7 @@ function Payment() {
 
   return (
     <div>
-      <h2>Payment</h2>
+      <h2>Payment {location.state?.test ? "test" : "nope"} </h2>
       <p>Proceed to secure payment gateway through PhonePe or Google Pay (GPay).</p>
       <button onClick={handlePayment}>Pay Now</button>
     </div>
