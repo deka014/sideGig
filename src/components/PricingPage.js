@@ -67,7 +67,7 @@ const PricingPage = () => {
               <li>✅ Dui pede himenaeos</li>
             </ul>
             <a onClick={ () => navigate('/payment' , {replace : true , state : {test : "wow"}} )} className="btn btn-primary w-100">
-              Get Started 1
+              Get Started
             </a>
           </div>
         </div>
