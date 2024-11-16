@@ -30,6 +30,7 @@ import { UserProvider } from './context/UserContext'
 import DesignArchive from './components/DesignArchive'
 import Articles from './components/Articles'
 import FAQ from './components/homepage/FAQ'
+import CreativePreview from './components/CreativePreview'
 
 function App() {
   return (
@@ -54,6 +55,11 @@ function App() {
           <div class='col-12'>
             <Routes>
               <Route path='/select-creative' element={<SelectCreative />}></Route>
+            </Routes>
+          </div>
+          <div class='col-12'>
+            <Routes>
+              <Route path='/creative-preview' element={<CreativePreview />}></Route>
             </Routes>
           </div>
           <div class='col-12'>
