@@ -8,6 +8,7 @@ import Receipt from './components/Receipt'
 import ExpenseCreate from './components/ExpenseCreate'
 import ReceiptCreate from './components/ReceiptCreate'
 import ExpenseReport from './components/ExpenseReport'
+import SelectCreative from './components/SelectCreative'
 import Drafts from './components/Drafts'
 
 import { Route, Routes } from 'react-router-dom'
@@ -48,6 +49,11 @@ function App() {
           <div class='col-12'>
             <Routes>
               <Route path='/pricing' element={<PricingPage/>}></Route>
+            </Routes>
+          </div>
+          <div class='col-12'>
+            <Routes>
+              <Route path='/select-creative' element={<SelectCreative />}></Route>
             </Routes>
           </div>
           <div class='col-12'>
