@@ -7,7 +7,7 @@ import basic from '../images/basic.png';
 import basicPremium from '../images/basic-premium.png';
 
 const CreativePreview = ({
-  mainImageSrc = 'https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  mainImageSrc = 'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
 }) => {
   const canvasRef = useRef(null);
   const [selectedFrame, setSelectedFrame] = useState(basic); // Default frame
@@ -30,39 +30,36 @@ const CreativePreview = ({
 
         if (!isMounted) return;
 
-        const maxCanvasWidth = 1000; // Max canvas dimensions
-        const maxCanvasHeight = 500;
+        const maxCanvasWidth = 800; // Max canvas dimensions
+        const maxCanvasHeight = 600;
 
-        // Get frame aspect ratio and dimensions
-        const frameAspectRatio = frameImage.width / frameImage.height;
-
-        // Set canvas size based on frame aspect ratio
-        canvas.width = maxCanvasWidth;
-        canvas.height = maxCanvasWidth / frameAspectRatio;
-
-        // Calculate main image dimensions to fit within the frame
         const mainImageAspectRatio = mainImage.width / mainImage.height;
-        let mainImageWidth, mainImageHeight;
+        let canvasWidth, canvasHeight;
 
-        if (mainImageAspectRatio > frameAspectRatio) {
-          // Main image is wider than the frame
-          mainImageWidth = canvas.width;
-          mainImageHeight = canvas.width / mainImageAspectRatio;
+        if (mainImage.width > mainImage.height) {
+          canvasWidth = maxCanvasWidth;
+          canvasHeight = maxCanvasWidth / mainImageAspectRatio;
         } else {
-          // Main image is taller or equal in aspect ratio
-          mainImageHeight = canvas.height;
-          mainImageWidth = canvas.height * mainImageAspectRatio;
+          canvasHeight = maxCanvasHeight;
+          canvasWidth = maxCanvasHeight * mainImageAspectRatio;
         }
 
-        // Center the main image within the frame
-        const mainImageX = (canvas.width - mainImageWidth) / 2;
-        const mainImageY = (canvas.height - mainImageHeight) / 2;
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
 
-        // Draw the main image
-        ctx.drawImage(mainImage, mainImageX, mainImageY, mainImageWidth, mainImageHeight);
+        // Draw the scaled main image
+        ctx.drawImage(mainImage, 0, 0, canvasWidth, canvasHeight);
 
-        // Draw the frame over the main image
-        ctx.drawImage(frameImage, 0, 0, canvas.width, canvas.height);
+        // Scale the frame image to fit the canvas width while preserving its aspect ratio
+        const frameAspectRatio = frameImage.width / frameImage.height;
+        const frameWidth = canvasWidth;
+        const frameHeight = canvasWidth / frameAspectRatio;
+
+        // Position the frame at the bottom of the canvas
+        const frameX = 0; // Always aligned to the left edge
+        const frameY = canvasHeight - frameHeight; // Align the bottom edge
+
+        ctx.drawImage(frameImage, frameX, frameY, frameWidth, frameHeight);
       } catch (error) {
         console.error('Error loading images:', error);
         ctx.fillStyle = '#FF0000';
@@ -100,7 +97,7 @@ const CreativePreview = ({
       <div className="text-center mb-5">
         <h2 className="m-4">Creative Preview</h2>
         <div className="row justify-content-center">
-          <div className="col-12 col-lg-4">
+          <div className="col-12 col-lg-6">
             <canvas
               ref={canvasRef}
               className="img-fluid m-auto shadow rounded"
@@ -121,33 +118,33 @@ const CreativePreview = ({
 
       {/* Frame Selection */}
       <div className="row justify-content-center mb-5">
-        <div className="col-12 col-lg-6 text-start">
+        <div className="col-12 col-lg-6 text-center">
           <p className="mb-4"><strong>Choose a Frame:</strong></p>
-          <div className="d-flex justify-content-md-center justify-content-between">
+          <div className="d-flex justify-content-between">
             <button
-              className={`btn btn-outline-primary me-md-4 ${selectedFrame === basic ? 'active' : ''}`}
+              className={`btn btn-outline-primary ${selectedFrame === basic ? 'active' : ''}`}
               onClick={() => setSelectedFrame(basic)}
             >
               Frame 1
             </button>
             <button
-              className={`btn btn-outline-success me-md-4 ${selectedFrame === basicPremium? 'active' : ''}`}
-              onClick={() => setSelectedFrame(basicPremium)}
+              className={`btn btn-outline-success ${selectedFrame === basiclogo ? 'active' : ''}`}
+              onClick={() => setSelectedFrame(basiclogo)}
             >
               Frame 2
             </button>
             <button
-              className={`btn btn-outline-danger me-md-4 ${selectedFrame === basiclogo? 'active' : ''}`}
-              onClick={() => setSelectedFrame(basiclogo)}
+              className={`btn btn-outline-danger ${selectedFrame === basicPremium ? 'active' : ''}`}
+              onClick={() => setSelectedFrame(basicPremium)}
             >
               Frame 3
             </button>
-            {/* <button
+            <button
               className={`btn btn-outline-danger ${selectedFrame === frame1 ? 'active' : ''}`}
               onClick={() => setSelectedFrame(frame1)}
             >
               Frame 4
-            </button> */}
+            </button>
           </div>
         </div>
       </div>
@@ -162,6 +159,8 @@ const CreativePreview = ({
           </p>
         </div>
       </div>
+
+      
 
       {/* Additional Instructions Section */}
       <div className="row justify-content-center mb-4 text-start">
