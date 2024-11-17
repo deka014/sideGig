@@ -59,7 +59,7 @@ function App() {
           </div>
           <div class='col-12'>
             <Routes>
-              <Route path='/creative-preview' element={<CreativePreview />}></Route>
+              <Route path='/creative-preview' element={<CreativePreview/>}></Route>
             </Routes>
           </div>
           <div class='col-12'>
