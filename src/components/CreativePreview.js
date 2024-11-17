@@ -5,9 +5,10 @@ import frame3 from '../images/banner3.png';
 import basiclogo from '../images/basic-logo.png';
 import basic from '../images/basic.png';
 import basicPremium from '../images/basic-premium.png';
+import rhino from '../images/rhino.jpg';
 
 const CreativePreview = ({
-  mainImageSrc = 'https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  mainImageSrc = rhino
 }) => {
   const canvasRef = useRef(null);
   const [selectedFrame, setSelectedFrame] = useState(basic); // Default frame
@@ -98,7 +99,7 @@ const CreativePreview = ({
     <div className="container my-3 mb-4">
       {/* Preview Section */}
       <div className="text-center mb-5">
-        <h2 className="m-4">Creative Preview</h2>
+        <h3 className="m-4">Creative <span className='mark'>Preview</span> </h3>
         <div className="row justify-content-center">
           <div className="col-12 col-lg-4">
             <canvas
