@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 function DesignArchive() {
   const articles = [
     {
-      title: "5 D2C Ad Trends We’re Seeing on TikTok",
+      title: "5 D2C Ad Trends We’re Seeing on TikTok & Snapchat",
       category: "PERFORMANCE",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+      description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur",
       date: "August 19, 2024",
       comments: "No Comments",
       image: "https://shine.creativemox.com/sociabiz/wp-content/uploads/sites/16/2024/08/immersed-in-social-media-1536x1024.jpg",
@@ -15,7 +15,7 @@ function DesignArchive() {
     {
       title: "FB Ad Account Structure Analysis For 12 Accounts At Scale",
       category: "BUSINESS",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+      description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur",
       date: "August 19, 2024",
       comments: "No Comments",
       image: "https://shine.creativemox.com/sociabiz/wp-content/uploads/sites/16/2024/08/home-friends-with-selfie-and-women-with-live-streaming-social-media-and-vlog-with-content-creator-1536x1025.jpg",
@@ -24,7 +24,7 @@ function DesignArchive() {
     {
       title: "D2C Facebook/Instagram Prospecting ROAS Benchmarks",
       category: "DATA DRIVEN",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+      description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur",
       date: "August 19, 2024",
       comments: "No Comments",
       image: "https://shine.creativemox.com/sociabiz/wp-content/uploads/sites/16/2024/08/outdoors-two-businesswomen-and-phone-with-workers-on-a-lunch-break-browsing-social-media-looking-1536x1101.jpg",
@@ -42,7 +42,7 @@ function DesignArchive() {
         textAlign: 'left'
       }}
     >
-      <h2 className="text-center mb-2" style={{ fontSize: '2rem', fontWeight: '700' }}>
+      <h2 className="text-center mb-5" style={{ fontSize: '48px', fontWeight: '600', fontFamily : 'Lexend' }}>
         Article & News
       </h2>
       <p className="text-center mb-4" style={{ fontSize: '1rem', color: '#888' }}>
@@ -82,14 +82,14 @@ function DesignArchive() {
                   </span>
                 </div>
                 <div className="card-body">
-                  <h5 className="card-title" style={{ fontWeight: '600' }}>
+                  <h5 className="card-title my-3" style={{ fontWeight: '500' , fontSize: '20px' ,fontFamily: 'Lexend' }}>
                     {article.title}
                   </h5>
-                  <p className="card-text text-muted" style={{ fontSize: '0.9rem' }}>
+                  <p className="card-text mb-3 text-muted" style={{ fontSize: '16px', fontFamily: 'Inter' }}>
                     {article.description}
                   </p>
                 </div>
-                <div className="card-footer bg-white d-flex justify-content-between align-items-center">
+                <div className="card-footer bg-white d-flex justify-content-between align-items-center" style={{fontSize: '14px' ,fontFamily : 'DM Sans',lineHeight: '1.5 rem'}} >
                   <small className="text-muted">{article.date}</small>
                   <small className="text-muted">{article.comments}</small>
                 </div>
