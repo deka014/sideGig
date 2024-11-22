@@ -31,6 +31,7 @@ import DesignArchive from './components/DesignArchive'
 import Articles from './components/Articles'
 import FAQ from './components/homepage/FAQ'
 import CreativePreview from './components/CreativePreview'
+import AddDesignForm from './components/forms/AddDesignForm'
 
 function App() {
   return (
@@ -85,6 +86,11 @@ function App() {
           <div class='col-12'>
             <Routes>
               <Route path='/content-submission' element={<ContentSubmission/>}></Route>
+            </Routes>
+          </div>
+          <div class='col-12'>
+            <Routes>
+              <Route path='/add-design-form' element={<AddDesignForm/>}></Route>
             </Routes>
           </div>
           <div class='col-12'>
