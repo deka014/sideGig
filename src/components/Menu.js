@@ -22,14 +22,14 @@ const Menu = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="mynavbar">
+          <div className="collapse navbar-collapse" id="mynavbar" style={{fontFamily : 'Lexend'}}>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 justify-content-right text-center">
               {/* <li className="nav-item mx-3 fs-5">
                 <a className="nav-link text-dark" href="/">Home</a>
               </li> */}
 
               {/* navbar dropdown */}
-              <li className="nav-item dropdown mx-3 fs-5">
+              <li className="nav-item dropdown mx-3">
                 <a
                   className="nav-link dropdown-toggle text-dark"
                   href="/"
