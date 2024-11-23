@@ -64,7 +64,7 @@ const Footer = () => {
           <div className="col-md-3 mb-4">
             <h6 className="fw-bold mb-3">Company</h6>
             <ul className="list-unstyled">
-              <li><a href="#" className="text-dark">About Us</a></li>
+              <li><a href="/about" className="text-dark">About Us</a></li>   {/* added the About Us page link */}
               <li><a href="#" className="text-dark">Leadership</a></li>
               <li><a href="#" className="text-dark">Careers</a></li>
               <li><a href="#" className="text-dark">Article & News</a></li>
