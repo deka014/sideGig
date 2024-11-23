@@ -275,12 +275,15 @@ function ContentSubmission() {
     website: '',
   });
 
+  const[isSubmitting,setIsSubmitting] = useState(false)
+  const[error,setError] = useState({isError:false,message:''})
+  const[submitSuccess,setSubmitSuccess] = useState(false)
   const [selectedPreviews, setSelectedPreviews] = useState([0]); // Preview 1 pre-selected by default
-  const navigate = useNavigate();
 
   const canvasRefs = useRef([]);
 
   const handleInputChange = (e) => {
+    if(submitSuccess) {setSubmitSuccess(false); setError({isError:false,message:''})}
     const { name, value, files } = e.target;
     setFormData({
       ...formData,
@@ -288,9 +291,66 @@ function ContentSubmission() {
     });
   };
 
-  const handleSubmit = () => {
-    // TODO: Submit formData to backend
-    navigate('/');
+  function validateFields() { //needs to be replaced with a validator (ZOD or react-hook-form)
+    const {name,title} = formData
+    if(!name || !title) {
+      setError({isError:true,message:'YourName and Title fields are required'})
+      return false;
+    }
+    else{
+      setError({isError:false,message:''})
+      return true;
+    }
+  }
+
+  const handleSubmit = async () => {
+    setSubmitSuccess(false)
+
+    const isValid = validateFields();
+    if(!isValid) {return}
+
+    setIsSubmitting(true)
+
+    const formDataToSubmit = new FormData() //formDataToSubmit is a FormData object.
+    
+    for (const key in formData) { //iterating through the formDataToSubmit object
+      formDataToSubmit.append(key,formData[key])
+    }
+
+    formDataToSubmit.append('selectedPreviews', JSON.stringify(selectedPreviews)) //append selected previews
+
+    try {
+      const response = await fetch('/api/content-submission',{
+        method:'POST',
+        headers:{
+          'Authorization': 'Bearer <token>',
+        },
+        body:formDataToSubmit
+      })
+      const responseBody = await response.json();
+      if(!response.ok) {
+        console.log(responseBody)
+        throw responseBody;
+      }
+      console.log(responseBody)
+      setSubmitSuccess(true)
+      setFormData({
+        name: '',
+        title: '',
+        logo: null,
+        photo: null,
+        facebook: '',
+        instagram: '',
+        thread: '',
+        xlink: '',
+        website: '',
+      })
+    } catch (error) {
+      console.log(error);
+      setError({isError:true,message:error.error || 'Filed to submit form'})
+    } finally {
+      setIsSubmitting(false)
+    }
   };
 
   const handlePreviewClick = (index) => {
@@ -426,7 +486,9 @@ function ContentSubmission() {
                 borderRadius: '10px',
                 padding : '3px',
               }}
-            ></canvas>
+            >
+
+            </canvas>
 
             {/* Checkmark overlay when selected */}
             {selectedPreviews.includes(idx) && (
@@ -449,6 +511,10 @@ function ContentSubmission() {
 
       {/* Input Fields Section */}
       <div className="row g-4">
+        {
+        error.isError && (
+          <div style={{color: 'red',fontSize:'0.85rem', textAlign:"center"}}>{error.message}</div>)
+        }
         {/* Row 1 */}
         <div className="col-md-4 col-12">
           <div className="p-3 rounded shadow-sm" style={{ backgroundColor: '#fafafa' }}>
@@ -484,6 +550,7 @@ function ContentSubmission() {
           <div className="p-3 rounded shadow-sm" style={{ backgroundColor: '#fafafa' }}>
             <label className="form-label" style={{ fontSize: '0.85rem', color: '#888' }}>Upload Your Photo</label>
             <input
+              id='fileinput1'
               type="file"
               name="photo"
               onChange={handleInputChange}
@@ -498,6 +565,7 @@ function ContentSubmission() {
           <div className="p-3 rounded shadow-sm" style={{ backgroundColor: '#fafafa' }}>
             <label className="form-label" style={{ fontSize: '0.85rem', color: '#888' }}>Upload Your Logo</label>
             <input
+            id='fileinput2'
               type="file"
               name="logo"
               onChange={handleInputChange}
@@ -592,14 +660,16 @@ function ContentSubmission() {
             style={{
               borderRadius: '25px',
               padding: '12px 20px',
-              backgroundColor: '#3b7ae3',
+              backgroundColor: `${isSubmitting ? '#00a8ff' : '#3b7ae3' }`,
               fontWeight: '700',
               fontSize: '1rem',
             }}
+            disabled={isSubmitting}
           >
-            Submit
+            { isSubmitting ? 'Submitting...' : 'Submit'}
           </button>
         </div>
+        {submitSuccess && <div style={{textAlign:"center", fontSize:'0.8rem', color: 'green'}}><p>Form Submitted Successfully</p></div>}
       </div>
     </div>
   );
