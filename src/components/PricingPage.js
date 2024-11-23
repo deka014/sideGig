@@ -22,105 +22,145 @@ const PricingPage = () => {
       style={{
         // background: "linear-gradient(to bottom, #f9f6ff, #ffffff)",
         // minHeight: "100vh",
-      }}
-    >
-      <p
-        className="text-uppercase fw-bold"
-        style={{ color: "#6c63ff" }}
-        data-aos="fade-up"
-      >
-        Choose Package
-      </p>
-      <h2
-        className="fw-bold mb-3"
-        style={{ fontSize: "2.5rem" }}
-        data-aos="fade-up"
-        data-aos-delay="100"
-      >
-        Upgrade to unlock <br /> more features.
-      </h2>
-      <p
-        className="text-muted mb-5"
-        style={{ maxWidth: "500px", margin: "0 auto" }}
-        data-aos="fade-up"
-        data-aos-delay="200"
-      >
-        Yearly plan subscribers can save up to 25% plus FREE Onboarding Support
-        for Startup, Premium, or Enterprise Plan.
-      </p>
+      }}>
+        <p
+          className="text-uppercase fw-bold"
+          style={{ color: "#6c63ff" }}
+          data-aos="fade-up"
+        >
+          Choose Package
+        </p>
+        <h2
+          className="fw-bold mb-3"
+          style={{ fontSize: "2.5rem" }}
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          Upgrade to unlock <br /> more features.
+        </h2>
+        <p
+          className="text-muted mb-5"
+          style={{ maxWidth: "500px", margin: "0 auto" }}
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          Yearly plan subscribers can save up to 25% plus FREE Onboarding Support
+          for Starter, Growth, Pro or Premium Plus Plan.
+        </p>
+        {/* added headline */}
+        <h3   
+          className="fw-bold mb-5"
+          style={{ maxWidth: "500px", margin: "0 auto", color: "#000000" }}
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          Subscription Plans
+        </h3>
 
-      <div className="row justify-content-center">
-        {/* Basic Plan */}
-        <div className="col-lg-3 col-md-6 mb-4" data-aos="fade-up">
-          <div className="card h-100 shadow-sm rounded-3 p-4">
-            <h5 className="fw-bold">Basic Plan</h5>
-            <p className="text-muted">
-              Sollicitudin faucibus lacinia pharetra pellentesque non erat iaculis
-            </p>
-            <h2 className="fw-bold">₹49</h2>
-            <span className="text-muted">/MONTHLY</span>
-            <ul className="list-unstyled mt-3 mb-4 text-start">
-              <li>✅ Porttitor cursus tristique</li>
-              <li>✅ Euismod nisi taciti</li>
-              <li>✅ Purus justo magnis class</li>
-              <li>✅ Aenean himenaeos sit</li>
-              <li>✅ Dui pede himenaeos</li>
-            </ul>
-            <a onClick={ () => navigate('/payment' , {replace : true , state : {test : "wow"}} )} className="btn btn-primary w-100">
-              Get Started
-            </a>
-          </div>
-        </div>
+        <div className="row justify-content-center">
 
-        {/* Premium Plan */}
-        <div className="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-          <div
-            className="card h-100 shadow-sm rounded-3 p-4"
-            style={{
-              background: "linear-gradient(to bottom, #8ec5fc, #e0c3fc, #ffffff)",
-             
-            }}
-          >
-            <h5 className="fw-bold">Premium Plan</h5>
-            <p>
-              Sollicitudin faucibus lacinia pharetra pellentesque non erat iaculis
-            </p>
-            <h2 className="fw-bold">₹99</h2>
-            <span>/MONTHLY</span>
-            <ul className="list-unstyled mt-3 mb-4 text-start">
-              <li>✅ Porttitor cursus tristique</li>
-              <li>✅ Euismod nisi taciti</li>
-              <li>✅ Purus justo magnis class</li>
-              <li>✅ Aenean himenaeos sit</li>
-              <li>✅ Dui pede himenaeos</li>
-            </ul>
-            <a onClick={ () => navigate('/payment')} className="btn btn-primary w-100">
-              Get Started
-            </a>
+          {/* Starter Plan */} 
+          <div className="col-lg-3 col-md-6 mb-4" data-aos="fade-up">
+            <div className="card h-100 shadow-sm rounded-3 p-4 d-flex flex-column">
+              <h5 className="fw-bold">Starter Plan</h5>
+              <p className="text-muted">
+                Perfect for individuals and small businesses starting their social media journey.
+              </p>
+              <h2 className="fw-bold">₹999</h2>
+              <span className="text-muted">/MONTHLY</span>
+              <ul className="list-unstyled mt-3 mb-4 text-start">
+                <li>✅ 15 Social Media Creatives per month.</li>
+                <li>✅ Access to 2 profile templates for visual consistency.</li>
+              </ul>
+              <div className="mt-auto">   {/* to fix the button to bottom of tab */} 
+                <a onClick={() => navigate('/payment', )} className="btn btn-primary w-100">
+                  Get Started
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
 
-        {/* Enterprise Plan */}
-        <div className="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
-          <div className="card h-100 shadow-sm rounded-3 p-4">
-            <h5 className="fw-bold">Enterprise Plan</h5>
-            <p className="text-muted">
-              Sollicitudin faucibus lacinia pharetra pellentesque non erat iaculis
-            </p>
-            <h2 className="fw-bold">₹149</h2>
-            <span className="text-muted">/MONTHLY</span>
-            <ul className="list-unstyled mt-3 mb-4 text-start">
-              <li>✅ Porttitor cursus tristique</li>
-              <li>✅ Euismod nisi taciti</li>
-              <li>✅ Purus justo magnis class</li>
-              <li>✅ Aenean himenaeos sit</li>
-              <li>✅ Dui pede himenaeos</li>
-            </ul>
-            <a onClick={ () => navigate('/payment')} className="btn btn-primary w-100">
-              Get Started
-            </a>
+
+          {/* Growth Plan */}
+          <div className="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+            <div
+              className="card h-100 shadow-sm rounded-3 p-4 d-flex flex-column"
+              style={{
+                background: "linear-gradient(to bottom, #8ec5fc, #e0c3fc, #ffffff)",
+              
+              }}
+            >
+              <h5 className="fw-bold">Growth Plan</h5>
+              <p>
+                Ideal for brands looking to level up with consistent content and creatives.
+              </p>
+              <h2 className="fw-bold">₹1,699</h2>
+              <span className="text-muted">/MONTHLY</span>
+              <ul className="list-unstyled mt-3 mb-4 text-start">
+                <li>✅ 15 Social Media Creatives + Caption Writing for each post.</li>
+                <li>✅ Access to 4 profile templates for diverse customization.</li>
+                <li>✅ 1 Monthly Content Calendar.</li>
+              </ul>
+              <div className="mt-auto"> {/* to fix the button to bottom of tab */} 
+              <a onClick={ () => navigate('/payment')} className="btn btn-primary w-100">
+                Get Started
+              </a>
+              </div>
+            </div>
           </div>
-        </div>
+
+          {/* Pro Plan */}
+          <div className="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+            <div className="card h-100 shadow-sm rounded-3 p-4">
+              <h5 className="fw-bold">Pro Plan</h5>
+              <p className="text-muted">
+              Best for growing businesses with a steady demand for diverse and high-quality content variety.
+              </p>
+              <h2 className="fw-bold">₹2,699</h2>
+              <span className="text-muted">/MONTHLY</span>
+              <ul className="list-unstyled mt-3 mb-4 text-start">
+                <li>✅ 25 Social Media Creatives + Caption Writing for each post.</li>
+                <li>✅ Access to 6 profile templates for advanced customization.</li>
+                <li>✅ 1 Monthly Content Calendar + Hashtag Strategy.</li>
+                <li>✅ Early delivery option for urgent requests.</li>
+              </ul>
+              <div className="mt-auto"> {/* to fix the button to bottom of tab */} 
+                <a onClick={() => navigate('/payment', )} className="btn btn-primary w-100">
+                  Get Started
+                </a>
+              </div>
+            </div>
+          </div>
+
+            {/* Premium Plus Plan */}
+            <div className="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+            <div
+              className="card h-100 shadow-sm rounded-3 p-4"
+              style={{
+                background: "linear-gradient(to bottom, #8ec5fc, #e0c3fc, #ffffff)",
+              
+              }}
+            >
+              <h5 className="fw-bold">Premium Plus Plan</h5>
+              <p>
+                Designed for brands that require extensive content tailored to their preferences.
+              </p>
+              <h2 className="fw-bold">₹3,499</h2>
+              <span>/MONTHLY</span>
+              <ul className="list-unstyled mt-3 mb-4 text-start">
+                <li>✅ 25 Days of Content: Two options for each post (50 creatives and captions total).</li>
+                <li>✅ Access to 8 profile templates for maximum customization.</li>
+                <li>✅ 1 Monthly Content Calendar + Advanced Hashtag Strategy.</li>
+                <li>✅ Priority delivery and unlimited revisions.</li>
+              </ul>
+              <div className="mt-auto"> {/* to fix the button to bottom of tab */} 
+                <a onClick={() => navigate('/payment', )} className="btn btn-primary w-100">
+                  Get Started
+                </a>
+              </div>
+            </div>
+          </div>
+
       </div>
     </div>
   );

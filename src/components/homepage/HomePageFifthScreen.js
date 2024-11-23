@@ -183,6 +183,8 @@ const HomePageFifthScreen = () => {
         {/* Left FAQ Column */}
         <div className="col-lg-6 mb-4" data-aos="fade-up">
           <div className="accordion" id="accordionLeft">
+            
+            {/* FAQ Item 1 */}
             <div className="accordion-item">
               <h2 className="accordion-header" id="headingOneLeft">
                 <button
@@ -193,7 +195,8 @@ const HomePageFifthScreen = () => {
                   aria-expanded="true"
                   aria-controls="collapseOneLeft"
                 >
-What are the key principles of effective design?                </button>
+                  What is dgin.in?
+                </button>
               </h2>
               <div
                 id="collapseOneLeft"
@@ -202,11 +205,12 @@ What are the key principles of effective design?                </button>
                 data-bs-parent="#accordionLeft"
               >
                 <div className="accordion-body">
-                Effective design revolves around principles like balance, contrast, hierarchy, alignment, and proximity. 
-                                </div>
+                  dgin.in is a platform that offers low-cost social media creative and content services through monthly subscription plans. We help businesses and individuals manage their online presence with high-quality designs and engaging content.
+                </div>
               </div>
             </div>
 
+            {/* FAQ Item 2 */}
             <div className="accordion-item">
               <h2 className="accordion-header" id="headingTwoLeft">
                 <button
@@ -217,7 +221,7 @@ What are the key principles of effective design?                </button>
                   aria-expanded="false"
                   aria-controls="collapseTwoLeft"
                 >
-                  How can color impact the design?
+                  What types of content do you create?
                 </button>
               </h2>
               <div
@@ -227,63 +231,251 @@ What are the key principles of effective design?                </button>
                 data-bs-parent="#accordionLeft"
               >
                 <div className="accordion-body">
-                Color has a significant influence on how people perceive and interact with a design. It can evoke emotions, convey brand identity, and enhance readability                </div>
+                  We create:
+                  <ul>
+                    <li>Social media posts (images, videos, carousels)</li>
+                    <li>Captions and hashtags</li>
+                    <li>Monthly content calendars</li>
+                    <li>Custom graphics tailored to your brand</li>
+                  </ul>
+                </div>
               </div>
             </div>
-            {/* Additional FAQ items can go here */}
+
+            {/* FAQ Item 3 */}
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="headingThreeLeft">
+                <button
+                  className="accordion-button collapsed fw-bold"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseThreeLeft"
+                  aria-expanded="false"
+                  aria-controls="collapseThreeLeft"
+                >
+                  What platforms do you create content for?
+                </button>
+              </h2>
+              <div
+                id="collapseThreeLeft"
+                className="accordion-collapse collapse"
+                aria-labelledby="headingThreeLeft"
+                data-bs-parent="#accordionLeft"
+              >
+                <div className="accordion-body">
+                  We create content optimized for all major platforms, including:
+                  <ul>
+                    <li>Instagram</li>
+                    <li>Facebook</li>
+                    <li>LinkedIn</li>
+                    <li>Twitter (X)</li>
+                    <li>YouTube</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* FAQ Item 4 */}
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="headingFourLeft">
+                <button
+                  className="accordion-button collapsed fw-bold"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseFourLeft"
+                  aria-expanded="false"
+                  aria-controls="collapseFourLeft"
+                >
+                  Can I request custom designs or themes?
+                </button>
+              </h2>
+              <div
+                id="collapseFourLeft"
+                className="accordion-collapse collapse"
+                aria-labelledby="headingFourLeft"
+                data-bs-parent="#accordionLeft"
+              >
+                <div className="accordion-body">
+                  Absolutely! We tailor our designs to match your brand’s identity, including colors, fonts, and themes. You can also share specific ideas or references.
+                </div>
+              </div>
+            </div>
+
+            {/* FAQ Item 5 */}
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="headingFiveLeft">
+                <button
+                  className="accordion-button collapsed fw-bold"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseFiveLeft"
+                  aria-expanded="false"
+                  aria-controls="collapseFiveLeft"
+                >
+                  How soon will I receive my content?
+                </button>
+              </h2>
+              <div
+                id="collapseFiveLeft"
+                className="accordion-collapse collapse"
+                aria-labelledby="headingFiveLeft"
+                data-bs-parent="#accordionLeft"
+              >
+                <div className="accordion-body">
+                  Once you subscribe and provide your requirements, we’ll deliver your first batch of content within 3–5 business days. Regular content delivery schedules are shared during onboarding.
+                </div>
+              </div>
+            </div>
+
+
           </div>
         </div>
 
         {/* Right FAQ Column */}
         <div className="col-lg-6" data-aos="fade-up" data-aos-delay="100">
           <div className="accordion" id="accordionRight">
+            {/* FAQ 1 */}
             <div className="accordion-item">
-              <h2 className="accordion-header" id="headingOneRight">
+              <h2 className="accordion-header" id="headingOne">
                 <button
                   className="accordion-button fw-bold"
                   type="button"
                   data-bs-toggle="collapse"
-                  data-bs-target="#collapseOneRight"
+                  data-bs-target="#collapseOne"
                   aria-expanded="true"
-                  aria-controls="collapseOneRight"
+                  aria-controls="collapseOne"
                 >
-What is the importance of responsive design?                </button>
+                  How do your subscription plans work?
+                </button>
               </h2>
               <div
-                id="collapseOneRight"
+                id="collapseOne"
                 className="accordion-collapse collapse show"
-                aria-labelledby="headingOneRight"
+                aria-labelledby="headingOne"
                 data-bs-parent="#accordionRight"
               >
-                <div className="accordion-body ">
-                Responsive design ensures that a website or application functions well on various devices and screen sizes.               </div>
+                <div className="accordion-body">
+                  Our plans are simple and flexible. You choose a monthly subscription that fits your needs, and we deliver customized social media content—designs, captions, or both—directly to you. No long-term commitments required!
+                </div>
               </div>
             </div>
 
+            {/* FAQ 2 */}
             <div className="accordion-item">
-              <h2 className="accordion-header" id="headingTwoRight">
+              <h2 className="accordion-header" id="headingTwo">
                 <button
                   className="accordion-button collapsed fw-bold"
                   type="button"
                   data-bs-toggle="collapse"
-                  data-bs-target="#collapseTwoRight"
+                  data-bs-target="#collapseTwo"
                   aria-expanded="false"
-                  aria-controls="collapseTwoRight"
+                  aria-controls="collapseTwo"
                 >
-How does user experience (UX) differ from user interface (UI) design?                </button>
+                  Who can benefit from dgin.in services?
+                </button>
               </h2>
               <div
-                id="collapseTwoRight"
+                id="collapseTwo"
                 className="accordion-collapse collapse"
-                aria-labelledby="headingTwoRight"
+                aria-labelledby="headingTwo"
                 data-bs-parent="#accordionRight"
               >
                 <div className="accordion-body">
-                  Montes justo aliquet himenaeos vulputate orci mauris.
+                  Our services are perfect for:
+                  <ul>
+                    <li>Small businesses</li>
+                    <li>Startups</li>
+                    <li>Freelancers</li>
+                    <li>Influencers</li>
+                    <li>Professionals building their personal brand</li>
+                  </ul>
                 </div>
               </div>
             </div>
-            {/* Additional FAQ items can go here */}
+
+            {/* FAQ 3 */}
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="headingThree">
+                <button
+                  className="accordion-button collapsed fw-bold"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                >
+                  What if I’m not satisfied with the content?
+                </button>
+              </h2>
+              <div
+                id="collapseThree"
+                className="accordion-collapse collapse"
+                aria-labelledby="headingThree"
+                data-bs-parent="#accordionRight"
+              >
+                <div className="accordion-body">
+                  We’re committed to your satisfaction. If you’re unhappy with any content, we offer revisions to ensure it aligns with your expectations.
+                </div>
+              </div>
+            </div>
+
+            {/* FAQ 4 */}
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="headingFour">
+                <button
+                  className="accordion-button collapsed fw-bold"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseFour"
+                  aria-expanded="false"
+                  aria-controls="collapseFour"
+                >
+                  How do I contact dgin.in for support or queries?
+                </button>
+              </h2>
+              <div
+                id="collapseFour"
+                className="accordion-collapse collapse"
+                aria-labelledby="headingFour"
+                data-bs-parent="#accordionRight"
+              >
+                <div className="accordion-body">
+                  You can reach out to us through:
+                  <ul>
+                    <li>Email: </li>
+                    <li>WhatsApp: </li>
+                    <li>Contact Form: [Link to Form]</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* FAQ 5 */}
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="headingFive">
+                <button
+                  className="accordion-button collapsed fw-bold"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseFive"
+                  aria-expanded="false"
+                  aria-controls="collapseFive"
+                >
+                  Is there a cancellation policy?
+                </button>
+              </h2>
+              <div
+                id="collapseFive"
+                className="accordion-collapse collapse"
+                aria-labelledby="headingFive"
+                data-bs-parent="#accordionRight"
+              >
+                <div className="accordion-body">
+                  Yes, you can cancel your subscription anytime before the next billing cycle. There are no cancellation charges.
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>

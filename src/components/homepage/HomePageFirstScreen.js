@@ -49,12 +49,11 @@ function HomePageFirstScreen() {
             fontFamily: "'Lexend', sans-serif",
           }}
         >
-          Creative ideas <br />
-          that will help <br />
-          your brand soar.
+          Creative Content, <br />   {/* Tagline changed */}
+          Budget-Friendly Solutions! <br />
         </h1>
         <p className="lead text-start text-dark responsive-paragraph" style={{ marginTop: '20px' }}>
-          Erat euismod sollicitudin morbi maecenas fermentum pellentesque justo quam egestas hac molestie
+          Boost Your Brand with Tailored Content That Fits Your Budget!
         </p>
         <div className="d-flex mt-4">
           <a
