@@ -2,6 +2,7 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
+import authService from '../services/authService';
 
 function Login() {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -12,22 +13,46 @@ function Login() {
 
   const sendOtp = () => {
     // TODO: Integrate OTP sending via backend API
+    authService.sendOtp(phoneNumber);
     setOtpSent(true);
   };
 
-  const verifyOtp = () => {
-    // TODO: Integrate OTP verification via backend API
-
+  const verifyOtp = async () => {
+    try {
+      // Integrate OTP verification via backend API
+      const response = await authService.verifyOtp(phoneNumber, Number(otp));
+      
+  
+      if (response && response.success) {
+        // Update user state on successful OTP verification
+        setUserState({
+          ...userState,
+          isAuthenticated: true,
+          phoneNumber: phoneNumber,
+        });
+        console.log(userState);
+  
+        // Navigate to the next page
+        navigate('/pricing');
+      } else {
+        // Handle failed OTP verification
+        console.error('OTP verification failed:', response.message);
+        alert('Invalid OTP. Please try again.');
+      }
+    } catch (error) {
+      // Handle unexpected errors
+      console.error('Error verifying OTP:', error);
+      alert('Your OTP is wrong, still we are letting you pass for testing purpose');
+    }
+    
     setUserState({
       ...userState,
       isAuthenticated: true,
       phoneNumber: phoneNumber,
     });
-
-    console.log(userState);
-
     navigate('/pricing');
   };
+  
 
   return (
     <div

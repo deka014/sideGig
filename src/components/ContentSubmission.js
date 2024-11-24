@@ -261,6 +261,7 @@ import frame1 from '../images/basic.png';
 import frame2 from '../images/basic-premium.png';
 import frame3 from '../images/basic-logo.png';
 import rhino from '../images/rhino.jpg';
+import authHeader from '../services/authHeader';
 
 function ContentSubmission() {
   const [formData, setFormData] = useState({
@@ -323,7 +324,7 @@ function ContentSubmission() {
       const response = await fetch('/api/content-submission',{
         method:'POST',
         headers:{
-          'Authorization': 'Bearer <token>',
+          ...authHeader()
         },
         body:formDataToSubmit
       })
