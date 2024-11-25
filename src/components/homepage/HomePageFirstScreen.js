@@ -26,13 +26,15 @@ function HomePageFirstScreen() {
     <div
       className="d-flex align-items-center justify-content-center row position-relative"
       style={{
-        // minHeight: '50vh',
-        background: 'linear-gradient(to bottom, #8ec5fc, #e0c3fc, #ffffff)',
+        // minHeight: '50vh',   
+        background: 'linear-gradient(to bottom, #8ec5fc, #e0c3fc, #f6eaff)',   //change gradient from #ffffff -> #f6eaff
         borderTopLeftRadius: '30px',
         borderTopRightRadius: '30px',
         paddingLeft: '40px',
         paddingRight: '40px',
         paddingTop: '40px',
+        border: '1px solid',
+        borderImage: 'linear-gradient(to bottom, #8ec5fc, #e0c3fc, #f6eaff) 1'  
       }}
     >
       {/* Left Section with AOS Animation */}
@@ -55,7 +57,7 @@ function HomePageFirstScreen() {
         <p className="lead text-start text-dark responsive-paragraph" style={{ marginTop: '20px' }}>
           Boost Your Brand with Tailored Content That Fits Your Budget!
         </p>
-        <div className="d-flex mt-4">
+        <div className="d-flex mt-4 justify-content-center align-items-center">  {/* icons move to the center */}
           <a
             href="/get-started"
             className="btn btn-lg btn-primary me-3"
