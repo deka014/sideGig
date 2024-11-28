@@ -9,10 +9,7 @@ const authService = {
         phoneNumber
       })
       .then(response => {
-        console.log(response.data,"i am the data")
-        if (response.data) {
-          localStorage.setItem("user", response.data);
-        }
+        console.log(response.data,"Sent OTP successfully")
         return response.data;
       });
   },
@@ -24,7 +21,7 @@ const authService = {
         otp
       })
       .then(response => {
-        console.log(response.data,"i am the data")
+        console.log(response.data,"Verified OTP successfully")
         if (response.data) {
           const stringifyData = JSON.stringify(response.data);
           localStorage.setItem("user", stringifyData);
