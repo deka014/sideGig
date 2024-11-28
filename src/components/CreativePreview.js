@@ -6,15 +6,43 @@ import basiclogo from '../images/basic-logo.png';
 import basic from '../images/basic.png';
 import basicPremium from '../images/basic-premium.png';
 import rhino from '../images/rhino.jpg';
+import { useLocation, useNavigate } from "react-router-dom";
 
-const CreativePreview = ({
-  mainImageSrc = rhino
-}) => {
+const CreativePreview = () => {
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Retrieve event data from state, or provide fallback values
+  const { state } = location;
+  console.log(state);
+
+  // if(state == null) {
+  //   navigate('/select-creative');
+  // }
+
+  const eventData = state || {
+    image: rhino,
+    title: "Default Title",
+    description: "Default Description",
+  };
+  
+
+
+  const mainImageSrc = eventData.image;
+  const eventTitle = eventData.title;
+  const eventDescription = eventData.description;
+
   const canvasRef = useRef(null);
   const [selectedFrame, setSelectedFrame] = useState(basic); // Default frame
   const [instructions, setInstructions] = useState(''); // Additional instructions
 
   useEffect(() => {
+
+    if (!state) {
+      navigate("/select-creative", { replace: true }); // Redirect to home or any default page
+    }
+
     let isMounted = true;
 
     const canvas = canvasRef.current;
@@ -156,10 +184,9 @@ const CreativePreview = ({
       {/* Title and Description */}
       <div className="row justify-content-center mb-2">
         <div className="col-12 col-lg-6">
-          <h3 className="text-start mb-4">Happy Autumn</h3>
+          <h3 className="text-start mb-4">{eventTitle}</h3>
           <p className="text-muted text-start">
-            This creative represents a beautiful design that blends functionality and aesthetics.
-            It is a perfect example of how creativity can enhance user engagement.
+           {eventDescription}
           </p>
         </div>
       </div>
