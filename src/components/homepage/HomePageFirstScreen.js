@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import '../../css/Ripple.css';
 
 function HomePageFirstScreen() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,10 +28,12 @@ function HomePageFirstScreen() {
       style={{
         // minHeight: '50vh',   
         background: 'linear-gradient(to bottom, #8ec5fc, #e0c3fc, #f6eaff)',   //change gradient from #ffffff -> #f6eaff
-        borderRadius: '30px',   //rounded-corners
+        borderTopLeftRadius: '30px',
+        borderTopRightRadius: '30px',
         paddingLeft: '40px',
         paddingRight: '40px',
         paddingTop: '40px',
+        border: '1px solid',
         borderImage: 'linear-gradient(to bottom, #8ec5fc, #e0c3fc, #f6eaff) 1'  
       }}
     >
@@ -56,7 +57,7 @@ function HomePageFirstScreen() {
         <p className="lead text-start text-dark responsive-paragraph" style={{ marginTop: '20px' }}>
           Boost Your Brand with Tailored Content That Fits Your Budget!
         </p>
-        <div className="d-flex mt-4">  
+        <div className="d-flex mt-4 justify-content-center align-items-center">  {/* icons move to the center */}
           <a
             href="/get-started"
             className="btn btn-lg btn-primary me-3"
@@ -66,9 +67,8 @@ function HomePageFirstScreen() {
           >
             Get Started
           </a>
-          
           <button
-            className="btn btn-lg btn-outline-primary rounded-circle ripple"
+            className="btn btn-lg btn-outline-primary rounded-circle"
             style={{ width: '48px', height: '48px' }}
             data-aos="zoom-in"
             data-aos-delay="300"
