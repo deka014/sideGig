@@ -1,0 +1,73 @@
+* {
+    box-sizing: border-box;
+}
+
+
+.ripple {
+    border: none;
+    outline: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: block;
+    background-color: #396eca;
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    cursor: pointer;
+    position: relative;
+    animation-name: ripple;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+
+@keyframes ripple {
+    0% {
+        box-shadow: 0 0 0 0 #fff4, 0 0 0 0 #fff4;
+    }
+
+    80% {
+        box-shadow: 0 0 0 20px #fff0, 0 0 0 40px #fff0;
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 #fff0, 0 0 0 0 #fff0;
+    }
+}
+
+/* 2nd button */
+
+.ripple2 {
+    border: none;
+    outline: none;
+    width: 60px;
+    height: auto;
+    border-radius: 50%;
+    background-color: #396eca;
+    color: #fff;
+    place-items: center;
+    font-size: 18px;
+    cursor: pointer;
+    position: relative;
+    animation-name: ripple;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+  }
+  
+  
+
+  @keyframes ripple2 {
+    0% {
+        box-shadow: 0 0 0 0 #fff4, 0 0 0 0 #fff4;
+    }
+
+    80% {
+        box-shadow: 0 0 0 20px #fff0, 0 0 0 40px #fff0;
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 #fff0, 0 0 0 0 #fff0;
+    }
+}
