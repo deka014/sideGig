@@ -145,30 +145,28 @@ const HomePageFourthScreen = () => {
             </svg>
           </button>
 */}
-<button
-  className="tn btn-lg btn-outline-primary rounded-circle ripple2"
-  onClick={openModal}
-  style={{
-    backgroundColor: "transparent",
-    border: "none",
-    cursor: "pointer",
-    padding: "0",
-  }}
-
-  
->
-  <i
-    className="bi bi-play-circle"
-    style={{
-      fontSize: "55px",
-      marginTop: "2rem",
-      cursor: "pointer",
-      color: "white",
-    }}
-    data-aos="zoom-in"
-    data-aos-delay="300"
-  ></i>
-</button>
+    <button
+      className="tn btn-lg btn-outline-primary rounded-circle ripple2"
+      onClick={openModal}
+      style={{
+        backgroundColor: "transparent",
+        border: "none",
+        cursor: "pointer",
+        padding: "0",
+      }}
+    >
+      <i
+        className="bi bi-play-circle"
+        style={{
+          fontSize: "55px",
+          marginTop: "2rem",
+          cursor: "pointer",
+          color: "white",
+        }}
+        data-aos="zoom-in"
+        data-aos-delay="300"
+      ></i>
+    </button>
 
       
     </div>

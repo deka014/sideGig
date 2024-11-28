@@ -76,8 +76,6 @@ function HomePageFirstScreen() {
           >
             <i className="bi bi-play-fill"></i>
           </button>
-
-          
         </div>
       </div>
 

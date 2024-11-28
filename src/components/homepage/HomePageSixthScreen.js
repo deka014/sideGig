@@ -11,8 +11,6 @@ const HomePageSixthScreen = () => {
     });
   }, []);
 
-  //css styling
-
   const [isHovered, setIsHovered] = useState(false);
 
   // Card Style
