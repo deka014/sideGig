@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
+import '../../css/Ripple.css';
 const HomePageFourthScreen = () => {
 
   //youtube modal function added
@@ -121,21 +121,52 @@ const HomePageFourthScreen = () => {
           onClick={openModal}>
         </i>
           */}
-          <svg 
+          {/*}
+          <button 
+            onClick={openModal} 
+            style={{
+              backgroundColor: "transparent", 
+              border: "none", 
+              cursor: "pointer", 
+              padding: "0"
+            }}
+          >
+            <svg 
               xmlns="http://www.w3.org/2000/svg" 
               width="60" 
               height="60" 
               viewBox="0 0 16 16" 
-              style={{ marginTop: "2rem", cursor: "pointer" }} 
-              onClick={openModal}
+              style={{ marginTop: "2rem" }}
             >
-              {/* circle */}
+              {/* Circle */}
               <circle cx="8" cy="8" r="7" fill="white" /> 
-              {/* traingle inside the circle */}
+              {/* Triangle inside the circle
               <polygon points="6.5,5 11,8 6.5,11" fill="blue" />
             </svg>
-
-
+          </button>
+*/}
+    <button
+      className="tn btn-lg btn-outline-primary rounded-circle ripple2"
+      onClick={openModal}
+      style={{
+        backgroundColor: "transparent",
+        border: "none",
+        cursor: "pointer",
+        padding: "0",
+      }}
+    >
+      <i
+        className="bi bi-play-circle"
+        style={{
+          fontSize: "55px",
+          marginTop: "2rem",
+          cursor: "pointer",
+          color: "white",
+        }}
+        data-aos="zoom-in"
+        data-aos-delay="300"
+      ></i>
+    </button>
 
       
     </div>
