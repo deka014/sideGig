@@ -112,56 +112,25 @@ const HomePageFourthScreen = () => {
       style={{ marginBottom: "1.5rem", }} // Adds spacing below the button
     >
         {/* youtube Button link*/}
-        {/*}
-        <i 
-          className="bi bi-play-circle" 
-          style={{ fontSize: "55px", marginTop: "2rem", cursor: "pointer", color: "blue" }} 
-          data-aos="zoom-in" 
-          data-aos-delay="300" 
-          onClick={openModal}>
-        </i>
-          */}
-          {/*}
-          <button 
-            onClick={openModal} 
-            style={{
-              backgroundColor: "transparent", 
-              border: "none", 
-              cursor: "pointer", 
-              padding: "0"
-            }}
-          >
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width="60" 
-              height="60" 
-              viewBox="0 0 16 16" 
-              style={{ marginTop: "2rem" }}
-            >
-              {/* Circle */}
-              <circle cx="8" cy="8" r="7" fill="white" /> 
-              {/* Triangle inside the circle
-              <polygon points="6.5,5 11,8 6.5,11" fill="blue" />
-            </svg>
-          </button>
-*/}
+
     <button
-      className="tn btn-lg btn-outline-primary rounded-circle ripple2"
+      className="btn btn-lg btn-outline-primary rounded-circle ripple2"
       onClick={openModal}
       style={{
         backgroundColor: "transparent",
         border: "none",
         cursor: "pointer",
-        padding: "0",
+        marginTop: "1.5rem"
       }}
-    >
+    >  
+    {/* size of button inc. */}
       <i
         className="bi bi-play-circle"
         style={{
           fontSize: "55px",
-          marginTop: "2rem",
           cursor: "pointer",
           color: "white",
+          
         }}
         data-aos="zoom-in"
         data-aos-delay="300"
@@ -175,7 +144,7 @@ const HomePageFourthScreen = () => {
     <div className="position-relative z-index-1 container">
       <h2
         className="fw-bold"
-        style={{ fontSize: "2.5rem" }}
+        style={{ fontSize: "2.5rem", marginTop: "2rem" }}  // margin issue solved
         data-aos="fade-up" // Heading animation
       >
         Social Media Mastery <br /> for Modern Brands.
