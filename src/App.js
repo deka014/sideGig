@@ -33,6 +33,7 @@ import FAQ from './components/homepage/FAQ'
 import CreativePreview from './components/CreativePreview'
 import ScrollToTop from './components/ScrollToTop'
 import CreativeSelect from './components/CreativeSelect'
+import OrderReceived from './components/OrderReceived'
 
 function App() {
   return (
@@ -57,6 +58,11 @@ function App() {
           </div>
           <div class='col-12'>
             <Routes>
+              <Route path='/order-received' element={<OrderReceived/>}></Route>
+            </Routes>
+          </div>
+          <div class='col-12'>
+            <Routes>
               <Route path='/creative-select' element={<CreativeSelect />}></Route>
             </Routes>
           </div>
@@ -75,6 +81,7 @@ function App() {
               <Route path='/payment' element={<Payment/>}></Route>
             </Routes>
           </div>
+         
           <div class='col-12'>
             <Routes>
               <Route path='/faq' element={<FAQ/>}></Route>
