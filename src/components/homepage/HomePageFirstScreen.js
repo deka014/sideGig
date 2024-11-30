@@ -23,6 +23,14 @@ function HomePageFirstScreen() {
     }
   };
 
+  //button icon
+  const iconStyles = {
+    content: "'\\f4cd'", // Ensures correct icon (adjust if needed)
+    display: "inline-block",
+    width: "20px", // Width as seen in the image
+    //height: "23px", // Height as seen in the image
+  };
+
   return (
     <div
       className="d-flex align-items-center justify-content-center row position-relative"
@@ -74,7 +82,9 @@ function HomePageFirstScreen() {
             data-aos-delay="300"
             onClick={openModal} // Open modal on click
           >
-            <i className="bi bi-play-fill"></i>
+              <i className="bi bi-play-fill"
+                style={iconStyles}>
+              </i>
           </button>
         </div>
       </div>

@@ -1,0 +1,57 @@
+.expand-circle{
+    position: absolute;
+    z-index: -1;
+    transition:transform 0.75s ease-in, transform 0.5s ease-out;
+}
+
+
+.col-lg-4.col-md-6.aos-init.aos-animate *:not(.expand-circle){
+    z-index: 2;
+}
+.col-lg-4.col-md-6.aos-init.aos-animate{
+    overflow: hidden;
+}
+
+.card.h-100.p-3.shadow-sm{
+    overflow: hidden;
+}
+
+/* card transition mouse hover */
+
+.col-lg-4.col-md-6.aos-init.aos-animate:hover .expand-circle{
+    transform: translate(50px, 50px) scale(12);
+    -webkit-transform: translate(50px, 50px) scale(12);
+    -moz-transform: translate(50px, 50px) scale(12);
+    -ms-transform: translate(50px, 50px) scale(12);
+    -o-transform: translate(50px, 50px) scale(12);
+}
+
+
+/* card 1 */
+.card.h-100.p-3.shadow-sm .bi.bi-search.mb-2 {
+    margin-left: 40%;
+}
+
+/* card 2 */
+.card.h-100.p-3.shadow-sm .bi.bi-layers.mb-2 {
+    margin-left: 35%;
+}
+
+/* card 3 */
+.card.h-100.p-3.shadow-sm .bi.bi-megaphone.mb-2 {
+    margin-left: 35%;
+}
+
+/* card 4 */
+.card.h-100.p-3.shadow-sm .bi.bi-graph-up.mb-2 {
+    margin-left: 40%;
+}
+
+/* card 5 */
+.card.h-100.p-3.shadow-sm .bi.bi-layers.mb-2 {
+    margin-left: 40%;
+}
+/* card 6 */
+.card.h-100.p-3.shadow-sm .bi.bi-layers.mb-2 {
+    margin-left: 40%;
+}
