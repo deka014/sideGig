@@ -31,11 +31,13 @@ import DesignArchive from './components/DesignArchive'
 import Articles from './components/Articles'
 import FAQ from './components/homepage/FAQ'
 import CreativePreview from './components/CreativePreview'
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   return (
     <div className='App'>
       <UserProvider>
+      <ScrollToTop/>
       <Menu />
       <ToastContainer />
       {/* <BackButton /> */}
