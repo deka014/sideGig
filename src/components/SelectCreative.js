@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 
 // Mock event data
 const mockEventData = {
-  "2024-11-28": [
+  "2024-11-30": [
     {
       title: "International Day for Tolerance",
       description: "Promoting tolerance and understanding globally.",
@@ -29,7 +29,7 @@ const mockEventData = {
       image: "https://i.ibb.co/Z2vr3k2/ganesh.jpg",
     },
   ],
-  "2024-11-29": [
+  "2024-12-01": [
     {
       title: "National Sports Day",
       description: "Explore the latest advancements in technology.",
