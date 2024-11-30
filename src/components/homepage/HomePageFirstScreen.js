@@ -23,17 +23,25 @@ function HomePageFirstScreen() {
     }
   };
 
+  //button icon
+  const iconStyles = {
+    content: "'\\f4cd'", // Ensures correct icon (adjust if needed)
+    display: "inline-block",
+    width: "20px", // Width as seen in the image
+    //height: "23px", // Height as seen in the image
+  };
+
   return (
     <div
       className="d-flex align-items-center justify-content-center row position-relative"
       style={{
         // minHeight: '50vh',   
-        background: 'linear-gradient(to bottom, #8ec5fc, #e0c3fc, #f6eaff)',   //change gradient from #ffffff -> #f6eaff
+        background: 'linear-gradient(rgb(142, 197, 252), rgb(224, 195, 252), rgb(255, 255, 255))',   //change gradient from #ffffff -> #f6eaff
         borderRadius: '30px',   //rounded-corners
         paddingLeft: '40px',
         paddingRight: '40px',
         paddingTop: '40px',
-        borderImage: 'linear-gradient(to bottom, #8ec5fc, #e0c3fc, #f6eaff) 1'  
+        // borderImage: 'linear-gradient(to bottom, #8ec5fc, #e0c3fc, #f6eaff) 1'  
       }}
     >
       {/* Left Section with AOS Animation */}
@@ -74,7 +82,9 @@ function HomePageFirstScreen() {
             data-aos-delay="300"
             onClick={openModal} // Open modal on click
           >
-            <i className="bi bi-play-fill"></i>
+              <i className="bi bi-play-fill"
+                style={iconStyles}>
+              </i>
           </button>
         </div>
       </div>
