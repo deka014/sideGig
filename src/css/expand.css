@@ -1,7 +1,9 @@
 .expand-circle{
     position: absolute;
     z-index: -1;
+    transition:transform 0.75s ease-in, transform 0.5s ease-out;
 }
+
 
 .col-lg-4.col-md-6.aos-init.aos-animate *:not(.expand-circle){
     z-index: 2;
@@ -16,14 +18,12 @@
 
 /* card transition mouse hover */
 
-.card.h-100.p-3.shadow-sm .me-3 .expand-circle {
-  transition: transform 0.75s ease-in-out;
-  transform: translate(0, 0) scale(1);
-}
-
-.card.h-100.p-3.shadow-sm .me-3 .expand-circle:hover {
-  transition: transform 0.5s ease-in-out;
-  transform: translate(50px, 50px) scale(12);
+.col-lg-4.col-md-6.aos-init.aos-animate:hover .expand-circle{
+    transform: translate(50px, 50px) scale(12);
+    -webkit-transform: translate(50px, 50px) scale(12);
+    -moz-transform: translate(50px, 50px) scale(12);
+    -ms-transform: translate(50px, 50px) scale(12);
+    -o-transform: translate(50px, 50px) scale(12);
 }
 
 
