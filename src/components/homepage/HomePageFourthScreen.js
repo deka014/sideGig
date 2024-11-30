@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import '../../css/Ripple.css';
+
 const HomePageFourthScreen = () => {
 
   //youtube modal function added
@@ -32,62 +33,7 @@ const HomePageFourthScreen = () => {
   }, []);
 
   return (
-    /*
-    <div className="mb-5">
-      {/* Background Section with Animation }
-      <div
-        className="d-flex align-items-center justify-content-center position-relative text-center text-white"
-        style={{
-          backgroundImage: 'url("https://shine.creativemox.com/sociabiz/wp-content/uploads/sites/16/2024/08/multiracial-business-team-having-a-meeting-in-the-office.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          minHeight: '60vh',
-        }}
-      >
-        {/* Overlay }
-        <div
-          className="position-absolute top-0 start-0 w-100 h-100"
-          style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
-        ></div>
-              
-        {/* button added *}
-          <div cla>
-          <button
-              className="btn btn-lg btn-outline-primary rounded-circle"
-              style={{ width: '48px', height: '48px' }}
-              data-aos="zoom-in"
-              data-aos-delay="300"
-              onClick={openModal} // Open modal on click
-            >
-              <i className="bi bi-play-fill"></i>
-            </button>
-          </div>
-        {/* Content with Animation *}
-        <div className="position-relative z-index-1 container">
-          <h2
-            className="fw-bold"
-            style={{ fontSize: '2.5rem' }}
-            data-aos="fade-up" // Heading animation
-          >
-            Social Media Mastery <br /> for Modern Brands.
-          </h2>
-          <p
-            className="lead mt-3"
-            style={{ maxWidth: '600px', margin: '0 auto' }}
-            data-aos="fade-up"
-            data-aos-delay="200" // Delay for paragraph animation
-          >
-            Ultrices quam mattis posuere porttitor tellus rhoncus tristique. Primis aliquam dignissim interdum vel suscipit sodales.
-          </p>
-          <button
-            className="btn btn-primary mt-4"
-            data-aos="fade-up"
-            data-aos-delay="400" // Delay for button animation
-          >
-            Discover more
-          </button>
-        </div>
-*/
+
 <div className="mb-5">
   {/* Background Section with Animation */}
   <div
@@ -111,7 +57,7 @@ const HomePageFourthScreen = () => {
       className="position-relative z-index-1 d-flex justify-content-center align-items-center"
       style={{ marginBottom: "1.5rem", }} // Adds spacing below the button
     >
-        {/* youtube Button link*/}
+      {/* youtube Button link*/}
 
     <button
       className="btn btn-lg btn-outline-primary rounded-circle ripple2"
@@ -123,62 +69,39 @@ const HomePageFourthScreen = () => {
         marginTop: "1.5rem"
       }}
     >  
-    {/* size of button inc. */}
-      <i
-        className="bi bi-play-circle"
-        style={{
-          fontSize: "55px",
-          cursor: "pointer",
-          color: "white",
-          
-        }}
-        data-aos="zoom-in"
-        data-aos-delay="300"
-      ></i>
-    </button>
-
-      
-    </div>
+      {/* Ripple Effect */}
+      <div className="play-ripple">        
+      </div>
+    </button>    
+  </div>
 
     {/* Content with Animation */}
     <div className="position-relative z-index-1 container">
-      <h2
-        className="fw-bold"
-        style={{ fontSize: "2.5rem", marginTop: "2rem" }}  // margin issue solved
-        data-aos="fade-up" // Heading animation
-      >
-        Social Media Mastery <br /> for Modern Brands.
-      </h2>
-      <p
-        className="lead mt-3"
-        style={{ maxWidth: "600px", margin: "0 auto" }}
-        data-aos="fade-up"
-        data-aos-delay="200" // Delay for paragraph animation
-      >
-        Ultrices quam mattis posuere porttitor tellus rhoncus tristique. Primis
-        aliquam dignissim interdum vel suscipit sodales.
-      </p>
-      <button
-        className="btn btn-primary mt-4"
-        data-aos="fade-up"
-        data-aos-delay="400" // Delay for button animation
-      >
-        Discover more
-      </button>
-    </div>
- 
-
-
-        {/* Play Button with Animation */}
-        {/* <div
-          className="position-absolute top-50 start-50 translate-middle bg-white rounded-circle"
-          style={{ width: '60px', height: '60px' }}
-          data-aos="zoom-in"
-          data-aos-delay="600" // Delay for play button
+        <h2
+          className="fw-bold"
+          style={{ fontSize: "2.5rem", marginTop: "1rem" }}  // margin issue solved
+          data-aos="fade-up" // Heading animation
         >
-          <i className="bi bi-play-fill text-primary" style={{ fontSize: '2rem', lineHeight: '60px' }}></i>
-        </div> */}
+          Social Media Mastery <br /> for Modern Brands.
+        </h2>
+        <p
+          className="lead mt-3"
+          style={{ maxWidth: "600px", margin: "0 auto" }}
+          data-aos="fade-up"
+          data-aos-delay="200" // Delay for paragraph animation
+        >
+          Ultrices quam mattis posuere porttitor tellus rhoncus tristique. Primis
+          aliquam dignissim interdum vel suscipit sodales.
+        </p>
+        <button
+          className="btn btn-primary mt-4"
+          data-aos="fade-up"
+          data-aos-delay="400" // Delay for button animation
+        >
+          Discover more
+        </button>
       </div>
+    </div>
 
       {/* Statistics Section with Overlay and Animation */}
       <div className="container position-relative" style={{ marginTop: '-5%' }}>
