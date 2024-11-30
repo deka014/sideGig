@@ -9,6 +9,7 @@ const HomePageEigthScreen = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         height: "50vh",
+        maxHeight: "350px",
       }}
     >
       {/* Overlay for darkening the background */}

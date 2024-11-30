@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import basic from "../images/basic.png";
 import basicPremium from "../images/basic-premium.png";
 import basicLogo from "../images/basic-logo.png";
+import { useNavigate } from "react-router-dom";
 
 const mockCreativeData = [
   {
@@ -62,11 +63,13 @@ const mockCreativeData = [
   },
 ];
 
+
 const CreativeSelect = () => {
   const [selectedCreatives, setSelectedCreatives] = useState([]);
   const [previewCreative, setPreviewCreative] = useState(null); // Holds the creative for preview
   const [selectedFrame, setSelectedFrame] = useState(basic); // Default frame for canvas
   const canvasRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleSelect = (id) => {
     if (selectedCreatives.includes(id)) {
@@ -135,6 +138,7 @@ const CreativeSelect = () => {
   }, [previewCreative, selectedFrame]);
 
   return (
+    
     <div className="container py-5">
       <h1 className="text-center mb-5">
         Select Your <span className="mark">Creatives</span>
@@ -270,13 +274,17 @@ const CreativeSelect = () => {
 
       {/* Submit Button */}
       <div className="text-center mt-5">
-        <button
-          className="btn btn-primary btn-lg"
-          disabled={selectedCreatives.length === 0}
-          onClick={() => alert(`Selected Creatives: ${selectedCreatives.join(", ")}`)}
-        >
-          Confirm Selection
-        </button>
+      <button
+  className="btn btn-primary btn-lg"
+  disabled={selectedCreatives.length === 0}
+  onClick={() => {
+    const currentUrl = window.location.origin + "/order-received";
+    window.location.href = currentUrl; // Redirects to the page with a hard refresh
+  }}
+>
+  Confirm Selection
+</button>
+
       </div>
       {selectedCreatives.length === 3 && (
         <div className="text-center mt-3 text-danger">
