@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="m-md-5">
+    <div className="mt-3 mx-md-5">
     <div
       className="container-fluid py-5"
       style={{
