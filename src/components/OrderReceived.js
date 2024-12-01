@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import HomePageNinthScreen from './homepage/HomePageNinthScreen';
 import HomePageEigthScreen from './homepage/HomePageEigthScreen';
+import { useNavigate } from 'react-router-dom';
 
 
 const OrderReceived = () => {
-    useEffect(() => {
-        window.scrollTo(0, 0);
-        }, []);
+  const navigate = useNavigate();
+
+    // useEffect(() => {
+    //     window.scrollTo(0, 0);
+    //     }, []);
   return (
     
     <div className="container text-center" style={{ padding: '20px' }}>
@@ -25,6 +28,7 @@ const OrderReceived = () => {
           Sit tight, your creatives will be delivered to your inbox between{' '}
           <span style={{ fontWeight: 'bold', color: '#FF3E6C' }}>9.00am-11.00am</span>
         </p>
+        <button  className="btn btn-primary mt-3" onClick={ () => {navigate('/orders-list')}}> View Orders List </button>
       </div>
 
       <HomePageEigthScreen />
