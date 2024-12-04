@@ -60,7 +60,7 @@ const PricingPage = () => {
         <div className="row justify-content-center">
 
           {/* Starter Plan */} 
-          <div className="col-lg-3 col-md-6 mb-4" data-aos="fade-up">
+          <div className="col-lg-3 col-md-6 mb-4 c1" data-aos="fade-right">  {/* change: fade-up -> fade-right*/}
             <div className="card h-100 shadow-sm rounded-3 p-4 d-flex flex-column">
               <h5 className="fw-bold">Starter Plan</h5>
               <p className="text-muted">
@@ -82,7 +82,7 @@ const PricingPage = () => {
 
 
           {/* Growth Plan */}
-          <div className="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+          <div className="col-lg-3 col-md-6 mb-4 c2" data-aos="fade-up" data-aos-delay="100">
             <div
               className="card h-100 shadow-sm rounded-3 p-4 d-flex flex-column"
               style={{
@@ -110,7 +110,7 @@ const PricingPage = () => {
           </div>
 
           {/* Pro Plan */}
-          <div className="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+          <div className="col-lg-3 col-md-6 mb-4 c3" data-aos="fade-up" data-aos-delay="200">
             <div className="card h-100 shadow-sm rounded-3 p-4">
               <h5 className="fw-bold">Pro Plan</h5>
               <p className="text-muted">
@@ -133,8 +133,8 @@ const PricingPage = () => {
           </div>
 
             {/* Premium Plus Plan */}
-            <div className="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-            <div
+            <div className="col-lg-3 col-md-6 mb-4 c4" data-aos="fade-left" data-aos-delay="100">  {/* change: fade-up -> fade-left*/}
+            <div 
               className="card h-100 shadow-sm rounded-3 p-4"
               style={{
                 background: "linear-gradient(to bottom, #8ec5fc, #e0c3fc, #ffffff)",

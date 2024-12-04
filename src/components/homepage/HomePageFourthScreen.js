@@ -43,7 +43,9 @@ const HomePageFourthScreen = () => {
         'url("https://shine.creativemox.com/sociabiz/wp-content/uploads/sites/16/2024/08/multiracial-business-team-having-a-meeting-in-the-office.jpg")',
       backgroundSize: "cover",
       backgroundPosition: "center",
-      minHeight: "60vh",
+        //height issue fixed
+        paddingTop: "5%", 
+        height: "auto",
     }}
   >
     {/* Overlay */}
@@ -66,7 +68,6 @@ const HomePageFourthScreen = () => {
         backgroundColor: "transparent",
         border: "none",
         cursor: "pointer",
-        marginTop: "1.5rem"
       }}
     >  
       {/* Ripple Effect */}
@@ -79,7 +80,7 @@ const HomePageFourthScreen = () => {
     <div className="position-relative z-index-1 container">
         <h2
           className="fw-bold"
-          style={{ fontSize: "2.5rem", marginTop: "1rem" }}  // margin issue solved
+          style={{ fontSize: "2rem",  }}  // margin issue solved
           data-aos="fade-up" // Heading animation
         >
           Social Media Mastery <br /> for Modern Brands.
@@ -104,26 +105,27 @@ const HomePageFourthScreen = () => {
     </div>
 
       {/* Statistics Section with Overlay and Animation */}
-      <div className="container position-relative" style={{ marginTop: '-5%' }}>
+      <div className="container position-relative" style={{ marginTop: '0.25rem' }}>
         <div
           className="row text-center bg-white shadow-lg py-4 rounded-3"
           data-aos="flip-left" // Animation for the statistics section
           data-aos-delay="100"
         >
-          <div className="col-md-3 col-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="600">
-            <h3 className="fw-bold" style={{ color: '#6c63ff' }}>41K+</h3>
+        {/* font size inc. */}
+          <div className="col-md-3 col-6 mb-4 mb-md-0" style = {{ fontSize: "1.5rem"}} data-aos="fade-up" data-aos-delay="600">
+            <h3 className="fw-bold" style={{ color: '#6c63ff', fontSize: "3rem" }}>41K+</h3>
             <p className="text-muted">Happy Client</p>
           </div>
-          <div className="col-md-3 col-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="700">
-            <h3 className="fw-bold" style={{ color: '#6c63ff' }}>76K+</h3>
+          <div className="col-md-3 col-6 mb-4 mb-md-0" style = {{ fontSize: "1.5rem"}}data-aos="fade-up" data-aos-delay="600">
+            <h3 className="fw-bold" style={{ color: '#6c63ff', fontSize: "3rem" }}>76K+</h3>
             <p className="text-muted">Project Done</p>
           </div>
-          <div className="col-md-3 col-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="800">
-            <h3 className="fw-bold" style={{ color: '#6c63ff' }}>4.7</h3>
+          <div className="col-md-3 col-6 mb-4 mb-md-0" style = {{ fontSize: "1.5rem"}}data-aos="fade-up" data-aos-delay="600">
+            <h3 className="fw-bold" style={{ color: '#6c63ff', fontSize: "3rem" }}>4.7</h3>
             <p className="text-muted">Client Ratings</p>
           </div>
-          <div className="col-md-3 col-6" data-aos="fade-up" data-aos-delay="900">
-            <h3 className="fw-bold" style={{ color: '#6c63ff' }}>15+</h3>
+          <div className="col-md-3 col-6 mb-4 mb-md-0" style = {{ fontSize: "1.5rem"}}data-aos="fade-up" data-aos-delay="600">
+            <h3 className="fw-bold" style={{ color: '#6c63ff', fontSize: "3rem" }}>15+</h3>
             <p className="text-muted">Years Experience</p>
           </div>
         </div>

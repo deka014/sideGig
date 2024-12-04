@@ -25,7 +25,7 @@ const HomePageSeventhScreen = () => {
       {/* change in services offered */}
       <div className="row g-4">
         {/* Card 1: Expertise Across Platforms with Flip Effect */}
-        <div className="col-lg-3 col-md-6 text-center" data-aos="flip-left" data-aos-delay="100">
+        <div className="col-lg-3 col-md-6 text-center c1" data-aos="fade-right" data-aos-delay="100">   {/* change: flip-left -> fade-right*/}
           <div className="p-4 rounded shadow-sm h-100">
             <i className="bi bi-phone" style={{ fontSize: "2rem", color: "#6c63ff" }}></i>
             <h5 className="mt-3">Expertise Across Platforms</h5>
@@ -36,7 +36,7 @@ const HomePageSeventhScreen = () => {
         </div>
 
         {/* Card 2: Affordable monthly plans with Zoom Effect */}
-        <div className="col-lg-3 col-md-6 text-center" data-aos="zoom-in" data-aos-delay="200">
+        <div className="col-lg-3 col-md-6 text-center c2" data-aos="fade-right" data-aos-delay="100"> {/* change: zoom-in -> fade-right*/}
           <div className="p-4 rounded shadow-sm h-100" style={{ backgroundColor: "#f8f9fa" }}>
             <i className="bi bi-receipt" style={{ fontSize: "2rem", color: "#6c63ff" }}></i>
             <h5 className="mt-3">Affordable monthly plans</h5>
@@ -47,7 +47,7 @@ const HomePageSeventhScreen = () => {
         </div>
 
         {/* Card 3: Professional-quality designs with Fade Effect */}
-        <div className="col-lg-3 col-md-6 text-center" data-aos="fade-up" data-aos-delay="300">
+        <div className="col-lg-3 col-md-6 text-center c3" data-aos="fade-left" data-aos-delay="0"> {/* change: fade-up -> fade-right*/}
           <div className="p-4 rounded shadow-sm h-100">  {/* change in icon */}
             <i className="bi bi-person-square" style={{ fontSize: "2rem", color: "#6c63ff" }}></i>  
             <h5 className="mt-3">Professional-quality designs  </h5>
@@ -58,7 +58,7 @@ const HomePageSeventhScreen = () => {
         </div>
 
         {/* Card 4: Hassle-free subscription model Services with Slide Effect */}
-        <div className="col-lg-3 col-md-6 text-center" data-aos="slide-up" data-aos-delay="400">
+        <div className="col-lg-3 col-md-6 text-center c4" data-aos="fade-left" data-aos-delay="0">  {/* change: slide-up -> fade-left*/}
           <div className="p-4 rounded shadow-sm h-100">
             <i className="bi bi-file-earmark-text" style={{ fontSize: "2rem", color: "#6c63ff" }}></i>
             <h5 className="mt-3">Hassle-free subscription model</h5>

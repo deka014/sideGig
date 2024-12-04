@@ -8,8 +8,9 @@ const HomePageEigthScreen = () => {
         backgroundImage: 'url("https://shine.creativemox.com/sociabiz/wp-content/uploads/sites/16/2024/08/immersed-in-social-media.jpg")', // Replace with the actual image URL
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "50vh",
-        maxHeight: "350px",
+        //height issue fixed
+        paddingTop: "30.25%", // For a 16:9 aspect ratio
+        height: "auto",
       }}
     >
       {/* Overlay for darkening the background */}
@@ -23,7 +24,20 @@ const HomePageEigthScreen = () => {
         className="position-absolute bottom-0 start-50 translate-middle-x pb-4"
         style={{ zIndex: 1 }}
       >
-        <h1 className="fw-bold" style={{ fontSize: "3rem" }}>
+        <h1 className="fw-bold" style={{ 
+            textAlign: "center",
+            position: "relative",
+            top: "-275%",
+            // right: "50%",
+            // left: "50px",
+            letterSpacing: -1,
+            zIndex: 1,
+            fontSize: "6rem", // Very large size
+            fontWeight: "bold",
+            fontFamily: "sans-serif",
+            color: "white", // Light and translucent
+            whiteSpace: "nowrap" 
+          }}>
           Let's talk
         </h1>
       </div>
