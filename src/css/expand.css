@@ -1,3 +1,5 @@
+/* css code for 6th screen */
+
 .expand-circle{
     position: absolute;
     z-index: -1;
@@ -13,7 +15,16 @@
 }
 
 .card.h-100.p-3.shadow-sm{
-    overflow: hidden;
+    /* overflow: hidden; */
+    /* background-color: white; */
+    transform: translateY(0); /* Default position */
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.0);
+}
+
+.col-lg-4.col-md-6 {
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  transform: translateY(0); /* Default position */
+
 }
 
 /* card transition mouse hover */
@@ -55,3 +66,410 @@
 .card.h-100.p-3.shadow-sm .bi.bi-layers.mb-2 {
     margin-left: 40%;
 }
+
+.card.h-100.p-3.shadow-sm {
+   /* display: none;  */
+   border: none; 
+   box-shadow: none;
+}
+
+/* css code for 7th screen 
+        changes made: animation given to appear off-screen from left & right-side and movement when mouse is hovered
+*/
+
+.col-lg-3.col-md-6.text-center {
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    transform: translateY(0); /* Default position */
+}
+
+.col-lg-3.col-md-6.text-center:hover {
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.3); /* Increase shadow */
+} 
+
+@keyframes slideInFromLeft {
+    from {
+      transform: translateX(-100%); /* Start off-screen on the left */
+      opacity: 0;           /* : Start fully transparent */
+    }
+    to {
+      transform: translateX(0); /* End at the original position */
+      opacity: 1;           /* Then: Fully visible */
+    }
+  }
+  
+  .col-lg-3.col-md-6.text-center.c1 {
+    animation: slideInFromLeft 0.8s ease-out; /* Animation duration and timing */
+    transform: translateX(0); /* Default position */
+    opacity: 1; 
+  }
+  .col-lg-3.col-md-6.text-center.c1:hover {
+    animation: slideInFromLeft 0.8s ease-out; /* Animation duration and timing */
+    transform: translateY(-20px);       /* move up when mouse is hovered */
+    opacity: 1; 
+  }
+  
+  .col-lg-3.col-md-6.text-center.c2 {
+    animation: slideInFromLeft 0.8s ease-out; /* Animation duration and timing */
+    transform: translateX(0); /* Default position */
+    opacity: 1;     
+  }
+  .col-lg-3.col-md-6.text-center.c2:hover {
+    animation: slideInFromLeft 0.8s ease-out; /* Animation duration and timing */
+    transform: translateY(-20px);            /* move up when mouse is hovered */
+    opacity: 1;     
+  }
+
+
+@keyframes slideInFromRight {
+    from {
+      transform: translateX(100%);      /* Start off-screen on the right */
+      opacity: 0;           /*Start: fully transparent */
+    }
+    to {
+      transform: translateX(0);     /* End at the original position */
+      opacity: 1;           /* Then: Fully visible */
+    }
+  }
+  
+  .col-lg-3.col-md-6.text-center.c3 {
+    animation: slideInFromRight 0.8s ease-out; /* Animation duration and timing */
+    transform: translateX(0); /* Default position */
+    opacity: 1; 
+  }
+  .col-lg-3.col-md-6.text-center.c3:hover {
+    animation: slideInFromRight 0.8s ease-out; /* Animation duration and timing */
+    transform: translateY(-20px);    /* move up when mouse is hovered */
+    opacity: 1; 
+  }
+  
+  .col-lg-3.col-md-6.text-center.c4 {
+    animation: slideInFromRight 0.8s ease-out; /* Animation duration and timing */
+    transform: translateX(0); /* Default position */
+    opacity: 1;             
+  }
+  .col-lg-3.col-md-6.text-center.c4:hover {
+    animation: slideInFromRight 0.8s ease-out; /* Animation duration and timing */
+    transform: translateY(-20px);    /* move up when mouse is hovered */
+    opacity: 1;             
+  }
+
+
+/* css code for Pricing Page 
+    changes made: animation given to appear off-screen from bottom, left & right-side and movement when mouse is hovered
+*/
+
+.col-lg-3.col-md-6.mb-4 {
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    transform: translateY(0); /* Default position */
+}
+
+
+@keyframes slideInFromLeft {
+    from {
+      transform: translateX(-100%); /* Start off-screen on the left */
+      opacity: 0;           /* : Start fully transparent */
+    }
+    to {
+      transform: translateX(0); /* End at the original position */
+      opacity: 1;           /* Then: Fully visible */
+    }
+  }
+  
+  .col-lg-3.col-md-6.mb-4.c1 {
+    animation: slideInFromLeft 0.8s ease-out; /* Animation duration and timing */
+    transform: translateX(0); /* Default position */
+    opacity: 1; 
+  }
+  .col-lg-3.col-md-6.mb-4.c1:hover {
+    animation: slideInFromLeft 0.8s ease-out; /* Animation duration and timing */
+    transform: translateY(-20px);       /* move up when mouse is hovered */
+    opacity: 1; 
+  }
+
+
+@keyframes slideInFromRight {
+    from {
+      transform: translateX(100%);      /* Start off-screen on the right */
+      opacity: 0;           /*Start: fully transparent */
+    }
+    to {
+      transform: translateX(0);     /* End at the original position */
+      opacity: 1;           /* Then: Fully visible */
+    }
+  }
+
+  .col-lg-3.col-md-6.mb-4.c4 {
+    animation: slideInFromRight 0.8s ease-out; /* Animation duration and timing */
+    transform: translateX(0); /* Default position */
+    opacity: 1;             
+  }
+  .col-lg-3.col-md-6.mb-4.c4:hover {
+    animation: slideInFromRight 0.8s ease-out; /* Animation duration and timing */
+    transform: translateY(-20px);    /* move up when mouse is hovered */
+    opacity: 1;             
+  }
+  
+
+  @keyframes slideInFromBottom {
+    from {
+      transform: translateY(100%);      /* Start off-screen from the bottom */
+      opacity: 0;           /*Start: fully transparent */
+    }
+    to {
+      transform: translateX(0);     /* End at the original position */
+      opacity: 1;           /* Then: Fully visible */
+    }
+  }
+
+  .col-lg-3.col-md-6.mb-4.c2 {
+    animation: slideInFromBottom 0.8s ease-out; /* Animation duration and timing */
+    transform: translateX(0); /* Default position */
+    opacity: 1;             
+  }
+  .col-lg-3.col-md-6.mb-4.c2:hover {
+    animation: slideInFromBottom 0.8s ease-out; /* Animation duration and timing */
+    transform: translateY(-20px);    /* move up when mouse is hovered */
+    opacity: 1;             
+  }
+
+  .col-lg-3.col-md-6.mb-4.c3 {
+    animation: slideInFromBottom 0.8s ease-out; /* Animation duration and timing */
+    transform: translateX(0); /* Default position */
+    opacity: 1;             
+  }
+  .col-lg-3.col-md-6.mb-4.c3:hover {
+    animation: slideInFromBottom 0.8s ease-out; /* Animation duration and timing */
+    transform: translateY(-20px);    /* move up when mouse is hovered */
+    opacity: 1;             
+  }
+
+
+/* css code for 9th screen
+    changes made: animation given to appear off-screen from bottom, left & right-side and movement when mouse is hovered
+*/
+
+
+.card.h-100.p-4.text-center.shadow-sm {
+  /* display: none; */
+  border: none;
+}
+
+.col-lg-4.col-md-6.shad {
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    transform: translateY(0); /* Default position */
+    box-shadow: 0px 8px 12px rgba(0.3, 0.3, 0.3, 0.3);
+}
+
+.col-lg-4.col-md-6:hover {
+  box-shadow: 0px 8px 12px rgba(0.3, 0.3, 0.3, 0.3); /* Increase shadow */
+}  
+
+
+@keyframes slideInFromLeft {
+    from {
+      transform: translateX(-100%); /* Start off-screen on the left */
+      opacity: 0;           /* : Start fully transparent */
+    }
+    to {
+      transform: translateX(0); /* End at the original position */
+      opacity: 1;           /* Then: Fully visible */
+    }
+  }
+  
+  .col-lg-4.col-md-6.c1 {
+    animation: slideInFromLeft 0.8s ease-out; /* Animation duration and timing */
+    transform: translateX(0); /* Default position */
+    opacity: 1; 
+  }
+  .col-lg-4.col-md-6.c1:hover {
+    animation: slideInFromLeft 0.8s ease-out; /* Animation duration and timing */
+    transform: translateY(-20px);       /* move up when mouse is hovered */
+    opacity: 1; 
+  }
+
+
+@keyframes slideInFromRight {
+    from {
+      transform: translateX(100%);      /* Start off-screen on the right */
+      opacity: 0;           /*Start: fully transparent */
+    }
+    to {
+      transform: translateX(0);     /* End at the original position */
+      opacity: 1;           /* Then: Fully visible */
+    }
+  }
+
+  .col-lg-4.col-md-6.c3 {
+    animation: slideInFromRight 0.8s ease-out; /* Animation duration and timing */
+    transform: translateX(0); /* Default position */
+    opacity: 1;             
+  }
+  .col-lg-4.col-md-6.c3:hover {
+    animation: slideInFromRight 0.8s ease-out; /* Animation duration and timing */
+    transform: translateY(-20px);    /* move up when mouse is hovered */
+    opacity: 1;             
+  }
+  
+
+  @keyframes slideInFromBottom {
+    from {
+      transform: translateY(100%);      /* Start off-screen from the bottom */
+      opacity: 0;           /*Start: fully transparent */
+    }
+    to {
+      transform: translateX(0);     /* End at the original position */
+      opacity: 1;           /* Then: Fully visible */
+    }
+  }
+
+  .col-lg-4.col-md-6.c2 {
+    animation: slideInFromBottom 0.8s ease-out; /* Animation duration and timing */
+    transform: translateX(0); /* Default position */
+    opacity: 1;             
+  }
+  .col-lg-4.col-md-6.c2:hover {
+    animation: slideInFromBottom 0.8s ease-out; /* Animation duration and timing */
+    transform: translateY(-20px);    /* move up when mouse is hovered */
+    opacity: 1;             
+  }
+
+/* make button smaller and change color when hovered*/
+
+.col-lg-4.col-md-6 .btn.btn-primary {
+  padding: 6px 12px;        
+  font-size: 0.875rem; 
+  width: 50%;           
+  margin: 0 auto;           /* Center-align of the button */
+  background-color: #7087f5;
+}
+
+.col-lg-4.col-md-6 .btn.btn-primary:hover {
+  background-color: black;
+}
+
+
+/* css code for 1st screen
+    changes made: addded Media Queries
+*/
+
+@media (min-width: 1201px) {
+  .background-text {
+    position: absolute;
+    font-size: 12rem; /* Larger font for larger screens */
+    top: 50%;
+    left: 25%;
+  }
+}
+
+
+@media (max-width: 1200px) {
+  .background-text {
+    position: absolute;
+    font-size: 10rem; /* Smaller font for medium screens */
+    left: -20%;   
+    bottom: -20%;
+  }
+}
+
+@media (max-width: 768px) {
+  .background-text {
+    position: absolute;
+    font-size: 6rem; /* Smaller font for small screens */
+    left: 60%; /* Further adjust positioning */
+    bottom: -10%;
+  }
+}
+
+@media (max-width: 480px) {
+  .background-text {
+    position: absolute;
+    font-size: 5rem; /* Smallest font for very small screens */
+    left: 1%; /* Keep it fully visible */
+    bottom: -10%;
+  }
+}
+
+
+/* css code for Footer
+    changes made: 
+*/
+
+/* change in font */
+.col-md-3.mb-4 .list-unstyled a {
+  /* font-size: 20px; */
+  font-family: sans-serif;
+  text-decoration: none;
+}
+
+.col-md-3.mb-4 .list-unstyled a:hover {
+  color: white !important;
+}
+
+/* inc. size of ions */
+.text-dark.mx-2 {
+  font-size: 20px;
+  /* background-color: white; */
+  /* border-radius: 20px; */
+}
+
+/* change in font-color */
+.text-center.mt-4 .text-dark {
+  text-align: left;
+  color: black;
+  text-decoration: none;
+}
+
+.text-center.mt-4 .text-dark:hover {
+  color: #7087f5 !important;
+}
+
+/* css code for 4th screen
+    changes made: button color change
+*/
+
+.btn-primary.mt-4.aos-init.aos-animate {
+  background: #7087f5; 
+  border: 0px; 
+  margin-bottom: 20px;  
+}
+
+.btn-primary.mt-4.aos-init.aos-animate:hover {
+    background-color: black;
+}
+
+/* boundary */
+.col-md-3.col-6.mb-4.mb-md-0 {
+  font-size: 1.5rem;
+  border: solid;
+  border-top: 0px;
+  border-right: 2px solid #dcdde8;
+  border-bottom: 0px;
+  border-left: 0px;
+}
+
+/* css code for 5th screen
+    changes made: bg color change
+*/
+
+/* Default button style */
+.accordion-button.fw-bold {
+  background-color: transparent;
+
+  color: #000; /* Default text color */
+  border: none; /* Optional: remove border if needed */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* When the accordion button is clicked (expanded or focused) */
+.accordion-button.fw-bold:not(.collapsed) {
+  background-color: transparent;
+  background-image: linear-gradient(
+    135deg,
+    var(--e-global-color-ec3c7a7, #f09bf9) 0%,
+    var(--e-global-color-3ee16e7, #fcc484) 100%
+  );
+}
+
+
+
+

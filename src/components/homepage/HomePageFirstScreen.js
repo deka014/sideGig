@@ -68,7 +68,7 @@ function HomePageFirstScreen() {
           <a
             href="/get-started"
             className="btn btn-lg btn-primary me-3"
-            style={{ borderRadius: '20px' }}
+            style={{ borderRadius: '10px', background: "#7087f5"  }}  // Change: button color, border radius
             data-aos="zoom-in"
             data-aos-delay="200"
           >
@@ -77,7 +77,7 @@ function HomePageFirstScreen() {
           
           <button
             className="btn btn-lg btn-outline-primary rounded-circle ripple"
-            style={{ width: '50px', height: '50px' }}
+            style={{ width: '50px', height: '50px', background: "#7087f5" }}
             data-aos="zoom-in"
             data-aos-delay="300"
             onClick={openModal} // Open modal on click
@@ -97,8 +97,23 @@ function HomePageFirstScreen() {
         <img
           src="https://shine.creativemox.com/sociabiz/wp-content/uploads/sites/16/2024/08/img_1.png"
           alt="sociabiz"
-          style={{ width: '16rem' }}
+          style={{ width: '20rem' }}  //size of bg image inc.
         />
+         <div className='background-text'
+          style={{
+              // position: "absolute",
+              // top: "50%",
+              // left: "10%",
+              letterSpacing: -1,
+              zIndex: 1,
+              // fontSize: "12rem", // Very large size
+              fontWeight: "bold",
+              color: "white", // Light and translucent
+              whiteSpace: "nowrap",
+            }}
+        >
+          Creative
+        </div>
       </div>
 
       {/* Modal for YouTube Video */}
