@@ -36,12 +36,12 @@ function HomePageFirstScreen() {
       className="d-flex align-items-center justify-content-center row position-relative"
       style={{
         // minHeight: '50vh',   
-        background: 'linear-gradient(to bottom, #8ec5fc, #e0c3fc, #f6eaff)',   //change gradient from #ffffff -> #f6eaff
+        background: 'linear-gradient(rgb(142, 197, 252), rgb(224, 195, 252), rgb(255, 255, 255))',   //change gradient from #ffffff -> #f6eaff
         borderRadius: '30px',   //rounded-corners
         paddingLeft: '40px',
         paddingRight: '40px',
         paddingTop: '40px',
-        borderImage: 'linear-gradient(to bottom, #8ec5fc, #e0c3fc, #f6eaff) 1'  
+        // borderImage: 'linear-gradient(to bottom, #8ec5fc, #e0c3fc, #f6eaff) 1'  
       }}
     >
       {/* Left Section with AOS Animation */}

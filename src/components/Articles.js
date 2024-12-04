@@ -54,10 +54,6 @@ function Articles() {
 
   const article = articles[id];
 
-  useEffect(() => {
-    // Scroll to top on load or when the article ID changes
-    window.scrollTo(0, 0);
-  }, [id]);
 
   if (!article) {
     return <h2>Article not found!</h2>;
