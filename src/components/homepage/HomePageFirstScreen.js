@@ -77,7 +77,7 @@ function HomePageFirstScreen() {
           
           <button
             className="btn btn-lg btn-outline-primary rounded-circle ripple"
-            style={{ width: '50px', height: '50px', background: "#7087f5" }}
+            style={{ width: '50px', height: '50px'}}
             data-aos="zoom-in"
             data-aos-delay="300"
             onClick={openModal} // Open modal on click

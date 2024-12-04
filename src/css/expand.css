@@ -352,11 +352,19 @@
     changes made: addded Media Queries
 */
 
+.btn.btn-lg.btn-outline-primary.rounded-circle.ripple.aos-init.aos-animate {
+  background: #7087f5;
+}
+.btn.btn-lg.btn-outline-primary.rounded-circle.ripple.aos-init.aos-animate:hover {
+  background: black;
+}
+
+
 @media (min-width: 1201px) {
   .background-text {
     position: absolute;
-    font-size: 12rem; /* Larger font for larger screens */
-    top: 50%;
+    font-size: 10rem; /* Larger font for larger screens */
+    top: 55%;
     left: 25%;
   }
 }
@@ -365,7 +373,7 @@
 @media (max-width: 1200px) {
   .background-text {
     position: absolute;
-    font-size: 10rem; /* Smaller font for medium screens */
+    font-size: 9rem; /* Smaller font for medium screens */
     left: -20%;   
     bottom: -20%;
   }
@@ -391,7 +399,7 @@
 
 
 /* css code for Footer
-    changes made: 
+    changes made: font-change, underline removec
 */
 
 /* change in font */
@@ -408,8 +416,6 @@
 /* inc. size of ions */
 .text-dark.mx-2 {
   font-size: 20px;
-  /* background-color: white; */
-  /* border-radius: 20px; */
 }
 
 /* change in font-color */
