@@ -1,20 +1,34 @@
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8083/";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:4000/api/";
 
 const authService = {
-  login(email, password) {
+  sendOtp(phoneNumber) {
     return axios
-      .post(API_URL + "auth/token", {
-        email,
-        password
+      .post(API_URL + "auth/send-otp", {
+        phoneNumber
       })
       .then(response => {
-        console.log(response.data,"i am the data")
+        console.log(response.data,"Sent OTP successfully")
+        return response.data;
+      });
+  },
+
+  verifyOtp(phoneNumber, otp) {
+    return axios
+      .post(API_URL + "auth/verify-otp", {
+        phoneNumber,
+        otp
+      })
+      .then(response => {
+        console.log(response.data,"Verified OTP successfully")
         if (response.data) {
-          localStorage.setItem("user", response.data);
+          const stringifyData = JSON.stringify(response.data);
+          localStorage.setItem("user", stringifyData);
         }
         return response.data;
+      }).catch((error) => {
+        console.log(error);
       });
   },
 
