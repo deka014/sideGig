@@ -16,7 +16,7 @@ const Footer = () => {
       <div className="container text-center text-md-start">
         <div className="row">
           {/* Left Section: Logo and Description */}
-          <div className="col-md-3 mb-4" style={{ marginLeft: "-70px"}}>
+          <div className="col-md-3 mb-4" style={{ marginLeft: "-30px"}}>
             <h1 className="fw-bold mb-3">dgin</h1>  
             <p>
               Experience the dgin Advantage - Empowering Social Success with Data-Driven Solutions.
@@ -41,7 +41,7 @@ const Footer = () => {
           </div>
 
           {/* Middle Sections: Links */}
-          <div className="col-md-3 mb-4" style={{ marginLeft: "50px"}}>
+          <div className="col-md-3 mb-4" style={{ marginLeft: "30px"}}>
             <h4 className="fw-bold mb-3">Solutions</h4>
             <ul className="list-unstyled">
               <li><a href="#" className="text-dark">Social Media Management</a></li>
