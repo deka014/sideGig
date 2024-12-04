@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="m-md-5">
+    <div className="mt-3 mx-md-5">
     <div
       className="container-fluid py-5"
       style={{
@@ -12,13 +12,14 @@ const Footer = () => {
         color: "#333",
       }}
     >
+    {/* changes: sociobuz -> dgin */}
       <div className="container text-center text-md-start">
         <div className="row">
           {/* Left Section: Logo and Description */}
-          <div className="col-md-3 mb-4">
-            <h5 className="fw-bold mb-3">SociaBiz</h5>
+          <div className="col-md-3 mb-4" style={{ marginLeft: "-70px"}}>
+            <h1 className="fw-bold mb-3">dgin</h1>  
             <p>
-              Experience the SociaBiz Advantage - Empowering Social Success with Data-Driven Solutions.
+              Experience the dgin Advantage - Empowering Social Success with Data-Driven Solutions.
             </p>
             <div className="d-flex justify-content-center justify-content-md-start">
               <a href="#" className="text-dark mx-2">
@@ -40,8 +41,8 @@ const Footer = () => {
           </div>
 
           {/* Middle Sections: Links */}
-          <div className="col-md-3 mb-4">
-            <h6 className="fw-bold mb-3">Solutions</h6>
+          <div className="col-md-3 mb-4" style={{ marginLeft: "50px"}}>
+            <h4 className="fw-bold mb-3">Solutions</h4>
             <ul className="list-unstyled">
               <li><a href="#" className="text-dark">Social Media Management</a></li>
               <li><a href="#" className="text-dark">Paid Promote</a></li>
@@ -52,7 +53,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="col-md-3 mb-4">
-            <h6 className="fw-bold mb-3">Support</h6>
+            <h4 className="fw-bold mb-3">Support</h4>
             <ul className="list-unstyled">
               <li><a href="#" className="text-dark">Help Center</a></li>
               <li><a href="#" className="text-dark">Ticket Support</a></li>
@@ -62,7 +63,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="col-md-3 mb-4">
-            <h6 className="fw-bold mb-3">Company</h6>
+            <h4 className="fw-bold mb-3">Company</h4>
             <ul className="list-unstyled">
               <li><a href="/about" className="text-dark">About Us</a></li>   {/* added the About Us page link */}
               <li><a href="#" className="text-dark">Leadership</a></li>
@@ -74,7 +75,7 @@ const Footer = () => {
         </div>
         <div className="text-center mt-4">
           <small className="text-muted">
-            Copyright ©2024 Billa, All rights reserved. Powered by Palash Pratim Dutta.
+            Copyright ©2024 dgin , All rights reserved. Powered by Palash Pratim Dutta.
           </small>
           <br />
           <a href="#" className="text-dark me-3">Terms of Services</a>

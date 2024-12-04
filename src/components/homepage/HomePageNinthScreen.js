@@ -25,7 +25,7 @@ const HomePageNinthScreen = () => {
       {/* Cards Section */}
       <div className="row g-4">
         {/* Card 1: Customer Support with Flip Effect */}
-        <div className="col-lg-4 col-md-6" data-aos="flip-left" data-aos-delay="100">
+        <div className="col-lg-4 col-md-6 shad c1" data-aos="fade-right" data-aos-delay="100">  {/* change: flip-left -> fade-right*/}
           <div className="card h-100 p-4 text-center shadow-sm">
             <div className="mb-3">
               <i className="bi bi-chat-left-text" style={{ fontSize: "2rem", color: "#f28b82" }}></i>
@@ -41,7 +41,7 @@ const HomePageNinthScreen = () => {
         </div>
 
         {/* Card 2: Ticket Support with Fade Effect */}
-        <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div className="col-lg-4 col-md-6 shad c2" data-aos="fade-up" data-aos-delay="200">  {/* change: flip-left -> fade-up*/}
           <div className="card h-100 p-4 text-center shadow-sm">
             <div className="mb-3">
               <i className="bi bi-envelope" style={{ fontSize: "2rem", color: "#f28b82" }}></i>
@@ -57,7 +57,8 @@ const HomePageNinthScreen = () => {
         </div>
 
         {/* Card 3: Contact Us with Zoom Effect */}
-        <div className="col-lg-4 col-sm-12" data-aos="zoom-in" data-aos-delay="300">
+        {/* <div className="col-lg-4 col-sm-12 c3" data-aos="fade-left" data-aos-delay="300">  change: flip-left -> fade-left */}
+        <div className="col-lg-4 col-md-6 shad c3" data-aos="fade-left" data-aos-delay="300">  {/* change: flip-left -> fade-left*/}
           <div className="card h-100 p-4 text-center shadow-sm">
             <div className="mb-3">
               <i className="bi bi-life-preserver" style={{ fontSize: "2rem", color: "#f28b82" }}></i>
