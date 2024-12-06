@@ -17,7 +17,7 @@ const Footer = () => {
         <div className="row">
           {/* Left Section: Logo and Description */}
           <div className="col-md-3 mb-4" style={{ marginLeft: "-30px"}}>
-            <h1 className="fw-bold mb-3">dgin</h1>  
+            <h1 className="fw-bold mb-3">dgin.in</h1>  
             <p>
               Experience the dgin Advantage - Empowering Social Success with Data-Driven Solutions.
             </p>
@@ -73,18 +73,45 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="text-center mt-4">
-          <small className="text-muted">
-            Copyright ©2024 dgin , All rights reserved. Powered by Palash Pratim Dutta.
-          </small>
-          <br />
-          <a href="#" className="text-dark me-3">Terms of Services</a>
-          <a href="#" className="text-dark me-3">Privacy Policy</a>
-          <a href="#" className="text-dark">Cookie Policy</a>
-        </div>
+        <div className='background-text2'
+            style={{
+                // position: "absolute",
+                // top: "50%",
+                // left: "10%",
+                letterSpacing: -1,
+                zIndex: 1,
+                // fontSize: "12rem", // Very large size
+                fontWeight: "bold",
+                color: "white", // Light and translucent
+                whiteSpace: "nowrap",
+              }}
+          >
+            dgin.in
+          </div>
       </div>
     </div>
+    <div className="text-center mt-4">
+            <div 
+              className="d-flex justify-content-between align-items-center" 
+              style={{ width: "100%", textAlign: "left", marginBottom: "2rem" }}
+            >
+              {/* Left-side in T&C footer */}
+              <div>
+                <small className="text-muted" style={{marginLeft: "50px"}}>
+                  Copyright ©2024 dgin.in , All rights reserved. Powered by Palash Pratim Dutta.
+                </small>
+              </div>
 
+              {/* Right-side in T&C footer */}
+              <div style={{marginRight: "50px", fontSize: "13px"}}>
+                <a href="#" className="text-dark me-3">Terms of Services</a>
+                <a href="#" className="text-dark me-3">Privacy Policy</a>
+                <a href="#" className="text-dark">Cookie Policy</a>
+              </div>
+            </div>
+          </div>
+
+    
     </div>
   );
 };

@@ -112,21 +112,21 @@ const HomePageFourthScreen = () => {
           data-aos-delay="100"
         >
         {/* font size inc. */}
-          <div className="col-md-3 col-6 mb-4 mb-md-0" style = {{ fontSize: "1.5rem"}} data-aos="fade-up" data-aos-delay="600">
-            <h3 className="fw-bold" style={{ color: '#6c63ff', fontSize: "3rem" }}>41K+</h3>
-            <p className="text-muted">Happy Client</p>
+          <div className="col-md-3 col-6 mb-4 mb-md-0"  data-aos="fade-up" data-aos-delay="600">
+            <h3 className="fw-bold" style={{ color: '#6c63ff', fontSize: "2.5rem", fontFamily: 'sans-serif', marginBottom: "0rem" }}>41K+</h3>
+            <p className="text" style={{ fontWeight: 'bold', fontSize: "1.25rem"}}>Happy Client</p>
           </div>
-          <div className="col-md-3 col-6 mb-4 mb-md-0" style = {{ fontSize: "1.5rem"}}data-aos="fade-up" data-aos-delay="600">
-            <h3 className="fw-bold" style={{ color: '#6c63ff', fontSize: "3rem" }}>76K+</h3>
-            <p className="text-muted">Project Done</p>
+          <div className="col-md-3 col-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="600">
+          <h3 className="fw-bold" style={{ color: '#6c63ff', fontSize: "2.5rem", fontFamily: 'sans-serif', marginBottom: "0rem" }}>76K+</h3>
+          <p className="text" style={{ fontWeight: 'bold', fontSize: "1.25rem" }}>Project Done</p>
           </div>
-          <div className="col-md-3 col-6 mb-4 mb-md-0" style = {{ fontSize: "1.5rem"}}data-aos="fade-up" data-aos-delay="600">
-            <h3 className="fw-bold" style={{ color: '#6c63ff', fontSize: "3rem" }}>4.7</h3>
-            <p className="text-muted">Client Ratings</p>
+          <div className="col-md-3 col-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="600">
+            <h3 className="fw-bold" style={{ color: '#6c63ff', fontSize: "2.5rem", fontFamily: 'sans-serif', marginBottom: "0rem" }}>4.7</h3>
+            <p className="text" style={{ fontWeight: 'bold', fontSize: "1.25rem" }}>Client Ratings</p>
           </div>
-          <div className="col-md-3 col-6 mb-4 mb-md-0" style = {{ fontSize: "1.5rem"}}data-aos="fade-up" data-aos-delay="600">
-            <h3 className="fw-bold" style={{ color: '#6c63ff', fontSize: "3rem" }}>15+</h3>
-            <p className="text-muted">Years Experience</p>
+          <div className="col-md-3 col-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="600">
+            <h3 className="fw-bold" style={{ color: '#6c63ff', fontSize: "2.5rem", fontFamily: 'sans-serif', marginBottom: "0rem" }}>15+</h3>
+            <p className="text" style={{ fontWeight: 'bold', fontSize: "1.25rem" }}>Years Experience</p>
           </div>
         </div>
       </div>

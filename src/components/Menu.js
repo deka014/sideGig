@@ -22,7 +22,7 @@ const Menu = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="mynavbar" style={{fontFamily : 'Lexend'}}>
+          <div className="collapse navbar-collapse custom-navbar" id="mynavbar" style={{fontFamily: 'Times New Roman', marginBottom: "5px"}}>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 justify-content-right text-center">
               {/* <li className="nav-item mx-3 fs-5">
                 <a className="nav-link text-dark" href="/">Home</a>
@@ -95,6 +95,11 @@ const Menu = () => {
                   <li>
                     <a className="dropdown-item" href="/services">
                       Services
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="/singleBlog">
+                      Single Post
                     </a>
                   </li>
                 </ul>
