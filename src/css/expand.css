@@ -83,7 +83,7 @@
 }
 
 .col-lg-3.col-md-6.text-center:hover {
-    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.3); /* Increase shadow */
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.5); /* Increase shadow */
 } 
 
 @keyframes slideInFromLeft {
@@ -254,6 +254,14 @@
   border: none;
 }
 
+.col-lg-4.col-md-6.shad .btn.btn-primary{
+  padding: 6px 12px;        
+  font-size: 0.875rem; 
+  width: 30%;           
+  background-color: #7087f5;
+  margin: 0 auto; 
+}
+
 .col-lg-4.col-md-6.shad {
     transition: transform 0.5s ease, box-shadow 0.5s ease;
     transform: translateY(0); /* Default position */
@@ -338,9 +346,9 @@
 .col-lg-4.col-md-6 .btn.btn-primary {
   padding: 6px 12px;        
   font-size: 0.875rem; 
-  width: 50%;           
-  margin: 0 auto;           /* Center-align of the button */
+  width: 30%;           
   background-color: #7087f5;
+
 }
 
 .col-lg-4.col-md-6 .btn.btn-primary:hover {
@@ -429,6 +437,49 @@
   color: #7087f5 !important;
 }
 
+.background-text2:hover{
+  color: black !important;
+}
+
+@media (min-width: 1201px) {
+  .background-text2 {
+    position: relative;
+    font-size: 5rem; /* Larger font for larger screens */
+    top: -50%;
+    left: 40%;
+  }
+}
+
+
+@media (max-width: 1200px) {
+  .background-text2 {
+    position: relative;
+    font-size: 4rem; /* Smaller font for medium screens */
+    top: 30%;
+    left: 40%;
+  }
+}
+
+@media (max-width: 768px) {
+  .background-text2 {
+    position: absolute;
+    font-size: 3rem; /* Smaller font for small screens */
+    /* top: 20%; */
+    /* left: 40%; */
+  }
+}
+
+@media (max-width: 480px) {
+  .background-text2 {
+    position: absolute;
+    font-size: 2rem; /* Smallest font for very small screens */
+    /* top: 10%; */
+    /* left: 40%; */
+  }
+}
+
+
+
 /* css code for 4th screen
     changes made: button color change
 */
@@ -460,7 +511,7 @@
 /* Default button style */
 .accordion-button.fw-bold {
   background-color: transparent;
-
+  
   color: #000; /* Default text color */
   border: none; /* Optional: remove border if needed */
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -473,9 +524,7 @@
     135deg,
     var(--e-global-color-ec3c7a7, #f09bf9) 0%,
     var(--e-global-color-3ee16e7, #fcc484) 100%
-  );
-}
-
-
+    );
+  }
 
 

@@ -23,6 +23,8 @@ import ContentSubmission from './components/ContentSubmission';
 import DesignArchive from './components/DesignArchive';
 import Articles from './components/Articles';
 import FAQ from './components/homepage/FAQ';
+import SingleBlog from './components/SingleBlog'
+
 import CreativePreview from './components/CreativePreview';
 import CreativeSelect from './components/CreativeSelect';
 import OrderReceived from './components/OrderReceived';
@@ -51,6 +53,7 @@ function App() {
               <Route path="/pricing" element={<PricingPage />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/articles/:id" element={<Articles />} />
+              <Route path="/singleBlog" element={<SingleBlog />} />
 
               {/* Orders and Designs */}
               <Route path="/order-received" element={<OrderReceived />} />
