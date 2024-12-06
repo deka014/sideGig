@@ -445,8 +445,7 @@
   .background-text2 {
     position: relative;
     font-size: 5rem; /* Larger font for larger screens */
-    top: -50%;
-    left: 40%;
+
   }
 }
 
@@ -455,8 +454,7 @@
   .background-text2 {
     position: relative;
     font-size: 4rem; /* Smaller font for medium screens */
-    top: 30%;
-    left: 40%;
+
   }
 }
 
@@ -464,17 +462,15 @@
   .background-text2 {
     position: absolute;
     font-size: 3rem; /* Smaller font for small screens */
-    /* top: 20%; */
-    /* left: 40%; */
+
   }
 }
 
 @media (max-width: 480px) {
   .background-text2 {
-    position: absolute;
+    position: relative;
     font-size: 2rem; /* Smallest font for very small screens */
-    /* top: 10%; */
-    /* left: 40%; */
+
   }
 }
 
