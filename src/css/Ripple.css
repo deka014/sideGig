@@ -18,7 +18,7 @@
     cursor: pointer;
     position: relative;
     animation-name: ripple;
-    animation-duration: 1.5s;
+    animation-duration: 3s;
     animation-iteration-count: infinite;
 }
 
@@ -26,15 +26,15 @@
 
 @keyframes ripple {
     0% {
-        box-shadow: 0 0 0 0 #fff4, 0 0 0 0 #fff4;
+        box-shadow: 0 0 0 0 rgba(57, 110, 202, 0.4), 0 0 0 0 rgba(57, 110, 202, 0.4); /* Updated color */
     }
 
     80% {
-        box-shadow: 0 0 0 20px #fff0, 0 0 0 40px #fff0;
+        box-shadow: 0 0 0 20px rgba(57, 110, 202, 0), 0 0 0 40px rgba(57, 110, 202, 0); /* Updated color */
     }
 
     100% {
-        box-shadow: 0 0 0 0 #fff0, 0 0 0 0 #fff0;
+        box-shadow: 0 0 0 0 rgba(57, 110, 202, 0), 0 0 0 0 rgba(57, 110, 202, 0); /* Updated color */
     }
 }
 
@@ -59,8 +59,9 @@
     cursor: pointer;
     position: relative;
     animation-name: ripple;
-    animation-duration: 1.5s;
+    animation-duration: 2.5s;
     animation-iteration-count: infinite;
+    animation: ripple2 2s infinite;
   }
   .ripple2 .play-ripple{
     background-image: url('play.png');
@@ -73,16 +74,18 @@
 }
   
 
-  @keyframes ripple2 {
+/* color chnaged */
+@keyframes ripple2 {
     0% {
-        box-shadow: 0 0 0 0 #fff4, 0 0 0 0 #fff4;
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4), 0 0 0 0 rgba(255, 255, 255, 0.4);
     }
-
+  
     80% {
-        box-shadow: 0 0 0 20px #fff0, 0 0 0 40px #fff0;
+      box-shadow: 0 0 0 20px rgba(255, 255, 255, 0), 0 0 0 40px rgba(255, 255, 255, 0);
     }
-
+  
     100% {
-        box-shadow: 0 0 0 0 #fff0, 0 0 0 0 #fff0;
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0), 0 0 0 0 rgba(255, 255, 255, 0);
     }
-}
+  }
+  
