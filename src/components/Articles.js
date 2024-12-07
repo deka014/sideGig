@@ -50,6 +50,86 @@ function Articles() {
         comments: "No Comments",
         image: "https://shine.creativemox.com/sociabiz/wp-content/uploads/sites/16/2024/08/home-friends-with-selfie-and-women-with-live-streaming-social-media-and-vlog-with-content-creator-1536x1025.jpg",
       },
+      // articles added
+      {
+        title: "How AI is Revolutionizing E-commerce Ad Campaigns",
+        category: "TECHNOLOGY",
+        content: [
+          { type: 'paragraph', text: "Artificial Intelligence (AI) is transforming the way e-commerce businesses run their ad campaigns. From predictive analysis to personalized recommendations, the potential is enormous." },
+          { type: 'paragraph', text: "AI tools help analyze user behavior and predict what customers are likely to buy, resulting in more effective targeting and higher ROIs." },
+          { type: 'image', src: "https://via.placeholder.com/600x300", alt: "AI Ad Campaign", caption: "AI tools revolutionizing ad campaigns." },
+          { type: 'paragraph', text: "Businesses that adopt AI early are likely to stay ahead in the competitive landscape by optimizing their campaigns and maximizing returns." },
+          { type: 'paragraph', text: "However, challenges remain, such as data privacy concerns and the need for skilled professionals to manage these tools effectively." },
+        ],
+        date: "August 20, 2024",
+        comments: "No Comments",
+        image: "https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/bc81f7f2-9a7d-4c6e-a76f-e42b37db7772/f68cca54-2f3c-45ed-bf4f-a5209c7c0e37.png",
+      },
+      {
+        title: "Top 10 Tips for Scaling Paid Social Campaigns in 2024",
+        category: "MARKETING",
+        content: [
+          { type: 'paragraph', text: "Scaling paid social campaigns can be a challenging task, but with the right strategies, success is achievable." },
+          { type: 'paragraph', text: "Understanding your audience, creating engaging ad creatives, and optimizing bidding strategies are key to scaling." },
+          { type: 'image', src: "https://via.placeholder.com/600x300", alt: "Scaling Campaigns", caption: "Top tips for scaling paid social campaigns." },
+          { type: 'paragraph', text: "Monitoring performance and making data-driven decisions can ensure your campaigns remain cost-effective and impactful." },
+        ],
+        date: "August 20, 2024",
+        comments: "No Comments",
+        image: "https://influencermarketinghub.com/wp-content/uploads/2024/08/Best-Paid-Social-Marketing-Campaigns.png",
+      },
+      {
+        title: "Creative Strategies for High-Converting TikTok Ads",
+        category: "CREATIVE",
+        content: [
+          { type: 'paragraph', text: "TikTok has become a powerhouse for D2C brands looking to engage younger audiences through creative storytelling." },
+          { type: 'paragraph', text: "Experimenting with trending sounds, collaborating with influencers, and creating authentic content are vital strategies." },
+          { type: 'image', src: "https://via.placeholder.com/600x300", alt: "TikTok Ads", caption: "Creative TikTok ad strategies." },
+          { type: 'paragraph', text: "Brands that embrace TikTok's unique culture can generate high engagement and better conversion rates." },
+        ],
+        date: "August 21, 2024",
+        comments: "No Comments",
+        image: "https://shine.creativemox.com/sociabiz/wp-content/uploads/sites/16/2024/08/social-media-1536x1152.jpg",
+      },
+      {
+        title: "Why Snapchat Ads Are Growing in Popularity for D2C Brands",
+        category: "TRENDS",
+        content: [
+          { type: 'paragraph', text: "Snapchat continues to rise in popularity among D2C brands due to its unique features and younger user base." },
+          { type: 'paragraph', text: "Features like AR filters and geotargeting make Snapchat a powerful tool for connecting with audiences in creative ways." },
+          { type: 'image', src: "https://via.placeholder.com/600x300", alt: "Snapchat Ads", caption: "Snapchat's growing popularity for D2C brands." },
+          { type: 'paragraph', text: "Brands that leverage these tools effectively can build stronger connections with their target audiences." },
+        ],
+        date: "August 22, 2024",
+        comments: "No Comments",
+        image: "https://shine.creativemox.com/sociabiz/wp-content/uploads/sites/16/2024/08/remote-worker-girl-procrastinate-at-workplace-sit-at-desk-with-closed-laptop-chat-in-social-media-1536x1024.jpg",
+      },
+      {
+        title: "Facebook Ad Optimization: Lessons from 15 Campaigns",
+        category: "OPTIMIZATION",
+        content: [
+          { type: 'paragraph', text: "Optimizing Facebook ads requires a combination of creative excellence and strategic analysis." },
+          { type: 'paragraph', text: "Studying performance metrics and iterating on ad copy and visuals have been key takeaways from these campaigns." },
+          { type: 'image', src: "https://via.placeholder.com/600x300", alt: "Facebook Ads", caption: "Insights from optimizing Facebook ad campaigns." },
+          { type: 'paragraph', text: "A focus on audience segmentation and testing new strategies is essential for sustained success." },
+        ],
+        date: "August 22, 2024",
+        comments: "No Comments",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4SYD8c1YJzUUH5d5EHb9ACbHZ8-Cqj3Jznw&s",
+      },
+      {
+        title: "Instagram Reels: The Future of Visual Storytelling",
+        category: "SOCIAL MEDIA",
+        content: [
+          { type: 'paragraph', text: "Instagram Reels has become a focal point for brands looking to engage audiences through short, impactful videos." },
+          { type: 'paragraph', text: "Leveraging creative trends and keeping content authentic are key strategies for success on Reels." },
+          { type: 'image', src: "https://via.placeholder.com/600x300", alt: "Instagram Reels", caption: "Exploring the future of visual storytelling with Reels." },
+          { type: 'paragraph', text: "Brands that embrace Reels' potential can create a deeper connection with their audience." },
+        ],
+        date: "August 23, 2024",
+        comments: "No Comments",
+        image: "https://shine.creativemox.com/sociabiz/wp-content/uploads/sites/16/2024/08/social-media-addiction-1536x1024.jpg",
+      },
   ];
 
   const article = articles[id];
