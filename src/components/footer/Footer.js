@@ -111,7 +111,11 @@ const Footer = () => {
     }}
   >
     {/* Left-side in T&C footer */}
-    <div style={{ marginBottom: "1rem", marginLeft: "50px" }}>
+    <div 
+      style={{ 
+        // marginBottom: "1rem", 
+        marginLeft: "50px" 
+        }}>
       <small className="text-muted">
         Copyright ©2024 dgin.in, All rights reserved. Powered by Palash Pratim Dutta.
       </small>
@@ -120,6 +124,7 @@ const Footer = () => {
     {/* Right-side in T&C footer */}
     <div
       style={{
+        // marginBottom: "1rem",
         marginRight: "50px",
         fontSize: "13px",
         textAlign: "center", // Center-align links on smaller screens

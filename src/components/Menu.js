@@ -22,7 +22,7 @@ const Menu = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse custom-navbar" id="mynavbar" style={{fontFamily: 'Times New Roman', marginBottom: "5px"}}>
+          <div className="collapse navbar-collapse custom-navbar" id="mynavbar" style={{ fontFamily: 'serif', marginBottom: "5px"}}>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 justify-content-right text-center">
               {/* <li className="nav-item mx-3 fs-5">
                 <a className="nav-link text-dark" href="/">Home</a>
@@ -31,46 +31,27 @@ const Menu = () => {
               {/* navbar dropdown */}
               <li className="nav-item dropdown mx-3">
                 <a
-                  className="nav-link dropdown-toggle text-dark"
+                  className="nav-link text-dark"
                   href="/"
                   id="navbarDropdown"
                   role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
                 >
-                  Homepage
-                </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <a className="dropdown-item" href="/services">
-                      Services
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="/services">
-                      Services
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="/services">
-                      Services
-                    </a>
-                  </li>
-                </ul>
+                  Home
+                </a>    {/* dropdown removed */}
               </li>
               
-              <li className="nav-item mx-3 fs-5">
+              <li className="nav-item mx-2 fs-5">
                 <a className="nav-link text-dark" href="/design-archive">Designs</a>
               </li>
-              <li className="nav-item mx-3 fs-5">
+              <li className="nav-item mx-2 fs-5">
                 <a className="nav-link text-dark" href="/pricing">Pricing Plan</a>
               </li>
-              <li className="nav-item mx-3 fs-5">
+              <li className="nav-item mx-2 fs-5">
                 <a className="nav-link text-dark" href="/faq">FAQ</a>
               </li>
               
               {/* pages dropdown */}
-              <li className="nav-item dropdown mx-3 fs-5">
+              <li className="nav-item dropdown mx-2 fs-5">
                 <a
                   className="nav-link dropdown-toggle text-dark"
                   href="/"
@@ -79,7 +60,7 @@ const Menu = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Pages
+                  Support
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
@@ -106,8 +87,8 @@ const Menu = () => {
               </li>
             </ul>
             <div className="d-flex justify-content-center text-center"> 
-              <a href="/get-started" className="btn btn-primary" style={{ borderRadius: '20px' }}>
-                Get Started
+              <a href="/get-started" className="btn btn-primary" style={{ borderRadius: '10px' }}>
+                LOG IN
               </a>
             </div>
           </div>
