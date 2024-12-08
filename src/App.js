@@ -36,6 +36,9 @@ import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { UserProvider } from './context/UserContext';
 import Footer from './components/footer/Footer';
+import DeliveryOrderView from './components/DeliveryOrderView';
+import DeliveryAvailableOrders from './components/DeliveryAvailableOrders';
+import DesignerDashboard from './components/DesignerDashboard';
 
 function App() {
   return (
@@ -66,6 +69,11 @@ function App() {
               <Route path="/confirmation" element={<Confirmation />} />
               <Route path="/content-submission" element={<ContentSubmission />} />
               <Route path="/design-archive" element={<DesignArchive />} />
+
+              {/* delivery */}
+              <Route path='/delivery/orders/:orderId' element={<DeliveryOrderView/>} />
+              <Route path='/delivery/available-orders' element={<DeliveryAvailableOrders/>} />
+              <Route path='/delivery/designer-dashboard' element={<DesignerDashboard/>} />
 
               {/* Employee and Manager Dashboards */}
               <Route path="/employee-dashboard/:id" element={<EmployeeDashboard />} />
