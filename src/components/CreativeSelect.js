@@ -3,68 +3,88 @@ import basic from "../images/basic.png";
 import basicPremium from "../images/basic-premium.png";
 import basicLogo from "../images/basic-logo.png";
 import { useNavigate } from "react-router-dom";
-
+import axios from 'axios'
+import ContentLoader from 'react-content-loader'
 const mockCreativeData = [
   {
-    id: 1,
+    eventId: 1,
     title: "Tea Bottle",
     description: "Class enim elementum litora platea dictum commodo vestibulum",
-    imageUrl: "https://i.ibb.co/Z2vr3k2/ganesh.jpg",
-    releaseDate: "2024-12-01",
+    randomDesign: {
+      imageUrl: "https://i.ibb.co/Z2vr3k2/ganesh.jpg",
+    },
+    eventDate: "2024-12-01",
   },
   {
-    id: 2,
+    eventId: 2,
     title: "Bobo Furniture",
     description: "Class enim elementum litora platea dictum commodo vestibulum",
-    imageUrl: "https://i.ibb.co/YdJsRCX/nationalsportsday.jpg",
-    releaseDate: "2024-12-02",
+    randomDesign: {
+      imageUrl: "https://i.ibb.co/YdJsRCX/nationalsportsday.jpg",
+    },
+    eventDate: "2024-12-02",
   },
   {
-    id: 3,
+    eventId: 3,
     title: "FitLife Gym",
     description: "Class enim elementum litora platea dictum commodo vestibulum",
-    imageUrl: "https://i.ibb.co/fDQCNWq/TEACHERSDAY.jpg",
-    releaseDate: "2024-12-03",
+    randomDesign: {
+      imageUrl: "https://i.ibb.co/fDQCNWq/TEACHERSDAY.jpg",
+    },
+    eventDate: "2024-12-03",
   },
   {
-    id: 4,
+    eventId: 4,
     title: "Palash Pratim Dutta Jayanti",
     description: "Class enim elementum litora platea dictum commodo vestibulum",
-    imageUrl: "https://i.ibb.co/LJjqPnS/apj.jpg",
-    releaseDate: "2024-12-03",
+    randomDesign: {
+      imageUrl: "https://i.ibb.co/LJjqPnS/apj.jpg",
+    },
+    eventDate: "2024-12-03",
   },
   {
-    id: 5,
+    eventId: 5,
     title: "Pencil",
     description: "Class enim elementum litora platea dictum commodo vestibulum",
-    imageUrl: "https://i.ibb.co/fDQCNWq/TEACHERSDAY.jpg",
-    releaseDate: "2024-12-03",
+    randomDesign: {
+      imageUrl: "https://i.ibb.co/fDQCNWq/TEACHERSDAY.jpg",
+    },
+    eventDate: "2024-12-03",
   },
   {
-    id: 6,
+    eventId: 6,
     title: "FitLife Gym",
     description: "Class enim elementum litora platea dictum commodo vestibulum",
-    imageUrl: "https://i.ibb.co/2qJX9pG/rhino.jpg",
-    releaseDate: "2024-12-03",
+    randomDesign: {
+      imageUrl: "https://i.ibb.co/2qJX9pG/rhino.jpg",
+    },
+    eventDate: "2024-12-03",
   },
   {
-    id: 7,
+    eventId: 7,
     title: "This is a test",
     description: "Class enim elementum litora platea dictum commodo vestibulum",
-    imageUrl: "https://i.ibb.co/fDQCNWq/TEACHERSDAY.jpg",
-    releaseDate: "2024-12-03",
+    randomDesign: {
+      imageUrl: "https://i.ibb.co/fDQCNWq/TEACHERSDAY.jpg",
+    },
+    eventDate: "2024-12-03",
   },
   {
-    id: 8,
+    eventId: 8,
     title: "YOLO",
     description: "Class enim elementum litora platea dictum commodo vestibulum",
-    imageUrl: "https://i.ibb.co/2qJX9pG/rhino.jpg",
-    releaseDate: "2024-12-03",
+    randomDesign: {
+      imageUrl: "https://i.ibb.co/2qJX9pG/rhino.jpg",
+    },
+    eventDate: "2024-12-03",
   },
 ];
 
 
+
 const CreativeSelect = () => {
+  const [Designs, setDesigns] = useState([])
+  const [isLoading,setIsLoading] = useState(true)
   const [selectedCreatives, setSelectedCreatives] = useState([]);
   const [previewCreative, setPreviewCreative] = useState(null); // Holds the creative for preview
   const [selectedFrame, setSelectedFrame] = useState(basic); // Default frame for canvas
@@ -100,7 +120,7 @@ const CreativeSelect = () => {
     const loadImages = async () => {
       try {
         const [mainImage, frameImage] = await Promise.all([
-          loadImage(previewCreative.imageUrl),
+          loadImage(previewCreative.randomDesign.imageUrl),
           loadImage(selectedFrame),
         ]);
 
@@ -137,13 +157,59 @@ const CreativeSelect = () => {
     loadImages();
   }, [previewCreative, selectedFrame]);
 
+  useEffect(()=>{
+    async function fetchCreatives() {
+      setIsLoading(true);
+      try {
+        const response = await axios.get('/api/upcoming-events')
+        console.log('fetchCreatives response',response)
+        setDesigns(response.data)
+        setIsLoading(false)
+      
+      } catch (error) {
+        setIsLoading(false)
+        console.log('An error occoured at fetchCreatives',error)
+        setDesigns(mockCreativeData) //For testing purposes because we dont have a live BE.
+      }
+    }
+    fetchCreatives();
+  },[])
+
+  //loading skeleton
+  const SkeletonCard = () => (
+    <ContentLoader
+      speed={2}
+      width={300}
+      height={400}
+      viewBox="0 0 300 400"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
+    >
+      <rect x="20" y="10" rx="10" ry="10" width="280" height="180" /> {/* Image */}
+      <rect x="20" y="200" rx="5" ry="5" width="200" height="20" /> {/* Title */}
+      <rect x="20" y="230" rx="5" ry="5" width="250" height="15" /> {/* Description */}
+      <rect x="20" y="260" rx="5" ry="5" width="150" height="15" /> {/* Release Date */}
+      <rect x="20" y="290" rx="5" ry="5" width="100" height="30" /> {/* Button */}
+    </ContentLoader>
+  );
+
+  
   return (
     
     <div className="container py-5">
       <h1 className="text-center mb-5">
         Select Your <span className="mark">Creatives</span>
       </h1>
-
+    {isLoading ? 
+     (<div className="row">
+          {Array.from({ length: 6 }).map((_, index) => (
+            <div key={index} className="col-lg-4 col-md-6 mb-4">
+              <SkeletonCard />
+            </div>
+          ))}
+      </div>) 
+      : 
+      (<div>
       {/* Preview Overlay */}
       {previewCreative && (
         <div
@@ -207,18 +273,18 @@ const CreativeSelect = () => {
 
       {/* Creative Cards */}
       <div className="row text-start">
-        {mockCreativeData.map((creative) => (
-          <div key={creative.id} className="col-lg-4 col-md-6 mb-4">
+        {Designs?.map((creative) => (
+          <div key={creative.eventId} className="col-lg-4 col-md-6 mb-4">
             <div
               className={`card shadow-sm position-relative ${
-                selectedCreatives.includes(creative.id) ? "border-primary" : ""
+                selectedCreatives.includes(creative.eventId) ? "border-primary" : ""
               }`}
               style={{
                 cursor: "pointer",
                 borderRadius: "15px",
                 overflow: "hidden",
               }}
-              onClick={() => handleSelect(creative.id)}
+              onClick={() => handleSelect(creative.eventId)}
             >
               {/* Top Right Circular Icon */}
               <div
@@ -226,16 +292,16 @@ const CreativeSelect = () => {
                 style={{
                   width: "40px",
                   height: "40px",
-                  backgroundColor: selectedCreatives.includes(creative.id)
+                  backgroundColor: selectedCreatives.includes(creative.eventId)
                     ? "#007bff"
                     : "#f1f1f1",
-                  color: selectedCreatives.includes(creative.id) ? "#fff" : "#888",
+                  color: selectedCreatives.includes(creative.eventId) ? "#fff" : "#888",
                   boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
                 }}
               >
                 <i
                   className={`bi ${
-                    selectedCreatives.includes(creative.id) ? "bi-check" : "bi-arrow-up-right"
+                    selectedCreatives.includes(creative.eventId) ? "bi-check" : "bi-arrow-up-right"
                   }`}
                   style={{ fontSize: "1.2rem" }}
                 ></i>
@@ -243,7 +309,7 @@ const CreativeSelect = () => {
 
               {/* Image */}
               <img
-                src={creative.imageUrl}
+                src={creative.randomDesign.imageUrl}
                 className="card-img-top"
                 alt={creative.title}
                 style={{
@@ -257,7 +323,7 @@ const CreativeSelect = () => {
                 <h5 className="card-title">{creative.title}</h5>
                 <p className="card-text text-muted">{creative.description}</p>
                 <p className="card-text text-muted">
-                  <small>Release Date: {new Date(creative.releaseDate).toDateString()}</small>
+                  <small>Release Date: {new Date(creative.eventDate).toDateString()}</small>
                 </p>
                 {/* Preview Button */}
                 <button
@@ -291,6 +357,7 @@ const CreativeSelect = () => {
           You have reached the maximum selection limit (3).
         </div>
       )}
+    </div>)}
     </div>
   );
 };
