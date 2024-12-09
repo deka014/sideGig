@@ -159,7 +159,7 @@ const OrdersList = () => {
           <div className="row m-0 p-3 align-items-center">
             <div className="col-12 col-md-2 mb-3 mb-md-0 text-center">
               <img
-                src={order.image}
+                src={order.imageUrl}
                 alt={order.title}
                 style={{
                   width: "80px",
