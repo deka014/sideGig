@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import axios from 'axios'
+import authHeader from "../services/authHeader"
+import ContentLoader from 'react-content-loader'
 const OrdersList = () => {
+
+  const [orders,setOrders] = useState();
+  const [isLoading,setIsLoading] = useState(true)
   const navigate = useNavigate();
-  const orders = [
+  const Orders = [
     {
       id: "407-8831519-4017961",
       orderDate: "26 November 2024",
       total: "₹8,468.00",
       title: "Booking successful",
       description: "Hyderabad → Guwahati, 07 Dec 2024",
-      image:
+      imageUrl:
         "https://images.unsplash.com/photo-1593175692310-7b1bedb76360?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8b3JkZXJzfGVufDB8fDB8fHww",
       additionalInfo: "Flight ticket bookings on Amazon",
       status: "Delivered",
@@ -21,7 +26,7 @@ const OrdersList = () => {
       total: `₹${99 + i * 10}.00`,
       title: `Order #${i + 1}`,
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et quam in felis.",
-      image:
+      imageUrl:
         "https://images.unsplash.com/photo-1593175692310-7b1bedb76360?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8b3JkZXJzfGVufDB8fDB8fHww",
       additionalInfo: "Details available",
       status: i % 2 === 0 ? "In Progress" : "Delivered",
@@ -33,19 +38,65 @@ const OrdersList = () => {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentOrders = orders.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(orders.length / itemsPerPage);
+  const currentOrders = orders?.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil((orders?.length || 0) / itemsPerPage);
+
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
+  useEffect(()=>{
+    async function fetchOrders() {
+      setIsLoading(true);
+      try {
+        const response = await axios.get('/api/user-orders',{
+          headers:{
+            // Authorization: 'Bearer '
+            ...authHeader()
+          }
+        })
+        if(response.data.orders){
+          console.log(response)
+          setOrders(response.data.orders)
+          setIsLoading(false)
+        }
+      } catch (error) {
+        console.log('An error occured at fetchOrders')
+        setOrders(Orders)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    fetchOrders();
+  },[])
+
+  const OrderCardSkeleton = () => (
+    <ContentLoader 
+      speed={2}
+      width={700}
+      height={140}
+      viewBox="0 0 700 140"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
+    >
+      <rect x="10" y="10" rx="5" ry="5" width="120" height="120" />
+      <rect x="140" y="15" rx="5" ry="5" width="200" height="20" />
+      <rect x="140" y="45" rx="5" ry="5" width="300" height="15" />
+      <rect x="140" y="70" rx="5" ry="5" width="250" height="15" />
+      <rect x="140" y="100" rx="5" ry="5" width="200" height="15" />
+      <rect x="500" y="50" rx="20" ry="20" width="150" height="40" />
+    </ContentLoader>
+  );
+
   return (
     <div className="container col-md-12 col-lg-7 py-3">
       <h2 className="mb-4 text-center fw-bold mb-5">Your Orders Inbox</h2>
 
+      {isLoading && (<ContentLoader/>)}
       {/* Orders List */}
-      {currentOrders.map((order) => (
+      {
+        !isLoading && currentOrders?.map((order) => (
         <div
           key={order.id}
           className="border rounded mb-4"
@@ -156,9 +207,8 @@ const OrdersList = () => {
             </div>
           </div>
         </div>
-      ))}
-
-      {/* Pagination */}
+        ))
+      }
       <div className="d-flex justify-content-center mt-4">
         {[...Array(totalPages)].map((_, index) => (
           <button
