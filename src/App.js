@@ -39,6 +39,8 @@ import Footer from './components/footer/Footer';
 import DeliveryOrderView from './components/DeliveryOrderView';
 import DeliveryAvailableOrders from './components/DeliveryAvailableOrders';
 import DesignerDashboard from './components/DesignerDashboard';
+import AddEvents from './components/AddEvents';
+import AllEvents from './components/AllEvents';
 
 function App() {
   return (
@@ -74,6 +76,8 @@ function App() {
               <Route path='/delivery/orders/:orderId' element={<DeliveryOrderView/>} />
               <Route path='/delivery/available-orders' element={<DeliveryAvailableOrders/>} />
               <Route path='/delivery/designer-dashboard' element={<DesignerDashboard/>} />
+              <Route path='/delivery/add-events' element={<AddEvents/>} />
+              <Route path="/delivery/all-events" element={<AllEvents/>} />
 
               {/* Employee and Manager Dashboards */}
               <Route path="/employee-dashboard/:id" element={<EmployeeDashboard />} />
