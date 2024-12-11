@@ -161,7 +161,7 @@ const CreativeSelect = () => {
     async function fetchCreatives() {
       setIsLoading(true);
       try {
-        const response = await axios.get('/api/upcoming-events')
+        const response = await axios.get('http://localhost:4000/api/upcoming-events')
         console.log('fetchCreatives response',response)
         setDesigns(response.data)
         setIsLoading(false)
