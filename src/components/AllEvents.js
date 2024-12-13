@@ -31,7 +31,7 @@ const AllEvents = () => {
       try {
         setLoading(true);
         setError('');
-        const response = await axios.get('/api/events');
+        const response = await axios.get('http://localhost:4000/api/events');
         setEvents(response.data.events);
       } catch (err) {
         // setEvents(dummyEvents)
@@ -44,7 +44,7 @@ const AllEvents = () => {
   }, []);
 
   const handleViewEvent = (eventId) => {
-    navigate(`/delivery/event/${eventId}`);
+    navigate(`/delivery/view-event/:${eventId}`);
   };
 
   return (
