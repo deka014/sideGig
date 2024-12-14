@@ -5,12 +5,14 @@ import basicLogo from "../images/basic-logo.png";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import ContentLoader from 'react-content-loader'
+import authHeader from "../services/authHeader";
 const mockCreativeData = [
   {
     eventId: 1,
     title: "Tea Bottle",
     description: "Class enim elementum litora platea dictum commodo vestibulum",
     randomDesign: {
+      id : '1234',
       imageUrl: "https://i.ibb.co/Z2vr3k2/ganesh.jpg",
     },
     eventDate: "2024-12-01",
@@ -20,6 +22,7 @@ const mockCreativeData = [
     title: "Bobo Furniture",
     description: "Class enim elementum litora platea dictum commodo vestibulum",
     randomDesign: {
+      id : '12345',
       imageUrl: "https://i.ibb.co/YdJsRCX/nationalsportsday.jpg",
     },
     eventDate: "2024-12-02",
@@ -29,6 +32,7 @@ const mockCreativeData = [
     title: "FitLife Gym",
     description: "Class enim elementum litora platea dictum commodo vestibulum",
     randomDesign: {
+      id : '123456',
       imageUrl: "https://i.ibb.co/fDQCNWq/TEACHERSDAY.jpg",
     },
     eventDate: "2024-12-03",
@@ -38,6 +42,7 @@ const mockCreativeData = [
     title: "Palash Pratim Dutta Jayanti",
     description: "Class enim elementum litora platea dictum commodo vestibulum",
     randomDesign: {
+      id : '1234567',
       imageUrl: "https://i.ibb.co/LJjqPnS/apj.jpg",
     },
     eventDate: "2024-12-03",
@@ -47,6 +52,7 @@ const mockCreativeData = [
     title: "Pencil",
     description: "Class enim elementum litora platea dictum commodo vestibulum",
     randomDesign: {
+      id : '123456112',
       imageUrl: "https://i.ibb.co/fDQCNWq/TEACHERSDAY.jpg",
     },
     eventDate: "2024-12-03",
@@ -56,6 +62,7 @@ const mockCreativeData = [
     title: "FitLife Gym",
     description: "Class enim elementum litora platea dictum commodo vestibulum",
     randomDesign: {
+      id : '123456234',
       imageUrl: "https://i.ibb.co/2qJX9pG/rhino.jpg",
     },
     eventDate: "2024-12-03",
@@ -65,6 +72,7 @@ const mockCreativeData = [
     title: "This is a test",
     description: "Class enim elementum litora platea dictum commodo vestibulum",
     randomDesign: {
+      id : '123452346',
       imageUrl: "https://i.ibb.co/fDQCNWq/TEACHERSDAY.jpg",
     },
     eventDate: "2024-12-03",
@@ -74,6 +82,7 @@ const mockCreativeData = [
     title: "YOLO",
     description: "Class enim elementum litora platea dictum commodo vestibulum",
     randomDesign: {
+      id : '123456',
       imageUrl: "https://i.ibb.co/2qJX9pG/rhino.jpg",
     },
     eventDate: "2024-12-03",
@@ -89,7 +98,47 @@ const CreativeSelect = () => {
   const [previewCreative, setPreviewCreative] = useState(null); // Holds the creative for preview
   const [selectedFrame, setSelectedFrame] = useState(basic); // Default frame for canvas
   const canvasRef = useRef(null);
-  const navigate = useNavigate();
+
+  const handlePlaceOrder = async()=>{
+    try {
+      // Placeholder for pricing and additional info
+      const price = 100; // Example price
+      const additionalInfo = "Additional details about the order";
+
+      const response = await axios.post(
+        "http://localhost:4000/api/place-order",
+        {
+          selectedDesigns : selectedCreatives, // Send selected designs
+          price, // Add pricing information
+          additionalInfo, // Add any additional information
+        },
+        {
+          headers: authHeader(), // Send the JWT token for authentication
+        }
+      );
+
+      console.log("Order placed:", response.data);
+
+      // Redirect to the order-received page
+      window.location.href = `/order-received?orderId=${response.data.order.orderId}&eta=${response.data.order.estimatedDeliveryDate}`;
+    } catch (error) {
+      // Check if error response exists
+      if (error.response && error.response.data && error.response.data.message) {
+        console.error("Error placing order:", error.response.data.message);
+        alert(error.response.data.message); // Show the message to the user
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error("No response received from server:", error.request);
+        alert("The server is currently unreachable. Please try again later.");
+        window.location.href = `/order-received?orderId=testOrder&eta=${new Date().toISOString()}`;
+      } else {
+        // Something else went wrong in setting up the request
+        console.error("Error placing order:", error.message);
+        alert("An unexpected error occurred. Please try again later.");
+      }
+    }
+  }
+
 
   const handleSelect = (id) => {
     if (selectedCreatives.includes(id)) {
@@ -98,7 +147,8 @@ const CreativeSelect = () => {
     } else if (selectedCreatives.length < 3) {
       // Add to selection if not selected and limit is not reached
       setSelectedCreatives((prev) => [...prev, id]);
-    }
+      
+    }   
   };
 
   const handlePreview = (creative) => {
@@ -277,14 +327,14 @@ const CreativeSelect = () => {
           <div key={creative.eventId} className="col-lg-4 col-md-6 mb-4">
             <div
               className={`card shadow-sm position-relative ${
-                selectedCreatives.includes(creative.eventId) ? "border-primary" : ""
+                selectedCreatives.includes(creative.randomDesign.id) ? "border-primary" : ""
               }`}
               style={{
                 cursor: "pointer",
                 borderRadius: "15px",
                 overflow: "hidden",
               }}
-              onClick={() => handleSelect(creative.eventId)}
+              onClick={() => handleSelect(creative.randomDesign.id)}
             >
               {/* Top Right Circular Icon */}
               <div
@@ -292,16 +342,16 @@ const CreativeSelect = () => {
                 style={{
                   width: "40px",
                   height: "40px",
-                  backgroundColor: selectedCreatives.includes(creative.eventId)
+                  backgroundColor: selectedCreatives.includes(creative.randomDesign.id)
                     ? "#007bff"
                     : "#f1f1f1",
-                  color: selectedCreatives.includes(creative.eventId) ? "#fff" : "#888",
+                  color: selectedCreatives.includes(creative.randomDesign.id) ? "#fff" : "#888",
                   boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
                 }}
               >
                 <i
                   className={`bi ${
-                    selectedCreatives.includes(creative.eventId) ? "bi-check" : "bi-arrow-up-right"
+                    selectedCreatives.includes(creative.randomDesign.id) ? "bi-check" : "bi-arrow-up-right"
                   }`}
                   style={{ fontSize: "1.2rem" }}
                 ></i>
@@ -343,10 +393,7 @@ const CreativeSelect = () => {
       <button
   className="btn btn-primary btn-lg"
   disabled={selectedCreatives.length === 0}
-  onClick={() => {
-    const currentUrl = window.location.origin + "/order-received";
-    window.location.href = currentUrl; // Redirects to the page with a hard refresh
-  }}
+  onClick={handlePlaceOrder}
 >
   Confirm Selection
 </button>
