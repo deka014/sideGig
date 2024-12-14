@@ -52,7 +52,7 @@ function App() {
               {/* Orders and Designs */}
               <Route path="/order-received" element={<OrderReceived />} />
               <Route path="/orders-list" element={<OrdersList />} />
-              <Route path="/order-view" element={<OrderViewPage />} />
+              <Route path="/order-view/:orderId" element={<OrderViewPage />} />
               <Route path="/creative-select" element={<CreativeSelect />} />
               <Route path="/select-creative" element={<SelectCreative />} />
               <Route path="/creative-preview" element={<CreativePreview />} />
