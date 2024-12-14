@@ -22,6 +22,7 @@ const DeliveryOrderView = () => {
       instagram: 'instagram.com/johndoe',
       website: 'www.johndoe.com',
     },
+    orderPreviewUrl : null, // Placeholder URL
   };
 
   const handleFrameUpload = () => {
