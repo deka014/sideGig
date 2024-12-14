@@ -1,20 +1,8 @@
 import './App.css';
 
-import Expenses from './components/Expenses';
 import Homepage from './components/homepage/Homepage';
 import Menu from './components/Menu';
-import Employees from './components/Employees';
-import Receipt from './components/Receipt';
-import ExpenseCreate from './components/ExpenseCreate';
-import ReceiptCreate from './components/ReceiptCreate';
-import ExpenseReport from './components/ExpenseReport';
 import SelectCreative from './components/SelectCreative';
-import Drafts from './components/Drafts';
-import ExpenseSubmit from './components/ExpenseSubmit';
-import EmployeeDashboard from './components/EmployeeDashboard';
-import ExpenseReportManager from './components/ExpenseReportManager';
-import ManagerDashboard from './components/ManagerDashboard';
-import EmployeesOfManager from './components/EmployeesOfManager';
 import Login from './components/Login';
 import PricingPage from './components/PricingPage';
 import Payment from './components/Payment';
@@ -80,31 +68,7 @@ function App() {
               <Route path='/delivery/add-events' element={<AddEvents/>} />
               <Route path="/delivery/all-events" element={<AllEvents/>} />
               <Route path="/delivery/view-event/:eventId" element={<ViewEvent/>} />
-
-              {/* Employee and Manager Dashboards */}
-              <Route path="/employee-dashboard/:id" element={<EmployeeDashboard />} />
-              <Route path="/manager-dashboard/:mgrId" element={<ManagerDashboard />} />
-              <Route path="/employees" element={<Employees />} />
-              <Route path="/employees/:id" element={<Employees />} />
-              <Route path="/employees/manager/:mngrId" element={<EmployeesOfManager />} />
-
-              {/* Expenses */}
-              <Route path="/expense/:id" element={<Expenses />} />
-              <Route path="/expense/:id/category/:category" element={<Expenses />} />
-              <Route path="/expense/:id/status/:status" element={<Expenses />} />
-              <Route path="/add-expense/:userId" element={<ExpenseCreate />} />
-              <Route
-                path="/expense-report/user/:userId/:expenseId"
-                element={<ExpenseReport />}
-              />
-              <Route
-                path="/expense-report-mgr/user/:userId/:expenseId"
-                element={<ExpenseReportManager />}
-              />
-              <Route path="/receipt/:expenseId" element={<Receipt />} />
-              <Route path="/add-receipt/:expenseId" element={<ReceiptCreate />} />
-              <Route path="/submit-expense/:expenseId" element={<ExpenseSubmit />} />
-              <Route path="/drafts/:userId" element={<Drafts />} />
+              
             </Routes>
           </div>
         </div>
