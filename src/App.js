@@ -1,20 +1,8 @@
 import './App.css';
 
-import Expenses from './components/Expenses';
 import Homepage from './components/homepage/Homepage';
 import Menu from './components/Menu';
-import Employees from './components/Employees';
-import Receipt from './components/Receipt';
-import ExpenseCreate from './components/ExpenseCreate';
-import ReceiptCreate from './components/ReceiptCreate';
-import ExpenseReport from './components/ExpenseReport';
 import SelectCreative from './components/SelectCreative';
-import Drafts from './components/Drafts';
-import ExpenseSubmit from './components/ExpenseSubmit';
-import EmployeeDashboard from './components/EmployeeDashboard';
-import ExpenseReportManager from './components/ExpenseReportManager';
-import ManagerDashboard from './components/ManagerDashboard';
-import EmployeesOfManager from './components/EmployeesOfManager';
 import Login from './components/Login';
 import PricingPage from './components/PricingPage';
 import Payment from './components/Payment';
@@ -36,6 +24,12 @@ import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { UserProvider } from './context/UserContext';
 import Footer from './components/footer/Footer';
+import DeliveryOrderView from './components/DeliveryOrderView';
+import DeliveryAvailableOrders from './components/DeliveryAvailableOrders';
+import DesignerDashboard from './components/DesignerDashboard';
+import AddEvents from './components/AddEvents';
+import AllEvents from './components/AllEvents';
+import ViewEvent from './components/ViewEvent';
 
 function App() {
   return (
@@ -58,7 +52,7 @@ function App() {
               {/* Orders and Designs */}
               <Route path="/order-received" element={<OrderReceived />} />
               <Route path="/orders-list" element={<OrdersList />} />
-              <Route path="/order-view" element={<OrderViewPage />} />
+              <Route path="/order-view/:orderId" element={<OrderViewPage />} />
               <Route path="/creative-select" element={<CreativeSelect />} />
               <Route path="/select-creative" element={<SelectCreative />} />
               <Route path="/creative-preview" element={<CreativePreview />} />
@@ -67,30 +61,14 @@ function App() {
               <Route path="/content-submission" element={<ContentSubmission />} />
               <Route path="/design-archive" element={<DesignArchive />} />
 
-              {/* Employee and Manager Dashboards */}
-              <Route path="/employee-dashboard/:id" element={<EmployeeDashboard />} />
-              <Route path="/manager-dashboard/:mgrId" element={<ManagerDashboard />} />
-              <Route path="/employees" element={<Employees />} />
-              <Route path="/employees/:id" element={<Employees />} />
-              <Route path="/employees/manager/:mngrId" element={<EmployeesOfManager />} />
-
-              {/* Expenses */}
-              <Route path="/expense/:id" element={<Expenses />} />
-              <Route path="/expense/:id/category/:category" element={<Expenses />} />
-              <Route path="/expense/:id/status/:status" element={<Expenses />} />
-              <Route path="/add-expense/:userId" element={<ExpenseCreate />} />
-              <Route
-                path="/expense-report/user/:userId/:expenseId"
-                element={<ExpenseReport />}
-              />
-              <Route
-                path="/expense-report-mgr/user/:userId/:expenseId"
-                element={<ExpenseReportManager />}
-              />
-              <Route path="/receipt/:expenseId" element={<Receipt />} />
-              <Route path="/add-receipt/:expenseId" element={<ReceiptCreate />} />
-              <Route path="/submit-expense/:expenseId" element={<ExpenseSubmit />} />
-              <Route path="/drafts/:userId" element={<Drafts />} />
+              {/* delivery */}
+              <Route path='/delivery/orders/:orderId' element={<DeliveryOrderView/>} />
+              <Route path='/delivery/available-orders' element={<DeliveryAvailableOrders/>} />
+              <Route path='/delivery/designer-dashboard' element={<DesignerDashboard/>} />
+              <Route path='/delivery/add-events' element={<AddEvents/>} />
+              <Route path="/delivery/all-events" element={<AllEvents/>} />
+              <Route path="/delivery/view-event/:eventId" element={<ViewEvent/>} />
+              
             </Routes>
           </div>
         </div>

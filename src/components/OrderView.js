@@ -1,4 +1,9 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from 'react';
+import basic from '../images/basic.png';
+import rhino from '../images/rhino.jpg';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import authHeader from '../services/authHeader';
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -6,104 +11,171 @@ import {
   TwitterIcon,
   WhatsappShareButton,
   WhatsappIcon,
-} from "react-share";
+} from 'react-share';
 
-const mockOrderData = [
-  {
-    id: 1,
-    title: "Tea Bottle",
-    description: "Class enim elementum litora platea dictum commodo vestibulum",
-    imageUrl: "https://res.cloudinary.com/demo/image/upload/leather_bag_gray.jpg",
-    releaseDate: "2024-12-01",
-  },
-  {
-    id: 2,
-    title: "Bobo Furniture",
-    description: "Class enim elementum litora platea dictum commodo vestibulum",
-    imageUrl: "https://images.unsplash.com/photo-1593175692310-7b1bedb76360?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    releaseDate: "2024-12-02",
-  },
-  {
-    id: 3,
-    title: "Something Else",
-    description: "Class enim elementum litora platea dictum commodo vestibulum",
-    imageUrl: "https://i.ibb.co/Z2vr3k2/ganesh.jpg",
-    releaseDate: "2024-12-02",
-  }
-];
+const dummyOrderData = {
+  orderId: 'ORD-202412141714-HVFEEU',
+  selectedDesigns: [
+    {
+      designId: '6751ea5f6bacbdb9fa33eb3c',
+      designImage: rhino
+    },
+    {
+      designId: '675c689e82da62409d6dc3ed',
+      designImage: 'https://i.ibb.co/YdJsRCX/nationalsportsday.jpg',
+    },
+  ],
+  orderPreviewUrl: basic,
+};
 
 const OrderViewPage = () => {
-  const handleDownload = async (design) => {
-    try {
-      const response = await fetch(design.imageUrl, { mode: "cors" });
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
+  const { orderId } = useParams(); // Retrieve the orderId from the route params
+  const [orderData, setOrderData] = useState(null); // Store fetched order data
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
+  const canvasRefs = useRef([]);
 
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${design.title}.jpg`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+  // Fetch order details from the API
+  useEffect(() => {
+    const fetchOrderData = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/view-order/${orderId}`, {
+        // Add the authorization header here
+        headers : {
+          ...authHeader()
+        }
+      });
+        setOrderData(response.data.order);
+        setLoading(false);
+      } catch (err) {
+        console.log(err);
+        setOrderData(dummyOrderData);
+        setLoading(false);
+      }
+    };
+    fetchOrderData();
+  }, [orderId]);
 
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error("Error downloading the file:", error);
-      alert("Failed to download the file.");
-    }
+  // Render overlay on canvases
+  useEffect(() => {
+    if (!orderData || !orderData.selectedDesigns || !orderData.orderPreviewUrl) return;
+
+    orderData.selectedDesigns.forEach((design, index) => {
+      const canvas = canvasRefs.current[index];
+      const ctx = canvas.getContext('2d');
+
+      const loadImages = async () => {
+        try {
+          const [designImage, overlayImage] = await Promise.all([
+            loadImage(design.designImage),
+            loadImage(orderData.orderPreviewUrl || ''),
+          ]);
+
+          canvas.width = designImage.width;
+          canvas.height = designImage.height;
+
+          // Draw the base design
+          ctx.drawImage(designImage, 0, 0, canvas.width, canvas.height);
+
+          // Draw the overlay if available
+          if (orderData.orderPreviewUrl) {
+            const scaleX = designImage.width / overlayImage.width;
+            const scaleY = designImage.height / overlayImage.height;
+            const scale = Math.min(scaleX, scaleY);
+
+            const x = (designImage.width - overlayImage.width * scale) / 2;
+            const y = (designImage.height - overlayImage.height * scale) / 2;
+
+            ctx.drawImage(
+              overlayImage,
+              x,
+              y,
+              overlayImage.width * scale,
+              overlayImage.height * scale
+            );
+          }
+        } catch (error) {
+          console.error('Error loading images:', error);
+          ctx.fillStyle = '#FF0000';
+          ctx.font = '20px Arial';
+          ctx.textAlign = 'center';
+          ctx.fillText('Failed to load images', canvas.width / 2, canvas.height / 2);
+        }
+      };
+
+      const loadImage = (src) =>
+        new Promise((resolve, reject) => {
+          const img = new Image();
+          img.crossOrigin = 'anonymous';
+          img.onload = () => resolve(img);
+          img.onerror = reject;
+          img.src = src;
+        });
+
+      loadImages();
+    });
+  }, [orderData]);
+
+  const handleDownload = (canvas, title) => {
+    const url = canvas.toDataURL('image/jpeg', 1.0);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${title}.jpg`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
-  
+
+  if (loading) return <div>Loading...</div>;
+
+  if (!orderData || !orderData.selectedDesigns || !orderData.orderPreviewUrl) return <div>Failed to load order data</div>;
 
   return (
+
+
     <div className="container py-5">
       <h1 className="text-center mb-5">
         Content <span className="mark">Delivery</span>
       </h1>
 
       <div className="row g-4 text-start">
-        {mockOrderData.map((design) => (
-          <div key={design.id} className="col-lg-4 col-md-6 col-12">
-            <div className="card h-100 shadow-sm" style={{ borderRadius: "15px" }}>
-              <img
-                src={design.imageUrl}
-                alt={design.title}
+        {orderData.selectedDesigns.map((design, index) => (
+          <div key={design.designId} className="col-lg-4 col-md-6 col-12">
+            <div className="card h-100 shadow-sm" style={{ borderRadius: '15px' }}>
+              {/* Canvas for Design with Overlay */}
+              <canvas
+                ref={(el) => (canvasRefs.current[index] = el)}
                 className="card-img-top"
                 style={{
-                  height: "100%",
-                  objectFit: "cover",
-                  borderTopLeftRadius: "15px",
-                  borderTopRightRadius: "15px",
+                  width: '100%',
+                  borderTopLeftRadius: '15px',
+                  borderTopRightRadius: '15px',
                 }}
               />
-              <div className="card-body d-flex flex-column">
-                <h5 className="card-title">{design.title}</h5>
-                <p className="card-text text-muted" style={{ flexGrow: 1 }}>
-                  {design.description}
-                </p>
-              </div>
+
+              {/* Card Footer */}
               <div className="card-footer d-flex justify-content-between align-items-center">
-                {/* Facebook Share Button */}
+                {/* Social Share Buttons */}
                 <FacebookShareButton
-                  url={design.imageUrl}
-                  quote={design.title}
-                  hashtag="#Dgin.in #CreativeDesign"
+                  url={design.designImage}
+                  quote={`Check out this design from order ${orderData.orderId}`}
+                  hashtag="#CreativeDesign"
                 >
                   <FacebookIcon size={32} round />
                 </FacebookShareButton>
 
-                {/* Twitter Share Button */}
                 <TwitterShareButton
-                  url={design.imageUrl}
-                  title={design.title}
-                  hashtags={["CreativeDesign", "Graphic"]}
+                  url={design.designImage}
+                  title={`Creative design from order ${orderData.orderId}`}
+                  hashtags={['CreativeDesign']}
                 >
                   <TwitterIcon size={32} round />
                 </TwitterShareButton>
 
-                {/* WhatsApp Share Button */}
                 <WhatsappShareButton
-                  url={design.imageUrl}
-                  title={design.title}
+                  url={design.designImage}
+                  title={`Creative design from order ${orderData.orderId}`}
                   separator=":: "
                 >
                   <WhatsappIcon size={32} round />
@@ -112,7 +184,9 @@ const OrderViewPage = () => {
                 {/* Download Button */}
                 <button
                   className="btn btn-primary btn-sm"
-                  onClick={() => handleDownload(design)}
+                  onClick={() =>
+                    handleDownload(canvasRefs.current[index], `Design ${index + 1}`)
+                  }
                 >
                   Download
                 </button>
