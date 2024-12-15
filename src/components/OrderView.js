@@ -40,7 +40,7 @@ const OrderViewPage = () => {
     const fetchOrderData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`http://localhost:4000/api/view-order/${orderId}`, {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/view-order/${orderId}`, {
         // Add the authorization header here
         headers : {
           ...authHeader()

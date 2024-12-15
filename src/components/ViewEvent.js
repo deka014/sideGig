@@ -23,7 +23,7 @@ function ViewEvent() {
       try {
         setLoading(true);
         const id = eventId.replace(':', '');
-        const response = await axios.get(`http://localhost:4000/api/event/${id}`);
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/event/${id}`);
         console.log(response.data.event);
         setEvent(response.data.event);
       } catch (err) {

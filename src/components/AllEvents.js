@@ -31,7 +31,7 @@ const AllEvents = () => {
       try {
         setLoading(true);
         setError('');
-        const response = await axios.get('http://localhost:4000/api/events');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/events`);
         setEvents(response.data.events);
       } catch (err) {
         // setEvents(dummyEvents)

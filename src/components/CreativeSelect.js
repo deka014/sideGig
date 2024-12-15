@@ -106,7 +106,7 @@ const CreativeSelect = () => {
       const additionalInfo = "Additional details about the order";
 
       const response = await axios.post(
-        "http://localhost:4000/api/place-order",
+        `${process.env.REACT_APP_BACKEND_URL}/api/place-order`,
         {
           selectedDesigns : selectedCreatives, // Send selected designs
           price, // Add pricing information
@@ -211,7 +211,7 @@ const CreativeSelect = () => {
     async function fetchCreatives() {
       setIsLoading(true);
       try {
-        const response = await axios.get('http://localhost:4000/api/upcoming-events')
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/upcoming-events`)
         console.log('fetchCreatives response',response)
         setDesigns(response.data)
         setIsLoading(false)
