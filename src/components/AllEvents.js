@@ -49,7 +49,7 @@ const AllEvents = () => {
 
   return (
     <div className="container mt-5">
-      <h2>All Events</h2>
+      <h2 className='mb-4'>All Events</h2>
       {loading ? (
         <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '300px' }}>
           <div className="spinner-border text-primary" role="status">
@@ -68,6 +68,8 @@ const AllEvents = () => {
                 <div className="card-body">
                   <h5 className="card-title">{event.title}</h5>
                   <p className="card-text">{event.description}</p>
+                  <p className="card-text">{event.available?  'Available' : 'Unavailable'}</p>
+                  <p className="card-text">Total Designs : {event.designs.length}</p>
                   <p className="card-text"><strong>Date:</strong> {new Date(event.eventDate).toLocaleDateString()}</p>
                   <button
                     className="btn btn-primary"

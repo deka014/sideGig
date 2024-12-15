@@ -24,6 +24,7 @@ function ViewEvent() {
         setLoading(true);
         const id = eventId.replace(':', '');
         const response = await axios.get(`http://localhost:4000/api/event/${id}`);
+        console.log(response.data.event);
         setEvent(response.data.event);
       } catch (err) {
         setError(err.response?.data?.message || 'Failed to load the event.');
@@ -43,7 +44,7 @@ function ViewEvent() {
       // Step 1: Create a new Design
       const designResponse = await axios.post('/api/designs', data, {
         headers: {
-          ...authHeader()
+          ...authHeader(),
         },
       });
 
@@ -86,6 +87,32 @@ function ViewEvent() {
         <strong>Date:</strong>{' '}
         {new Date(event.eventDate).toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' })}
       </p>
+
+      <hr />
+
+      <h3>Designs</h3>
+      {event.designs.length === 0 ? (
+        <p>No designs added yet.</p>
+      ) : (
+        <div className="row">
+          {event.designs.map((design) => (
+            <div className="col-md-4" key={design._id}>
+              <div className="card mb-3">
+                <img src={design.imageUrl} className="card-img-top" alt={design.title} />
+                <div className="card-body">
+                  <h5 className="card-title">{design.title}</h5>
+                  <p className="card-text">
+                    <strong>Status:</strong> {design.status}
+                  </p>
+                  <p className="card-text">
+                    <strong>Selected Count:</strong> {design.selectedCount}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
 
       <hr />
 

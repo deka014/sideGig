@@ -59,7 +59,7 @@ const OrderViewPage = () => {
 
   // Render overlay on canvases
   useEffect(() => {
-    if (!orderData || !orderData.selectedDesigns) return;
+    if (!orderData || !orderData.selectedDesigns || !orderData.orderPreviewUrl) return;
 
     orderData.selectedDesigns.forEach((design, index) => {
       const canvas = canvasRefs.current[index];
@@ -129,7 +129,11 @@ const OrderViewPage = () => {
 
   if (loading) return <div>Loading...</div>;
 
+  if (!orderData || !orderData.selectedDesigns || !orderData.orderPreviewUrl) return <div>Failed to load order data</div>;
+
   return (
+
+
     <div className="container py-5">
       <h1 className="text-center mb-5">
         Content <span className="mark">Delivery</span>
