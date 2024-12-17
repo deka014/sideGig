@@ -64,7 +64,7 @@ function ContentSubmission() {
     formDataToSubmit.append('selectedPreviews', JSON.stringify(selectedPreviews)) //append selected previews
 
     try {
-      const response = await fetch('/api/content-submission',{
+      const response = await fetch('http://localhost:4000/api/content-submission',{
         method:'POST',
         headers:{
           ...authHeader()
