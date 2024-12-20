@@ -28,6 +28,7 @@ function HomePageFirstScreen() {
     content: "'\\f4cd'", // Ensures correct icon (adjust if needed)
     display: "inline-block",
     width: "20px", // Width as seen in the image
+    paddingBottom: "3px",     // padding added
     //height: "23px", // Height as seen in the image
   };
 
@@ -41,6 +42,7 @@ function HomePageFirstScreen() {
         paddingLeft: '40px',
         paddingRight: '40px',
         paddingTop: '40px',
+        minHeight: '100vh'   //min height added
         // borderImage: 'linear-gradient(to bottom, #8ec5fc, #e0c3fc, #f6eaff) 1'  
       }}
     >
@@ -97,7 +99,7 @@ function HomePageFirstScreen() {
         <img
           src="https://shine.creativemox.com/sociabiz/wp-content/uploads/sites/16/2024/08/img_1.png"
           alt="sociabiz"
-          style={{ width: '20rem' }}  //size of bg image inc.
+          style={{ width: '25rem' }}  //size of bg image inc.: 20 -> 
         />
          <div className='background-text'
           style={{
