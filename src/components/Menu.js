@@ -22,7 +22,8 @@ const Menu = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse custom-navbar" id="mynavbar" style={{ fontFamily: 'serif', marginBottom: "5px"}}>
+          <div className="collapse navbar-collapse custom-navbar" id="mynavbar" 
+          style={{ fontFamily: "'Lexend', sans-serif", font:"16px", marginBottom: "5px"}}>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 justify-content-right text-center">
               {/* <li className="nav-item mx-3 fs-5">
                 <a className="nav-link text-dark" href="/">Home</a>

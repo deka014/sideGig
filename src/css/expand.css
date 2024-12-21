@@ -356,6 +356,14 @@
 }
 
 
+/* css code for Navbar
+    changes made: addded Media Queries
+*/
+
+.nav-link.text-dark {
+  font-size: 16px;
+  font-weight: 500;
+}
 /* css code for 1st screen
     changes made: addded Media Queries
 */
@@ -371,9 +379,9 @@
 @media (min-width: 1201px) {
   .background-text {
     position: absolute;
-    font-size: 10rem; /* Larger font for larger screens */
-    top: 55%;
-    left: 25%;
+    font-size: 11rem; /* Larger font for larger screens */
+    top: 60%;
+    left: 5%;
   }
 }
 
@@ -381,9 +389,9 @@
 @media (max-width: 1200px) {
   .background-text {
     position: absolute;
-    font-size: 9rem; /* Smaller font for medium screens */
+    font-size: 8rem; /* Smaller font for medium screens */
     left: -20%;   
-    bottom: -20%;
+    bottom: -10%;
   }
 }
 
@@ -391,8 +399,8 @@
   .background-text {
     position: absolute;
     font-size: 6rem; /* Smaller font for small screens */
-    left: 60%; /* Further adjust positioning */
-    bottom: -10%;
+    left: -14%; /* Further adjust positioning */
+    bottom: -7%;
   }
 }
 
@@ -400,8 +408,8 @@
   .background-text {
     position: absolute;
     font-size: 5rem; /* Smallest font for very small screens */
-    left: 1%; /* Keep it fully visible */
-    bottom: -10%;
+    left: 10%; /* Keep it fully visible */
+    bottom: -5%;
   }
 }
 
