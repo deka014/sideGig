@@ -24,12 +24,12 @@ const HomePageThirdScreen = () => {
         Get a dedicated design team and project manager for a flat monthly subscription fee.
       </p> */}
 
-      <div className="row text-center text-lg-start">
+      <div className="row text-center text-lg-start border-none">
         {/* Card 1 */}
         <div
-          className="col-lg-4 col-md-6 mb-4"
+          className="col-lg-4 col-md-12 mb-4"
           data-aos="fade-up"
-          data-aos-delay="100"
+          data-aos-delay="300"
         >
           <div
             className="card h-100  p-4 rounded shadow-sm"
@@ -52,9 +52,9 @@ const HomePageThirdScreen = () => {
 
         {/* Card 2 */}
         <div
-          className="col-lg-4 col-md-6 mb-4"
+          className="col-lg-4 col-md-12 mb-4"
           data-aos="fade-up"
-          data-aos-delay="200"
+          data-aos-delay="300"
         >
           <div
             className="card h-100  p-4 rounded shadow-sm"
