@@ -3,7 +3,7 @@ import logo from '../images/logo.png';
 
 const Menu = () => {
   return (
-    <div>
+    <div style={{fontFamily:'Lexend'}}>
       <nav className="navbar navbar-expand-lg mx-lg-5 ">
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
@@ -22,7 +22,7 @@ const Menu = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse custom-navbar" id="mynavbar" style={{ fontFamily: 'serif', marginBottom: "5px"}}>
+          <div className="collapse navbar-collapse custom-navbar" id="mynavbar" style={{ fontFamily: 'Lexend', marginBottom: "5px"}}>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 justify-content-right text-center">
               {/* <li className="nav-item mx-3 fs-5">
                 <a className="nav-link text-dark" href="/">Home</a>
