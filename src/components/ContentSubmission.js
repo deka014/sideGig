@@ -7,6 +7,7 @@ import rhino from '../images/rhino.jpg';
 import authHeader from '../services/authHeader';
 
 function ContentSubmission() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     title: '',
@@ -89,6 +90,8 @@ function ContentSubmission() {
         xlink: '',
         website: '',
       })
+      // Redirect to login
+      navigate('/creative-select');
     } catch (error) {
       console.log(error);
       setError({isError:true,message:error.error || 'Filed to submit form'})
