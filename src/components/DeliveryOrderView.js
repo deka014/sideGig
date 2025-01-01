@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import authHeader from '../services/authHeader';
 
 const DeliveryOrderView = () => {
+
+  const {orderId} = useParams();
+  const id = orderId.replace(':',''); 
+
   const [frameUrl, setFrameUrl] = useState('');
   const [isFrameSubmitted, setIsFrameSubmitted] = useState(false);
+  const [AssignedOrderWithLatestContentSubmission,setAssignedOrderWithLatestContentSubmission] = useState()
   const [orderPreviewUrl, setOrderPreviewUrl] = useState(
-    'https://via.placeholder.com/300' // Placeholder URL
+    '' // Placeholder URL
   );
+  const [editSuccess,setEditSuccess]  =useState(false)
   const [isOrderCompleted, setIsOrderCompleted] = useState(false);
 
   const dummyOrderData = {
@@ -25,26 +34,56 @@ const DeliveryOrderView = () => {
     orderPreviewUrl : null, // Placeholder URL
   };
 
-  const handleFrameUpload = () => {
+  const handleFrameUpload = async () => {
     if (!frameUrl) {
       alert('Please provide a valid frame URL.');
       return;
     }
-    console.log(`Frame URL submitted: ${frameUrl}`);
-    setOrderPreviewUrl(frameUrl);
-    setIsFrameSubmitted(true);
+    const data = {orderPreviewUrl:frameUrl}
+
+    try {
+      const response = await axios.patch(`http://localhost:4000/api/delivery/view-order/update-orderPreviewUrl/${id}`,data,
+        {
+          headers:{ 
+            ...authHeader()
+          }
+        }
+      )
+      if(response.data) {
+        setOrderPreviewUrl(response.data.orderPreviewUrl);
+        setIsFrameSubmitted(true);
+        setEditSuccess(true)
+      }
+    } catch (error) {
+      console.log('ERROR in handleFrameUpload',error)
+    }
   };
 
-  const handleCompleteOrder = () => {
+  const handleCompleteOrder = async () => {
     if (!orderPreviewUrl) {
       alert('Please upload the frame URL before completing the order.');
       return;
     }
-    console.log(`Order completed with Frame URL: ${orderPreviewUrl}`);
-    setIsOrderCompleted(true);
+    const data = {status:'Delivered'}
+    try {
+      const response = await axios.patch(`http://localhost:4000/api/delivery/view-order/update-status/${id}`,data,
+        {
+          headers:{ 
+            ...authHeader()
+          }
+        }
+      )
+      if(response.data) {
+        setIsOrderCompleted(true)
+        setOrderPreviewUrl('')
+      }
+    } catch (error) {
+      console.log('ERROR in handleFrameUpload',error)
+    }
   };
 
   const handleEditFrameUrl = () => {
+    setEditSuccess(false)
     setIsFrameSubmitted(false);
     setFrameUrl(orderPreviewUrl);
   };
@@ -69,6 +108,29 @@ const DeliveryOrderView = () => {
     }
   };
 
+  useEffect(()=>{
+    async function fetchOrder( ) {
+      try {
+        const response = await axios.get(`http://localhost:4000/api/delivery/order/:${id}`,
+          {
+            headers:{
+              ...authHeader()
+            }
+          }
+        )
+        setAssignedOrderWithLatestContentSubmission(response.data);
+        if(response.data.orderPreviewUrl) {
+          setIsFrameSubmitted(true);
+          setOrderPreviewUrl(response.data.orderPreviewUrl);
+          setFrameUrl('')
+        }
+      } catch (error) {
+        console.log('An error occured at fetchOrder',error)
+      }
+    }
+    fetchOrder();
+  },[id,editSuccess===true,isOrderCompleted===true])
+
   return (
     <div className="container py-4">
       <h1 className="text-center mb-4">Delivery Order View</h1>
@@ -81,18 +143,18 @@ const DeliveryOrderView = () => {
               <h5 className="card-title">Order Information</h5>
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
-                  <strong>Order ID:</strong> {dummyOrderData.orderId}
+                  <strong>Order ID:</strong> {AssignedOrderWithLatestContentSubmission?.orderId}
                 </li>
                 <li className="list-group-item">
-                  <strong>Status:</strong> {dummyOrderData.status}
+                  <strong>Status:</strong> {AssignedOrderWithLatestContentSubmission?.status}
                 </li>
                 <li className="list-group-item">
                   <strong>Estimated Delivery Date:</strong>{' '}
-                  {new Date(dummyOrderData.estimatedDeliveryDate).toLocaleDateString()}
+                  {new Date(AssignedOrderWithLatestContentSubmission?.estimatedDeliveryDate).toLocaleDateString()}
                 </li>
                 <li className="list-group-item">
                   <strong>Created At:</strong>{' '}
-                  {new Date(dummyOrderData.createdAt).toLocaleDateString()}
+                  {new Date(AssignedOrderWithLatestContentSubmission?.createdAt).toLocaleDateString()}
                 </li>
               </ul>
             </div>
@@ -106,39 +168,39 @@ const DeliveryOrderView = () => {
               <h5 className="card-title">Content Submission</h5>
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
-                  <strong>Name:</strong> {dummyOrderData.contentSubmission.name}
+                  <strong>Name:</strong> {AssignedOrderWithLatestContentSubmission?.contentSubmission.name}
                 </li>
                 <li className="list-group-item">
-                  <strong>Title:</strong> {dummyOrderData.contentSubmission.title}
+                  <strong>Title:</strong> {AssignedOrderWithLatestContentSubmission?.contentSubmission.title}
                 </li>
                 <li className="list-group-item">
                   <strong>Facebook:</strong>{' '}
                   <a
-                    href={`https://${dummyOrderData.contentSubmission.facebook}`}
+                    href={`https://${AssignedOrderWithLatestContentSubmission?.contentSubmission.facebook}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {dummyOrderData.contentSubmission.facebook}
+                    {AssignedOrderWithLatestContentSubmission?.contentSubmission.facebook}
                   </a>
                 </li>
                 <li className="list-group-item">
                   <strong>Instagram:</strong>{' '}
                   <a
-                    href={`https://${dummyOrderData.contentSubmission.instagram}`}
+                    href={`https://${AssignedOrderWithLatestContentSubmission?.contentSubmission.instagram}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {dummyOrderData.contentSubmission.instagram}
+                    {AssignedOrderWithLatestContentSubmission?.contentSubmission.instagram}
                   </a>
                 </li>
                 <li className="list-group-item">
                   <strong>Website:</strong>{' '}
                   <a
-                    href={`https://${dummyOrderData.contentSubmission.website}`}
+                    href={`https://${AssignedOrderWithLatestContentSubmission?.contentSubmission.website}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {dummyOrderData.contentSubmission.website}
+                    {AssignedOrderWithLatestContentSubmission?.contentSubmission.website}
                   </a>
                 </li>
               </ul>
@@ -147,7 +209,7 @@ const DeliveryOrderView = () => {
                   <strong>Logo:</strong>
                   <div className="d-flex align-items-center mt-2">
                     <img
-                      src={dummyOrderData.contentSubmission.logo}
+                      src={AssignedOrderWithLatestContentSubmission?.contentSubmission.logo}
                       alt="Logo"
                       className="img-thumbnail me-3"
                       style={{ width: '100px', height: '100px', objectFit: 'cover' }}
@@ -156,8 +218,8 @@ const DeliveryOrderView = () => {
                       className="btn btn-primary btn-sm"
                       onClick={() =>
                         handleDownload(
-                          dummyOrderData.contentSubmission.logo,
-                          `${dummyOrderData.contentSubmission.name} Logo`
+                          AssignedOrderWithLatestContentSubmission?.contentSubmission.logo,
+                          `${AssignedOrderWithLatestContentSubmission?.contentSubmission.name} Logo`
                         )
                       }
                     >
@@ -169,7 +231,7 @@ const DeliveryOrderView = () => {
                   <strong>Photo:</strong>
                   <div className="d-flex align-items-center mt-2">
                     <img
-                      src={dummyOrderData.contentSubmission.photo}
+                      src={AssignedOrderWithLatestContentSubmission?.contentSubmission.photo}
                       alt="Photo"
                       className="img-thumbnail me-3"
                       style={{ width: '150px', height: '150px', objectFit: 'cover' }}
@@ -178,8 +240,8 @@ const DeliveryOrderView = () => {
                       className="btn btn-primary btn-sm"
                       onClick={() =>
                         handleDownload(
-                          dummyOrderData.contentSubmission.photo,
-                          `${dummyOrderData.contentSubmission.name} Photo`
+                          AssignedOrderWithLatestContentSubmission?.contentSubmission.photo,
+                          `${AssignedOrderWithLatestContentSubmission?.contentSubmission.name} Photo`
                         )
                       }
                     >
@@ -241,7 +303,8 @@ const DeliveryOrderView = () => {
         <button
           className="btn btn-success"
           onClick={handleCompleteOrder}
-          disabled={!orderPreviewUrl || isOrderCompleted}
+          // disabled={!orderPreviewUrl || isOrderCompleted}
+          disabled={isOrderCompleted || AssignedOrderWithLatestContentSubmission?.status==='Delivered'}
         >
           {isOrderCompleted ? 'Order Completed' : 'Complete Order'}
         </button>

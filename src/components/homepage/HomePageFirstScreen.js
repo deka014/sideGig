@@ -23,25 +23,40 @@ function HomePageFirstScreen() {
     }
   };
 
-  //button icon
+  const getStartedButtonStyle ={
+    "border-radius": "4px",
+    "border": "none",
+    background: "#7087f5",
+    width: "151px",
+    height: '49px',
+    "font-weight": '600',
+    "font-size": '19px',
+    display: 'flex',
+    "justify-content": "center",
+    "align-items": "center",
+  }
+  //play icon
   const iconStyles = {
     content: "'\\f4cd'", // Ensures correct icon (adjust if needed)
     display: "inline-block",
     width: "20px", // Width as seen in the image
     //height: "23px", // Height as seen in the image
+    "font-size":"27px",
+    'margin-top':"-2px",
+    "margin-left":"-4px"
   };
 
   return (
     <div
-      className="d-flex align-items-center justify-content-center row position-relative"
+      className="d-flex align-items-center justify-content-between row position-relative"
       style={{
         // minHeight: '50vh',   
         background: 'linear-gradient(rgb(142, 197, 252), rgb(224, 195, 252), rgb(255, 255, 255))',   //change gradient from #ffffff -> #f6eaff
         borderRadius: '30px',   //rounded-corners
         paddingLeft: '40px',
         paddingRight: '40px',
-        paddingTop: '40px',
-        // borderImage: 'linear-gradient(to bottom, #8ec5fc, #e0c3fc, #f6eaff) 1'  
+        paddingTop: '60px',
+        // borderImage: 'linear-gradient(to bottom, #8ec5fc, #e0c3fc, #f6eaff) 1'
       }}
     >
       {/* Left Section with AOS Animation */}
@@ -68,7 +83,7 @@ function HomePageFirstScreen() {
           <a
             href="/get-started"
             className="btn btn-lg btn-primary me-3"
-            style={{ borderRadius: '10px', background: "#7087f5"  }}  // Change: button color, border radius
+            style={getStartedButtonStyle}  // Change: button color, border radius
             data-aos="zoom-in"
             data-aos-delay="200"
           >
@@ -77,7 +92,7 @@ function HomePageFirstScreen() {
           
           <button
             className="btn btn-lg btn-outline-primary rounded-circle ripple"
-            style={{ width: '50px', height: '50px'}}
+            style={{width: '55px', height: '55px', 'margin-top': '-4px'}}
             data-aos="zoom-in"
             data-aos-delay="300"
             onClick={openModal} // Open modal on click
@@ -97,7 +112,7 @@ function HomePageFirstScreen() {
         <img
           src="https://shine.creativemox.com/sociabiz/wp-content/uploads/sites/16/2024/08/img_1.png"
           alt="sociabiz"
-          style={{ width: '20rem' }}  //size of bg image inc.
+          style={{ width: '25rem' }}  //size of bg image inc.
         />
          <div className='background-text'
           style={{
@@ -114,6 +129,8 @@ function HomePageFirstScreen() {
         >
           Creative
         </div>
+        <div style={{width:'400px',height:'400px', position:'absolute',top:'60px', borderRadius:'50%', zIndex:'-1', background: 'rgb(131,58,180)',
+background: 'linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(201,113,205,1) 0%, rgba(237,128,196,1) 10%, rgba(237,128,196,1) 21%, rgba(237,128,196,1) 33%, rgba(251,205,171,1) 100%)',}}></div>
       </div>
 
       {/* Modal for YouTube Video */}

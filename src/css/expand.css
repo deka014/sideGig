@@ -371,9 +371,9 @@
 @media (min-width: 1201px) {
   .background-text {
     position: absolute;
-    font-size: 10rem; /* Larger font for larger screens */
-    top: 55%;
-    left: 25%;
+    font-size: 10rem;
+    top: 64.8%;
+    left: -5%;
   }
 }
 
@@ -381,27 +381,31 @@
 @media (max-width: 1200px) {
   .background-text {
     position: absolute;
-    font-size: 9rem; /* Smaller font for medium screens */
-    left: -20%;   
-    bottom: -20%;
+    font-size: 8.7rem;
+    left: -20%;
+    bottom: -8.99%;
   }
 }
 
 @media (max-width: 768px) {
   .background-text {
     position: absolute;
-    font-size: 6rem; /* Smaller font for small screens */
-    left: 60%; /* Further adjust positioning */
-    bottom: -10%;
+    font-size: 6rem;
+    left: 0%;
+    bottom: -6.3%;
   }
 }
 
 @media (max-width: 480px) {
   .background-text {
+    /* position: absolute;
+    font-size: 5rem; /* Smallest font for very small screens 
+    left: 1%;  Keep it fully visible 
+    bottom: -10%; */
     position: absolute;
-    font-size: 5rem; /* Smallest font for very small screens */
-    left: 1%; /* Keep it fully visible */
-    bottom: -10%;
+    font-size: 5rem;
+    left: 4%;
+    bottom: -5.2%;
   }
 }
 
