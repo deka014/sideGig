@@ -1,7 +1,9 @@
 import React from 'react';
 import logo from '../images/logo.png';
+import authService from '../services/authService';
 
 const Menu = () => {
+  console.log(authService.getCurrentUser() , 'asdasd')
   return (
     <div style={{fontFamily:'Lexend'}}>
       <nav className="navbar navbar-expand-lg mx-lg-5 ">
@@ -86,11 +88,20 @@ const Menu = () => {
                 </ul>
               </li>
             </ul>
-            <div className="d-flex justify-content-center text-center"> 
-              <a href="/get-started" className="btn btn-primary" style={{ borderRadius: '10px' }}>
+            {
+              authService.getCurrentUser() ? (
+                <div className="d-flex justify-content-center text-center">
+                  <button onClick={authService.logout} className="btn btn-primary" style={{ borderRadius: '10px' }}>
+                    LOG OUT
+                  </button>
+                </div>
+              ) :             <div className="d-flex justify-content-center text-center"> 
+              <a href="/login" className="btn btn-primary" style={{ borderRadius: '10px' }}>
                 LOG IN
               </a>
             </div>
+            }
+
           </div>
         </div>
       </nav>

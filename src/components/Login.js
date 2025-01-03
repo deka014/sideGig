@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import authService from '../services/authService';
+import { ToastContainer, toast } from 'react-toastify'
 
 function Login() {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -10,6 +11,7 @@ function Login() {
   const [otp, setOtp] = useState('');
   const navigate = useNavigate();
   const {userState, setUserState} = useContext(UserContext);
+  
 
   const sendOtp = () => {
     // TODO: Integrate OTP sending via backend API
@@ -21,36 +23,40 @@ function Login() {
     try {
       // Integrate OTP verification via backend API
       const response = await authService.verifyOtp(phoneNumber, Number(otp));
-      
-  
+      console.log(response);
       if (response && response.success) {
         // Update user state on successful OTP verification
-        setUserState({
-          ...userState,
-          isAuthenticated: true,
-          phoneNumber: phoneNumber,
-        });
-        console.log(userState);
-  
+        toast.success(
+          'OTP verified successfully',
+          {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            draggable: true,
+            progress: undefined,
+          }
+        )
         // Navigate to the next page
-        navigate('/pricing');
-      } else {
-        // Handle failed OTP verification
-        console.error('OTP verification failed:', response.message);
-        alert('Invalid OTP. Please try again.');
-      }
+        window.location.href = "/pricing";
+      } 
     } catch (error) {
       // Handle unexpected errors
       console.error('Error verifying OTP:', error);
-      alert('Your OTP is wrong, still we are letting you pass for testing purpose');
+      toast.error(
+        error,
+        {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+        }
+      )
     }
     
-    setUserState({
-      ...userState,
-      isAuthenticated: true,
-      phoneNumber: phoneNumber,
-    });
-    navigate('/pricing');
+    // navigate('/pricing');
   };
   
 

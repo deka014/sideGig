@@ -1,4 +1,5 @@
 import './App.css';
+import "react-toastify/dist/ReactToastify.css";
 
 import Homepage from './components/homepage/Homepage';
 import Menu from './components/Menu';
