@@ -1,5 +1,5 @@
 // src/components/Login.js
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState  , useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import authService from '../services/authService';
@@ -11,6 +11,16 @@ function Login() {
   const [otp, setOtp] = useState('');
   const navigate = useNavigate();
   const {userState, setUserState} = useContext(UserContext);
+
+  // call auth logout function
+  useEffect(() => {
+    if(authService.getCurrentUser()) {
+      authService.logout();
+      window.location.href = "/login";
+    }
+  }, []);
+
+
   
 
   const sendOtp = () => {

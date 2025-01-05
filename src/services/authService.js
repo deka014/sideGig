@@ -33,10 +33,13 @@ const authService = {
       });
   },
 
-  logout() {
+  logout(redirectTo) {
     localStorage.removeItem("user");
     // return to home page
-    window.location.href = "/";
+    if (redirectTo) {
+      window.location = redirectTo;
+    }
+    // window.location.href = "/";
   },
 
   // register(formData) {

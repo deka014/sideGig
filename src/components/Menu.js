@@ -91,7 +91,7 @@ const Menu = () => {
             {
               authService.getCurrentUser() ? (
                 <div className="d-flex justify-content-center text-center">
-                  <button onClick={authService.logout} className="btn btn-primary" style={{ borderRadius: '10px' }}>
+                  <button onClick={()=>{ return authService.logout('/')}} className="btn btn-primary" style={{ borderRadius: '10px' }}>
                     LOG OUT
                   </button>
                 </div>
