@@ -28,12 +28,18 @@ const authService = {
         }
         return response.data;
       }).catch((error) => {
-        console.log(error);
+        throw error.response?.data.error || new Error("Failed to verify OTP");
+        // console.log(error);
       });
   },
 
-  logout() {
+  logout(redirectTo) {
     localStorage.removeItem("user");
+    // return to home page
+    if (redirectTo) {
+      window.location = redirectTo;
+    }
+    // window.location.href = "/";
   },
 
   // register(formData) {

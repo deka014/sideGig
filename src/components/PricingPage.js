@@ -2,18 +2,44 @@ import React, { useContext, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { UserContext } from "../context/UserContext";
-import { replace, useNavigate } from "react-router-dom";
+import { replace, useNavigate,useLocation } from "react-router-dom";
+import { checkPaymentStatus } from "../services/subscription/checkPaymentStatus";
+
 
 
 const PricingPage = () => {
   const navigate = useNavigate();
-  const {userState, setUserState} = useContext(UserContext);
-  console.log(userState);
+  const location = useLocation(); // Get current route
   useEffect(() => {
     AOS.init({
       duration: 800,
       once: true,
     });
+
+    const verifyPaymentStatus = async () => {
+      try {
+        const response = await checkPaymentStatus();
+        console.log(response - 'verify payment status');
+        if (!response.paymentStatus) {
+          // Redirect to pricing page if paymentStatus is false
+          navigate('/pricing');
+        }else{
+          // Redirect to home page if paymentStatus is true
+          navigate('/content-submission');
+        }
+      } catch (error) {
+        console.error('Error verifying payment status:', error);
+        // Optionally, handle errors here
+      }
+    };
+
+    // Trigger payment check only on /pricing route
+    if (location.pathname === '/pricing') {
+      verifyPaymentStatus();
+    }
+
+
+
   }, []);
 
   return (
