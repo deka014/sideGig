@@ -14,7 +14,7 @@ const AddEvents = () => {
       setServerError('');
       console.log('data to submit',data)
       data.designs = [];
-      const response = await axios.post('/api/events', data);
+      const response = await axios.post( `${process.env.REACT_APP_BACKEND_URL}/api/events`, data);
       console.log(response)
       setFormSubmitted(true)
     } catch (error) {
