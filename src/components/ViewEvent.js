@@ -42,7 +42,7 @@ function ViewEvent() {
       setError('');
 
       // Step 1: Create a new Design
-      const designResponse = await axios.post('/api/designs', data, {
+      const designResponse = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/designs`, data, {
         headers: {
           ...authHeader(),
         },
@@ -53,7 +53,7 @@ function ViewEvent() {
       const id = eventId.replace(':', '');
 
       // Step 2: Update the event with the new design
-      await axios.patch(`/api/event/${id}/addDesign`, { designId });
+      await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/api/event/${id}/addDesign`, { designId });
 
       setFormStatus('success');
       reset();
