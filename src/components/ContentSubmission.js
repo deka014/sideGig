@@ -5,6 +5,7 @@ import frame2 from '../images/basic-premium.png';
 import frame3 from '../images/basic-logo.png';
 import rhino from '../images/rhino.jpg';
 import authHeader from '../services/authHeader';
+import authService from '../services/authService';
 
 function ContentSubmission() {
   const navigate = useNavigate();
@@ -93,6 +94,10 @@ function ContentSubmission() {
       // Redirect to login
       navigate('/creative-select');
     } catch (error) {
+      if (error.error === 'Not authorized') {
+        console.error('Token invalid or expired, logging out');
+        authService.logout('/login');
+      }
       console.log(error);
       setError({isError:true,message:error.error || 'Filed to submit form'})
     } finally {
@@ -188,6 +193,10 @@ function ContentSubmission() {
     frames.forEach((frame, idx) => {
       renderCanvas(idx, frame, rhino);
     });
+
+    if(!authService.getCurrentUser()) {
+      navigate('/login');
+    }
   }, []);
 
 

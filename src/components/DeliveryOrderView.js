@@ -42,7 +42,7 @@ const DeliveryOrderView = () => {
     const data = {orderPreviewUrl:frameUrl}
 
     try {
-      const response = await axios.patch(`http://localhost:4000/api/delivery/view-order/update-orderPreviewUrl/${id}`,data,
+      const response = await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/api/delivery/view-order/update-orderPreviewUrl/${id}`,data,
         {
           headers:{ 
             ...authHeader()
