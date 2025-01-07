@@ -66,7 +66,7 @@ const DeliveryOrderView = () => {
     }
     const data = {status:'Delivered'}
     try {
-      const response = await axios.patch(`http://localhost:4000/api/delivery/view-order/update-status/${id}`,data,
+      const response = await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/api/delivery/view-order/update-status/${id}`,data,
         {
           headers:{ 
             ...authHeader()
@@ -111,7 +111,7 @@ const DeliveryOrderView = () => {
   useEffect(()=>{
     async function fetchOrder( ) {
       try {
-        const response = await axios.get(`http://localhost:4000/api/delivery/order/:${id}`,
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/delivery/order/${id}`,
           {
             headers:{
               ...authHeader()
@@ -123,6 +123,10 @@ const DeliveryOrderView = () => {
           setIsFrameSubmitted(true);
           setOrderPreviewUrl(response.data.orderPreviewUrl);
           setFrameUrl('')
+        }
+
+        if(response.data.status==='Delivered') {
+          setIsOrderCompleted(true)
         }
       } catch (error) {
         console.log('An error occured at fetchOrder',error)

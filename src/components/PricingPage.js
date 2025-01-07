@@ -20,11 +20,8 @@ const PricingPage = () => {
       try {
         const response = await checkPaymentStatus();
         console.log(response - 'verify payment status');
-        if (!response.paymentStatus) {
+        if (response.paymentStatus) {
           // Redirect to pricing page if paymentStatus is false
-          navigate('/pricing');
-        }else{
-          // Redirect to home page if paymentStatus is true
           navigate('/content-submission');
         }
       } catch (error) {

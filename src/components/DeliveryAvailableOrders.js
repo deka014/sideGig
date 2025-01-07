@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-
+import axios from 'axios';
+import authHeader from '../services/authHeader';
+import { toast } from 'react-toastify';
 const DeliveryAvailableOrders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -27,23 +29,84 @@ const DeliveryAvailableOrders = () => {
   
   ];
 
-  // Fetch orders (simulated with dummy data)
-  const fetchOrders = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setOrders(dummyOrders); // Replace with API call
-      setLoading(false);
-    }, 1000);
-  };
+  // // Fetch orders (simulated with dummy data)
+  // const fetchOrders = () => {
+  //   setLoading(true);
+  //   setTimeout(() => {
+  //     setOrders(dummyOrders); // Replace with API call
+  //     setLoading(false);
+  //   }, 1000);
+  // };
 
-  // Accept order
-  const handleAcceptOrder = (orderId) => {
-    // Simulated accept order logic
-    console.log(`Accepted order: ${orderId}`);
-    alert(`Order ${orderId} has been accepted!`);
-    // Simulate removing the accepted order from the list
-    setOrders((prevOrders) => prevOrders.filter((order) => order.orderId !== orderId));
-  };
+  // Fetch orders
+const fetchOrders = async () => {
+  setLoading(true);
+
+  try {
+
+    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/delivery/available-orders`, {
+      headers: {
+        ...authHeader(),
+      },
+    });
+    setOrders(response.data); // Update state with the fetched orders
+  } catch (error) {
+    console.error('Error fetching orders:', error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+  // // Accept order
+  // const handleAcceptOrder = (orderId) => {
+  //   // Simulated accept order logic
+  //   // console.log(`Accepted order: ${orderId}`);
+  //   // alert(`Order ${orderId} has been accepted!`);
+  //   // Simulate removing the accepted order from the list
+  //   // setOrders((prevOrders) => prevOrders.filter((order) => order.orderId !== orderId));
+  // };
+
+// Accept order using the API
+const handleAcceptOrder = async (orderId) => {
+  try {
+   
+    const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/delivery/accept-order/${orderId}`, {}, {
+      headers: {
+        ...authHeader(), // Send the token in the header for authentication
+      },
+    });
+
+    // Handle successful response
+    console.log('Order accepted:', response.data);
+    toast.success(
+      'Order Successfully Accepted!',
+      {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+      }
+    )
+
+    fetchOrders(); // Fetch orders again to update the list
+  } catch (error) {
+    // Handle error in case something goes wrong
+    console.error('Error accepting order:', error);
+    alert(error.response?.data?.message || 'Failed to accept the order.');
+    toast.error(
+      error.response?.data?.message || 'Failed to accept the order.',
+      {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+  })}
+};
+
 
   // Auto-refresh every 60 seconds
   useEffect(() => {
@@ -97,7 +160,7 @@ const DeliveryAvailableOrders = () => {
                   </p>
                   <button
                     className="btn btn-primary w-100"
-                    onClick={() => handleAcceptOrder(order.orderId)}
+                    onClick={() => handleAcceptOrder(order._id)}
                   >
                     Accept Order
                   </button>

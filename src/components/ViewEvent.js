@@ -22,7 +22,7 @@ function ViewEvent() {
     const fetchEvent = async () => {
       try {
         setLoading(true);
-        const id = eventId.replace(':', '');
+        const id = eventId;
         const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/event/${id}`);
         console.log(response.data.event);
         setEvent(response.data.event);
@@ -50,13 +50,14 @@ function ViewEvent() {
 
       const designId = designResponse.data?.design._id;
 
-      const id = eventId.replace(':', '');
+      const id = eventId;
 
       // Step 2: Update the event with the new design
       await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/api/event/${id}/addDesign`, { designId });
 
       setFormStatus('success');
       reset();
+      window.location.reload();
     } catch (err) {
       setFormStatus('error');
       setError(err.response?.data?.message || 'Failed to add design to the event.');
