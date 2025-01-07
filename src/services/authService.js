@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const API_URL = `${process.env.REACT_APP_BACKEND_URL}/api/` || "http://localhost:4000/api/";
 
@@ -10,6 +11,17 @@ const authService = {
       })
       .then(response => {
         console.log(response.data,"Sent OTP successfully")
+        toast.success(
+          'OTP sent successfully',
+          {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            draggable: true,
+            progress: undefined,
+          }
+        )
         return response.data;
       });
   },

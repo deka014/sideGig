@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import authHeader from '../services/authHeader';
+import { toast } from 'react-toastify';
 
 const DesignerDashboard = () => {
   const [pendingOrders, setPendingOrders] = useState([]);
@@ -38,22 +41,71 @@ const DesignerDashboard = () => {
     },
   ];
 
-  const fetchPendingOrders = () => {
-    setLoadingPending(true);
-    setTimeout(() => {
-      setPendingOrders(dummyPendingOrders);
-      setLoadingPending(false);
-    }, 1000);
+  // const fetchPendingOrders = () => {
+  //   setLoadingPending(true);
+  //   setTimeout(() => {
+  //     setPendingOrders(dummyPendingOrders);
+  //     setLoadingPending(false);
+  //   }, 1000);
+  // };
+
+
+  
+    // Fetch pending orders from the API
+    const fetchPendingOrders = async () => {
+      setLoadingPending(true); // Set loading state to true before making the API call
+  
+      try {
+  
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/delivery/pending-orders`, {
+          headers: {
+            ...authHeader(),
+          },
+        });
+  
+        setPendingOrders(response.data); // Set the fetched orders to the state
+        setLoadingPending(false); // Set loading state to false after the data is fetched
+      } catch (err) {
+        console.error('Error fetching pending orders:', err);
+        toast.error(
+          err.response?.data?.message || 'Failed to fetch pending orders',
+        );
+        setLoadingPending(false); // Set loading state to false even if an error occurs
+      }
+    };
+
+  // const fetchCompletedOrders = () => {
+  //   setLoadingCompleted(true);
+  //   setTimeout(() => {
+  //     setCompletedOrders(dummyCompletedOrders);
+  //     setLoadingCompleted(false);
+  //   }, 1000);
+  // };
+
+  const fetchCompletedOrders = async () => {
+    setLoadingCompleted(true); // Start loading
+  
+    try {
+      
+      // Make the Axios request to get completed orders
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/delivery/completed-orders`, {
+        headers: {
+          ...authHeader(),
+        },
+      });
+  
+      setCompletedOrders(response.data); // Set the fetched completed orders into the state
+      setLoadingCompleted(false); // End loading
+    } catch (error) {
+      console.error('Error fetching completed orders:', error);
+      setLoadingCompleted(false); // End loading
+      toast.error(
+        error.response?.data?.message || 'Failed to fetch completed orders',
+      );
+    }
   };
 
-  const fetchCompletedOrders = () => {
-    setLoadingCompleted(true);
-    setTimeout(() => {
-      setCompletedOrders(dummyCompletedOrders);
-      setLoadingCompleted(false);
-    }, 1000);
-  };
-
+  
   useEffect(() => {
     fetchPendingOrders();
   }, []);
@@ -90,7 +142,9 @@ const DesignerDashboard = () => {
                     <div className="mb-3">
                       <strong>Status:</strong> <p className='bg-warning d-inline'> Pending </p>
                       </div>
-                    <button className="btn btn-primary w-100 mt-2">
+                    <button 
+                    onClick={() => {window.location.href = `/delivery/orders/${order._id}`}}
+                    className="btn btn-primary w-100 mt-2">
                       View Order
                     </button>
                     
@@ -144,7 +198,8 @@ const DesignerDashboard = () => {
                         <p>
                           <strong>Designs:</strong> {order.selectedDesigns.length}
                         </p>
-                        <button className="btn btn-primary w-100 mt-2">
+                        <button onClick = {() => {window.location.href = `/delivery/orders/${order._id}`}}
+                        className="btn btn-primary w-100 mt-2">
                           View Order
                         </button>
                       </div>

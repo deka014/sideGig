@@ -6,6 +6,7 @@ import frame3 from '../images/basic-logo.png';
 import rhino from '../images/rhino.jpg';
 import authHeader from '../services/authHeader';
 import authService from '../services/authService';
+import { toast } from 'react-toastify';
 
 function ContentSubmission() {
   const navigate = useNavigate();
@@ -40,7 +41,18 @@ function ContentSubmission() {
   function validateFields() { //needs to be replaced with a validator (ZOD or react-hook-form)
     const {name,title} = formData
     if(!name || !title) {
-      setError({isError:true,message:'YourName and Title fields are required'})
+      // setError({isError:true,message:'YourName and Title fields are required'})
+      toast.error(
+        'Your Name and Title fields are required',
+        {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+        }
+      )
       return false;
     }
     else{
@@ -105,15 +117,20 @@ function ContentSubmission() {
     }
   };
 
+  // const handlePreviewClick = (index) => {
+  //   setSelectedPreviews((prevSelected) => {
+  //     if (prevSelected.includes(index)) {
+  //       return prevSelected.filter((i) => i !== index);
+  //     } else {
+  //       return [...prevSelected, index];
+  //     }
+  //   });
+  // };
+
   const handlePreviewClick = (index) => {
-    setSelectedPreviews((prevSelected) => {
-      if (prevSelected.includes(index)) {
-        return prevSelected.filter((i) => i !== index);
-      } else {
-        return [...prevSelected, index];
-      }
-    });
+    setSelectedPreviews([index]); // Allow only one selection
   };
+  
 
   const renderCanvas = async (index, frame, image) => {
     const canvas = canvasRefs.current[index];

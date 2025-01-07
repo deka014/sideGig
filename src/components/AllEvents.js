@@ -44,7 +44,7 @@ const AllEvents = () => {
   }, []);
 
   const handleViewEvent = (eventId) => {
-    navigate(`/delivery/view-event/:${eventId}`);
+    navigate(`/delivery/view-event/${eventId}`);
   };
 
   return (
