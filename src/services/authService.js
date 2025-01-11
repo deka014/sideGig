@@ -6,7 +6,7 @@ const API_URL = `${process.env.REACT_APP_BACKEND_URL}/api/` || "http://localhost
 const authService = {
   sendOtp(phoneNumber) {
     return axios
-      .post(API_URL + "auth/send-otp", {
+      .post("http://localhost:4000/api/auth/send-otp", { //replace url with REACT_APP_BACKEND_URL
         phoneNumber
       })
       .then(response => {
@@ -23,12 +23,14 @@ const authService = {
           }
         )
         return response.data;
+      }).catch(err=>{
+        console.log('Error occured at sendOtp in authService:',err)
       });
   },
 
   verifyOtp(phoneNumber, otp) {
     return axios
-      .post(API_URL + "auth/verify-otp", {
+      .post("http://localhost:4000/api/auth/verify-otp", { //replace url with REACT_APP_BACKEND_URL
         phoneNumber,
         otp
       })

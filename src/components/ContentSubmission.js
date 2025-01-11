@@ -7,6 +7,7 @@ import rhino from '../images/rhino.jpg';
 import authHeader from '../services/authHeader';
 import authService from '../services/authService';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 function ContentSubmission() {
   const navigate = useNavigate();
@@ -22,202 +23,391 @@ function ContentSubmission() {
     website: '',
   });
 
-  const[isSubmitting,setIsSubmitting] = useState(false)
-  const[error,setError] = useState({isError:false,message:''})
-  const[submitSuccess,setSubmitSuccess] = useState(false)
-  const [selectedPreviews, setSelectedPreviews] = useState([0]); // Preview 1 pre-selected by default
+  const [previews, setPreviews] = useState({
+    logo: null,
+    photo: null
+  });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState({isError: false, message: ''});
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [selectedPreviews, setSelectedPreviews] = useState([0]);
+  const [showPreviews, setShowPreviews] = useState({
+    logo: false,
+    photo: false
+  });
+  const [previousContentAvailable,setPreviousContentAvailable] = useState(false)
   const canvasRefs = useRef([]);
 
   const handleInputChange = (e) => {
-    if(submitSuccess) {setSubmitSuccess(false); setError({isError:false,message:''})}
-    const { name, value, files } = e.target;
-    setFormData({
-      ...formData,
-      [name]: files ? files[0] : value,
-    });
-  };
-
-  function validateFields() { //needs to be replaced with a validator (ZOD or react-hook-form)
-    const {name,title} = formData
-    if(!name || !title) {
-      // setError({isError:true,message:'YourName and Title fields are required'})
-      toast.error(
-        'Your Name and Title fields are required',
-        {
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          draggable: true,
-          progress: undefined,
-        }
-      )
-      return false;
+    if(submitSuccess) {
+      setSubmitSuccess(false);
+      setError({isError: false, message: ''});
     }
-    else{
-      setError({isError:false,message:''})
-      return true;
-    }
-  }
-
-  const handleSubmit = async () => {
-    setSubmitSuccess(false)
-
-    const isValid = validateFields();
-    if(!isValid) {return}
-
-    setIsSubmitting(true)
-
-    const formDataToSubmit = new FormData() //formDataToSubmit is a FormData object.
     
-    for (const key in formData) { //iterating through the formDataToSubmit object
-      formDataToSubmit.append(key,formData[key])
-    }
-
-    formDataToSubmit.append('selectedPreviews', JSON.stringify(selectedPreviews)) //append selected previews
-
-    try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/content-submission`,{
-        method:'POST',
-        headers:{
-          ...authHeader()
-        },
-        body:formDataToSubmit
-      })
-      const responseBody = await response.json();
-      if(!response.ok) {
-        console.log(responseBody)
-        throw responseBody;
-      }
-      console.log(responseBody)
-      setSubmitSuccess(true)
-      setFormData({
-        name: '',
-        title: '',
-        logo: null,
-        photo: null,
-        facebook: '',
-        instagram: '',
-        thread: '',
-        xlink: '',
-        website: '',
-      })
-      // Redirect to login
-      navigate('/creative-select');
-    } catch (error) {
-      if (error.error === 'Not authorized') {
-        console.error('Token invalid or expired, logging out');
-        authService.logout('/login');
-      }
-      console.log(error);
-      setError({isError:true,message:error.error || 'Filed to submit form'})
-    } finally {
-      setIsSubmitting(false)
+    const { name, value, files } = e.target;
+    
+    if (files && files[0]) {
+      // Handle file inputs (photo and logo)
+      setFormData(prev => ({
+        ...prev,
+        [name]: files[0]
+      }));
+      
+      // Create and set preview URL
+      const previewUrl = URL.createObjectURL(files[0]);
+      setPreviews(prev => ({
+        ...prev,
+        [name]: previewUrl
+      }));
+    } else {
+      // Handle text inputs
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
     }
   };
 
-  // const handlePreviewClick = (index) => {
-  //   setSelectedPreviews((prevSelected) => {
-  //     if (prevSelected.includes(index)) {
-  //       return prevSelected.filter((i) => i !== index);
-  //     } else {
-  //       return [...prevSelected, index];
-  //     }
-  //   });
-  // };
-
-  const handlePreviewClick = (index) => {
-    setSelectedPreviews([index]); // Allow only one selection
-  };
-  
-
-  const renderCanvas = async (index, frame, image) => {
-    const canvas = canvasRefs.current[index];
-    if (!canvas) return;
-  
-    const ctx = canvas.getContext('2d');
-  
-    const loadImage = (src) => {
-      return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.crossOrigin = 'anonymous';
-        img.onload = () => resolve(img);
-        img.onerror = (err) => reject(err);
-        img.src = src;
+  // Clean up preview URLs when component unmounts
+  useEffect(() => {
+    return () => {
+      Object.values(previews).forEach(preview => {
+        if (preview && preview.startsWith('blob:')) {
+          URL.revokeObjectURL(preview);
+        }
       });
     };
-  
-    try {
-      const [mainImage, frameImage] = await Promise.all([
-        loadImage(image),
-        loadImage(frame),
-      ]);
-  
-      const maxCanvasWidth = 1000; // Max canvas dimensions
-      const maxCanvasHeight = 500;
-  
-      // Get frame aspect ratio and dimensions
-      const frameAspectRatio = frameImage.width / frameImage.height;
-  
-      // Set canvas size based on frame aspect ratio
-      canvas.width = maxCanvasWidth;
-      canvas.height = maxCanvasWidth / frameAspectRatio;
-  
-      // Calculate main image dimensions to fit within the frame
-      const mainImageAspectRatio = mainImage.width / mainImage.height;
-      let mainImageWidth, mainImageHeight;
-  
-      if (mainImageAspectRatio > frameAspectRatio) {
-        // Main image is wider than the frame
-        mainImageWidth = canvas.width;
-        mainImageHeight = canvas.width / mainImageAspectRatio;
-      } else {
-        // Main image is taller or equal in aspect ratio
-        mainImageHeight = canvas.height;
-        mainImageWidth = canvas.height * mainImageAspectRatio;
-      }
-  
-      // Center the main image within the frame
-      const mainImageX = (canvas.width - mainImageWidth) / 2;
-      const mainImageY = (canvas.height - mainImageHeight) / 2;
-  
-      // Clear canvas before rendering
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-      // Draw the main image
-      // ctx.drawImage(mainImage, mainImageX, mainImageY, mainImageWidth, mainImageHeight);
-  
-      // Draw the frame over the main image
-      ctx.drawImage(frameImage, 0, 0, canvas.width, canvas.height);
-    } catch (error) {
-      console.error('Error loading images:', error);
-      ctx.fillStyle = '#FF0000';
-      ctx.font = '20px Arial';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(
-        'Failed to load images',
-        canvas.width / 2,
-        canvas.height / 2
-      );
-    }
-  };
-  
-  
-  useEffect(() => {
-    const frames = [frame1, frame2, frame3];
-    frames.forEach((frame, idx) => {
-      renderCanvas(idx, frame, rhino);
-    });
+  }, [previews]);
 
-    if(!authService.getCurrentUser()) {
-      navigate('/login');
+  useEffect(() => {
+    async function fetchPreviousSubmission() {
+      try {
+        //replace url with REACT_APP_BACKEND_URL
+        const response = await axios.get('http://localhost:4000/api/content-submission', {
+          headers: {
+            ...authHeader()
+          }
+        });
+        
+        const data = response.data.contentSubmission;
+        
+        setFormData({
+          name: data?.name || '',
+          title: data?.title || '',
+          logo: data?.logo || null,
+          photo: data?.photo || null,
+          facebook: data?.facebook || '',
+          instagram: data?.instagram || '',
+          thread: data?.thread || '',
+          xlink: data?.xlink || '',
+          website: data?.website || '',
+        });
+
+        // Set previews for existing cloudinary URLs
+        setPreviews({
+          logo: data?.logo || null,
+          photo: data?.photo || null
+        });
+
+        if(data?.selectedPreviews && Array.isArray(data?.selectedPreviews)) {
+          setSelectedPreviews(data?.selectedPreviews);
+        }
+      } catch (error) {
+        console.log('Error in fetching contentSubmission', error);
+      }
     }
+    fetchPreviousSubmission();
   }, []);
+
+  const togglePreview = (field) => {
+    setShowPreviews(prev => ({
+      ...prev,
+      [field]: !prev[field]
+    }));
+  };
+
+  // Image preview component
+  const ImagePreview = ({ src, alt }) => {
+    if (!src) return null;
+
+    return (
+      <div className="mt-3">
+        <p style={{ fontSize: '0.85rem', color: '#888' }}>Preview:</p>
+        <img
+          src={src}
+          alt={alt}
+          style={{
+            maxWidth: '100%',
+            maxHeight: '200px',
+            height: 'auto',
+            borderRadius: '8px',
+            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+            objectFit: 'contain'
+          }}
+        />
+      </div>
+    );
+  };
+
+  // File input field component
+  const FileInput = ({ label, name, accept = "image/*" }) => (
+    <div className="p-3 rounded shadow-sm" style={{ backgroundColor: '#fafafa' }}>
+      <label className="form-label" style={{ fontSize: '0.85rem', color: '#888' }}>
+        {label}
+      </label>
+      <div className="d-flex flex-column gap-2">
+        <input
+          type="file"
+          name={name}
+          accept={accept}
+          onChange={handleInputChange}
+          className="form-control"
+          style={{ borderRadius: '8px' }}
+        />
+        {previews[name] ? (
+          <button
+            type="button"
+            onClick={() => togglePreview(name)}
+            className="btn btn-outline-primary btn-sm"
+            style={{
+              borderRadius: '8px',
+              fontSize: '0.85rem',
+              padding: '4px 12px',
+              alignSelf: 'flex-start'
+            }}
+          >
+            {showPreviews[name] ? 'Hide Preview' : 'Show Preview'}
+          </button>
+        ):''}
+        {showPreviews[name] && (
+          <ImagePreview 
+            src={previews[name]} 
+            alt={`${name} preview`}
+          />
+        )}
+      </div>
+    </div>
+  );
+
+  // Rest of your component code remains the same...
+
+      function validateFields() { //needs to be replaced with a validator (ZOD or react-hook-form)
+        const {name,title} = formData
+        if(!name || !title) {
+          // setError({isError:true,message:'YourName and Title fields are required'})
+          toast.error(
+            'Your Name and Title fields are required',
+            {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              draggable: true,
+              progress: undefined,
+            }
+          )
+          return false;
+        }
+        else{
+          setError({isError:false,message:''})
+          return true;
+        }
+      }
+    
+      const handleSubmit = async () => {
+        setSubmitSuccess(false)
+    
+        const isValid = validateFields();
+        if(!isValid) {return}
+    
+        setIsSubmitting(true)
+    
+        const formDataToSubmit = new FormData() //formDataToSubmit is a FormData object.
+        
+        for (const key in formData) { //iterating through the formDataToSubmit object
+          formDataToSubmit.append(key,formData[key])
+        }
+    
+        formDataToSubmit.append('selectedPreviews', JSON.stringify(selectedPreviews)) //append selected previews
+    
+        try {
+          console.log('REACT_APP_BACKEND_URL',process.env.REACT_APP_BACKEND_URL)
+          //replace url with REACT_APP_BACKEND_URL
+          const response = await fetch(`${previousContentAvailable ? `http://localhost:4000/api/content-submission:${formData?._id}` : 'http://localhost:4000/api/content-submission'}`,{
+            method:`${previousContentAvailable ? 'PATCH' : 'POST'}`,
+            headers:{
+              ...authHeader()
+            },
+            body:formDataToSubmit
+          })
+          const responseBody = await response.json();
+          if(!response.ok) {
+            console.log(responseBody)
+            throw responseBody;
+          }
+          console.log(responseBody)
+          setSubmitSuccess(true)
+          setFormData({
+            name: '',
+            title: '',
+            logo: null,
+            photo: null,
+            facebook: '',
+            instagram: '',
+            thread: '',
+            xlink: '',
+            website: '',
+          })
+          // Redirect to login
+          navigate('/creative-select');
+        } catch (error) {
+          if (error.error === 'Not authorized') {
+            console.error('Token invalid or expired, logging out');
+            authService.logout('/login');
+          }
+          console.log(error);
+          setError({isError:true,message:error.error || 'Filed to submit form'})
+        } finally {
+          setIsSubmitting(false)
+        }
+      };
+    
+    
+      useEffect(()=>{
+        //replace url with REACT_APP_BACKEND_URL
+        async function fetchPreviousSubmission() {
+          try {
+            const response =await axios.get('http://localhost:4000/api/content-submission',{
+              headers:{
+                ...authHeader()
+              }
+            })
+            console.log('Previous contentSUbmisison',response.data)
+            const data = response.data.contentSubmission;
+            setFormData({
+              name: data?.name || '',
+              title: data?.title || '',
+              logo: data?.logo || '',
+              photo: data?.photo || '',
+              facebook: data?.facebook || '',
+              instagram: data?.instagram || '',
+              thread: data?.thread || '',
+              xlink: data?.xlink || '',
+              website: data?.website || '',
+              selectedPreviewIndex:data?.selectedPreviews || '',
+              _id:data?._id
+            });
+            if(data?.selectedPreviews && Array.isArray(data?.selectedPreviews)) {
+              setSelectedPreviews(data?.selectedPreviews)
+            }
+            setPreviews({
+              logo: data?.logo || null,
+              photo: data?.photo || null
+            })
+            setPreviousContentAvailable(true)
+          } catch (error) {
+            console.log('Error in fetching contentSubmission',error)
+            // console.log(error)
+            setPreviousContentAvailable(false)
+          }
+        }
+        fetchPreviousSubmission();
+      },[])
+    
+      const handlePreviewClick = (index) => {
+        setSelectedPreviews([index]); // Allow only one selection
+      };
+      
+    
+    
+      const renderCanvas = async (index, frame, image) => {
+        const canvas = canvasRefs.current[index];
+        if (!canvas) return;
+      
+        const ctx = canvas.getContext('2d');
+      
+        const loadImage = (src) => {
+          return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = () => resolve(img);
+            img.onerror = (err) => reject(err);
+            img.src = src;
+          });
+        };
+      
+        try {
+          const [mainImage, frameImage] = await Promise.all([
+            loadImage(image),
+            loadImage(frame),
+          ]);
+      
+          const maxCanvasWidth = 1000; // Max canvas dimensions
+          const maxCanvasHeight = 500;
+      
+          // Get frame aspect ratio and dimensions
+          const frameAspectRatio = frameImage.width / frameImage.height;
+      
+          // Set canvas size based on frame aspect ratio
+          canvas.width = maxCanvasWidth;
+          canvas.height = maxCanvasWidth / frameAspectRatio;
+      
+          // Calculate main image dimensions to fit within the frame
+          const mainImageAspectRatio = mainImage.width / mainImage.height;
+          let mainImageWidth, mainImageHeight;
+      
+          if (mainImageAspectRatio > frameAspectRatio) {
+            // Main image is wider than the frame
+            mainImageWidth = canvas.width;
+            mainImageHeight = canvas.width / mainImageAspectRatio;
+          } else {
+            // Main image is taller or equal in aspect ratio
+            mainImageHeight = canvas.height;
+            mainImageWidth = canvas.height * mainImageAspectRatio;
+          }
+      
+          // Center the main image within the frame
+          const mainImageX = (canvas.width - mainImageWidth) / 2;
+          const mainImageY = (canvas.height - mainImageHeight) / 2;
+      
+          // Clear canvas before rendering
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+          // Draw the main image
+          // ctx.drawImage(mainImage, mainImageX, mainImageY, mainImageWidth, mainImageHeight);
+      
+          // Draw the frame over the main image
+          ctx.drawImage(frameImage, 0, 0, canvas.width, canvas.height);
+        } catch (error) {
+          console.error('Error loading images:', error);
+          ctx.fillStyle = '#FF0000';
+          ctx.font = '20px Arial';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(
+            'Failed to load images',
+            canvas.width / 2,
+            canvas.height / 2
+          );
+        }
+      };
+      
+      
+      useEffect(() => {
+        const frames = [frame1, frame2, frame3];
+        frames.forEach((frame, idx) => {
+          renderCanvas(idx, frame, rhino);
+        });
+    
+        if(!authService.getCurrentUser()) {
+          navigate('/login');
+        }
+      }, []);
 
 
   return (
+
     <div
       className="container py-5"
       style={{
@@ -236,17 +426,17 @@ function ContentSubmission() {
         {[...Array(3)].map((_, idx) => (
           <div
             key={idx}
-            onClick={() => handlePreviewClick(idx)}
-            className={` mx-md-1 col-lg-4 col-sm-12 d-flex align-items-center justify-content-center position-relative ${selectedPreviews.includes(idx) ? 'border-primary' : 'border-secondary'}`}
+            onClick={() => handlePreviewClick(idx)}  
+            className={` mx-md-1 col-lg-4 col-sm-12 d-flex align-items-center justify-content-center position-relative ${selectedPreviews?.includes(idx) ? 'border-primary' : 'border-secondary'}`}
             style={{
               // maxHeight: '400px',
               maxWidth: '400px',
               borderRadius: '10px',
-              backgroundColor: selectedPreviews.includes(idx) ? '#e0f7fa' : '#f1f1f1',
-              border: selectedPreviews.includes(idx) ? '2px solid #007bff' : '1px solid #ddd',
+              backgroundColor: selectedPreviews?.includes(idx) ? '#e0f7fa' : '#f1f1f1',
+              border: selectedPreviews?.includes(idx) ? '2px solid #007bff' : '1px solid #ddd',
               textAlign: 'center',
               cursor: 'pointer',
-              boxShadow: selectedPreviews.includes(idx) ? '0 4px 12px rgba(0, 123, 255, 0.4)' : '0 2px 6px rgba(0,0,0,0.1)',
+              boxShadow: selectedPreviews?.includes(idx) ? '0 4px 12px rgba(0, 123, 255, 0.4)' : '0 2px 6px rgba(0,0,0,0.1)',
               transition: 'transform 0.2s, background-color 0.2s',
             }}
           >
@@ -264,7 +454,7 @@ function ContentSubmission() {
             </canvas>
 
             {/* Checkmark overlay when selected */}
-            {selectedPreviews.includes(idx) && (
+            {selectedPreviews?.includes(idx) && (
               <span
                 className="position-absolute top-0 end-0 m-1 bg-primary rounded-circle d-flex align-items-center justify-content-center"
                 style={{
@@ -296,7 +486,7 @@ function ContentSubmission() {
               type="text"
               name="name"
               placeholder="Your Name"
-              value={formData.name}
+              value={formData?.name}
               onChange={handleInputChange}
               className="form-control"
               style={{ borderRadius: '8px', fontSize: '0.9rem', padding: '10px' }}
@@ -311,7 +501,7 @@ function ContentSubmission() {
               type="text"
               name="title"
               placeholder="Title"
-              value={formData.title}
+              value={formData?.title}
               onChange={handleInputChange}
               className="form-control"
               style={{ borderRadius: '8px', fontSize: '0.9rem', padding: '10px' }}
@@ -319,7 +509,7 @@ function ContentSubmission() {
           </div>
         </div>
         
-        <div className="col-md-4 col-12">
+        {/* <div className="col-md-4 col-12">
           <div className="p-3 rounded shadow-sm" style={{ backgroundColor: '#fafafa' }}>
             <label className="form-label" style={{ fontSize: '0.85rem', color: '#888' }}>Upload Your Photo</label>
             <input
@@ -331,21 +521,21 @@ function ContentSubmission() {
               style={{ borderRadius: '8px' }}
             />
           </div>
+        </div> */}
+
+        <div className="col-md-4 col-12">
+          <FileInput 
+            label="Upload Your Photo" 
+            name="photo"
+          />
         </div>
 
         {/* Row 2 */}
         <div className="col-md-4 col-12">
-          <div className="p-3 rounded shadow-sm" style={{ backgroundColor: '#fafafa' }}>
-            <label className="form-label" style={{ fontSize: '0.85rem', color: '#888' }}>Upload Your Logo</label>
-            <input
-            id='fileinput2'
-              type="file"
-              name="logo"
-              onChange={handleInputChange}
-              className="form-control"
-              style={{ borderRadius: '8px' }}
-            />
-          </div>
+          <FileInput 
+            label="Upload Your Logo" 
+            name="logo"
+          />
         </div>
         
         <div className="col-md-4 col-12">
@@ -355,7 +545,7 @@ function ContentSubmission() {
               type="text"
               name="facebook"
               placeholder="Facebook Link"
-              value={formData.facebook}
+              value={formData?.facebook}
               onChange={handleInputChange}
               className="form-control"
               style={{ borderRadius: '8px', fontSize: '0.9rem', padding: '10px' }}
@@ -370,7 +560,7 @@ function ContentSubmission() {
               type="text"
               name="xlink"
               placeholder="X Link"
-              value={formData.xlink}
+              value={formData?.xlink}
               onChange={handleInputChange}
               className="form-control"
               style={{ borderRadius: '8px', fontSize: '0.9rem', padding: '10px' }}
@@ -386,7 +576,7 @@ function ContentSubmission() {
               type="text"
               name="instagram"
               placeholder="Instagram Link"
-              value={formData.instagram}
+              value={formData?.instagram}
               onChange={handleInputChange}
               className="form-control"
               style={{ borderRadius: '8px', fontSize: '0.9rem', padding: '10px' }}
@@ -401,7 +591,7 @@ function ContentSubmission() {
               type="text"
               name="thread"
               placeholder="Thread Link"
-              value={formData.thread}
+              value={formData?.thread}
               onChange={handleInputChange}
               className="form-control"
               style={{ borderRadius: '8px', fontSize: '0.9rem', padding: '10px' }}
@@ -416,7 +606,7 @@ function ContentSubmission() {
               type="text"
               name="website"
               placeholder="Website or WhatsApp Link"
-              value={formData.website}
+              value={formData?.website}
               onChange={handleInputChange}
               className="form-control"
               style={{ borderRadius: '8px', fontSize: '0.9rem', padding: '10px' }}
@@ -445,6 +635,8 @@ function ContentSubmission() {
         {submitSuccess && <div style={{textAlign:"center", fontSize:'0.8rem', color: 'green'}}><p>Form Submitted Successfully</p></div>}
       </div>
     </div>
+
+
   );
 }
 
