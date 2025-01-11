@@ -6,88 +6,90 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import ContentLoader from 'react-content-loader'
 import authHeader from "../services/authHeader";
-const mockCreativeData = [
-  {
-    eventId: 1,
-    title: "Tea Bottle",
-    description: "Class enim elementum litora platea dictum commodo vestibulum",
-    randomDesign: {
-      id : '1234',
-      imageUrl: "https://i.ibb.co/Z2vr3k2/ganesh.jpg",
-    },
-    eventDate: "2024-12-01",
-  },
-  {
-    eventId: 2,
-    title: "Bobo Furniture",
-    description: "Class enim elementum litora platea dictum commodo vestibulum",
-    randomDesign: {
-      id : '12345',
-      imageUrl: "https://i.ibb.co/YdJsRCX/nationalsportsday.jpg",
-    },
-    eventDate: "2024-12-02",
-  },
-  {
-    eventId: 3,
-    title: "FitLife Gym",
-    description: "Class enim elementum litora platea dictum commodo vestibulum",
-    randomDesign: {
-      id : '123456',
-      imageUrl: "https://i.ibb.co/fDQCNWq/TEACHERSDAY.jpg",
-    },
-    eventDate: "2024-12-03",
-  },
-  {
-    eventId: 4,
-    title: "Palash Pratim Dutta Jayanti",
-    description: "Class enim elementum litora platea dictum commodo vestibulum",
-    randomDesign: {
-      id : '1234567',
-      imageUrl: "https://i.ibb.co/LJjqPnS/apj.jpg",
-    },
-    eventDate: "2024-12-03",
-  },
-  {
-    eventId: 5,
-    title: "Pencil",
-    description: "Class enim elementum litora platea dictum commodo vestibulum",
-    randomDesign: {
-      id : '123456112',
-      imageUrl: "https://i.ibb.co/fDQCNWq/TEACHERSDAY.jpg",
-    },
-    eventDate: "2024-12-03",
-  },
-  {
-    eventId: 6,
-    title: "FitLife Gym",
-    description: "Class enim elementum litora platea dictum commodo vestibulum",
-    randomDesign: {
-      id : '123456234',
-      imageUrl: "https://i.ibb.co/2qJX9pG/rhino.jpg",
-    },
-    eventDate: "2024-12-03",
-  },
-  {
-    eventId: 7,
-    title: "This is a test",
-    description: "Class enim elementum litora platea dictum commodo vestibulum",
-    randomDesign: {
-      id : '123452346',
-      imageUrl: "https://i.ibb.co/fDQCNWq/TEACHERSDAY.jpg",
-    },
-    eventDate: "2024-12-03",
-  },
-  {
-    eventId: 8,
-    title: "YOLO",
-    description: "Class enim elementum litora platea dictum commodo vestibulum",
-    randomDesign: {
-      id : '123456',
-      imageUrl: "https://i.ibb.co/2qJX9pG/rhino.jpg",
-    },
-    eventDate: "2024-12-03",
-  },
-];
+import handleError from "../services/handleError";
+import {toast} from 'react-toastify';
+// const mockCreativeData = [
+//   {
+//     eventId: 1,
+//     title: "Tea Bottle",
+//     description: "Class enim elementum litora platea dictum commodo vestibulum",
+//     randomDesign: {
+//       id : '1234',
+//       imageUrl: "https://i.ibb.co/Z2vr3k2/ganesh.jpg",
+//     },
+//     eventDate: "2024-12-01",
+//   },
+//   {
+//     eventId: 2,
+//     title: "Bobo Furniture",
+//     description: "Class enim elementum litora platea dictum commodo vestibulum",
+//     randomDesign: {
+//       id : '12345',
+//       imageUrl: "https://i.ibb.co/YdJsRCX/nationalsportsday.jpg",
+//     },
+//     eventDate: "2024-12-02",
+//   },
+//   {
+//     eventId: 3,
+//     title: "FitLife Gym",
+//     description: "Class enim elementum litora platea dictum commodo vestibulum",
+//     randomDesign: {
+//       id : '123456',
+//       imageUrl: "https://i.ibb.co/fDQCNWq/TEACHERSDAY.jpg",
+//     },
+//     eventDate: "2024-12-03",
+//   },
+//   {
+//     eventId: 4,
+//     title: "Palash Pratim Dutta Jayanti",
+//     description: "Class enim elementum litora platea dictum commodo vestibulum",
+//     randomDesign: {
+//       id : '1234567',
+//       imageUrl: "https://i.ibb.co/LJjqPnS/apj.jpg",
+//     },
+//     eventDate: "2024-12-03",
+//   },
+//   {
+//     eventId: 5,
+//     title: "Pencil",
+//     description: "Class enim elementum litora platea dictum commodo vestibulum",
+//     randomDesign: {
+//       id : '123456112',
+//       imageUrl: "https://i.ibb.co/fDQCNWq/TEACHERSDAY.jpg",
+//     },
+//     eventDate: "2024-12-03",
+//   },
+//   {
+//     eventId: 6,
+//     title: "FitLife Gym",
+//     description: "Class enim elementum litora platea dictum commodo vestibulum",
+//     randomDesign: {
+//       id : '123456234',
+//       imageUrl: "https://i.ibb.co/2qJX9pG/rhino.jpg",
+//     },
+//     eventDate: "2024-12-03",
+//   },
+//   {
+//     eventId: 7,
+//     title: "This is a test",
+//     description: "Class enim elementum litora platea dictum commodo vestibulum",
+//     randomDesign: {
+//       id : '123452346',
+//       imageUrl: "https://i.ibb.co/fDQCNWq/TEACHERSDAY.jpg",
+//     },
+//     eventDate: "2024-12-03",
+//   },
+//   {
+//     eventId: 8,
+//     title: "YOLO",
+//     description: "Class enim elementum litora platea dictum commodo vestibulum",
+//     randomDesign: {
+//       id : '123456',
+//       imageUrl: "https://i.ibb.co/2qJX9pG/rhino.jpg",
+//     },
+//     eventDate: "2024-12-03",
+//   },
+// ];
 
 
 
@@ -211,15 +213,22 @@ const CreativeSelect = () => {
     async function fetchCreatives() {
       setIsLoading(true);
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/upcoming-events`)
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/upcoming-events` , 
+          {headers : {
+            ...authHeader()
+          }
+        }
+        )
         console.log('fetchCreatives response',response)
         setDesigns(response.data)
         setIsLoading(false)
       
       } catch (error) {
         setIsLoading(false)
-        console.log('An error occoured at fetchCreatives',error)
-        setDesigns(mockCreativeData) //For testing purposes because we dont have a live BE.
+        handleError(error)
+        const errorMessage = error.response?.data?.message || 'An error occurred!';
+        toast.error(errorMessage);
+        // setDesigns(mockCreativeData) //For testing purposes because we dont have a live BE.
       }
     }
     fetchCreatives();

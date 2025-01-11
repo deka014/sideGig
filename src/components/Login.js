@@ -15,8 +15,8 @@ function Login() {
   // call auth logout function
   useEffect(() => {
     if(authService.getCurrentUser()) {
-      authService.logout();
-      window.location.href = "/login";
+      // authService.logout();
+      window.location.href = "/";
     }
   }, []);
 

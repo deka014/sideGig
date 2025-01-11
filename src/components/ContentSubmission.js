@@ -111,7 +111,8 @@ function ContentSubmission() {
         authService.logout('/login');
       }
       console.log(error);
-      setError({isError:true,message:error.error || 'Filed to submit form'})
+      // setError({isError:true,message:error.error || 'Filed to submit form'})
+      toast.error(error.error || 'Failed to submit form')
     } finally {
       setIsSubmitting(false)
     }
